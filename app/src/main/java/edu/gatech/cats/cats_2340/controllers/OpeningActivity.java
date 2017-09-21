@@ -1,7 +1,9 @@
-package edu.gatech.cats.cats_2340;
+package edu.gatech.cats.cats_2340.controllers;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import edu.gatech.cats.cats_2340.R;
 
 public class OpeningActivity extends AppCompatActivity {
 
