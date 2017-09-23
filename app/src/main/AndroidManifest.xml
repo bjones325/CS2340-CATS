@@ -22,8 +22,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginActivity"
-            android:label="@string/title_activity_login"></activity>
+            android:name=".controllers.LoginActivity"
+            android:label="@string/title_activity_login" />
     </application>
 
 </manifest>
