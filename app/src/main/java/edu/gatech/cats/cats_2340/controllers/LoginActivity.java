@@ -31,7 +31,8 @@ public class LoginActivity extends AppCompatActivity{
         TextView passwordField = (TextView) findViewById(R.id.passwordField);
         String password = passwordField.getText().toString();
         if(model.attemptLogin(username, password)) {
-            Log.d("SUCCESS:", "enter application");
+            startActivity(new Intent(getBaseContext(),ApplicationActivity.class));
+            finish();
         } else {
             TextView failedSuccess = (TextView) findViewById(R.id.textView4);
             failedSuccess.setVisibility(View.VISIBLE);
@@ -40,5 +41,6 @@ public class LoginActivity extends AppCompatActivity{
 
     protected void onCancelPressed(View view) {
         startActivity(new Intent(getBaseContext(),OpeningActivity.class));
+        finish();
     }
 }
