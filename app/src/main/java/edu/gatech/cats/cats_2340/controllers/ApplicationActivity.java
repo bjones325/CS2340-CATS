@@ -7,6 +7,7 @@ import android.view.View;
 
 import edu.gatech.cats.cats_2340.R;
 
+//Placeholder for rest of application
 public class ApplicationActivity extends AppCompatActivity {
 
     @Override
@@ -15,6 +16,7 @@ public class ApplicationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_application);
     }
 
+    //Logout button
     protected void onLogoutPressed(View view) {
         startActivity(new Intent(getBaseContext(),OpeningActivity.class));
         finish();

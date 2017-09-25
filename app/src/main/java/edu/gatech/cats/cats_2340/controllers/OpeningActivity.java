@@ -8,6 +8,7 @@ import android.widget.Button;
 
 import edu.gatech.cats.cats_2340.R;
 
+//Splash screen
 public class OpeningActivity extends AppCompatActivity {
 
     @Override

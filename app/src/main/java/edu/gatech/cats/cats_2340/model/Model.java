@@ -8,6 +8,7 @@ package edu.gatech.cats.cats_2340.model;
  */
 
 public class Model {
+    //Singleton instance
     private static final Model _instance = new Model();
 
     private String user;
@@ -24,7 +25,10 @@ public class Model {
         pass = "pass";
     }
 
+    //Basic logic for a log in implemented here. The username and password are hardcoded but will
+    //obviously be replaced in the future
     public boolean attemptLogin(String user, String pass) {
+        loggedIn = true;
         return (user.equals("user") && pass.equals("pass"));
     }
 }
