@@ -1,5 +1,7 @@
 package edu.gatech.cats.cats_2340.model;
 
+import android.util.Log;
+
 /**
  * Created by acer_ on 9/21/2017.
  * Modified 9/21/17
@@ -30,5 +32,12 @@ public class Model {
     public boolean attemptLogin(String user, String pass) {
         loggedIn = true;
         return (user.equals("user") && pass.equals("pass"));
+    }
+
+    public void logout() {
+        if (!loggedIn) {
+            Log.d("ERROR:", "User logged out but was not logged in!");
+        }
+        loggedIn = false;
     }
 }

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import edu.gatech.cats.cats_2340.R;
+import edu.gatech.cats.cats_2340.model.Model;
 
 //Placeholder for rest of application
 public class ApplicationActivity extends AppCompatActivity {
@@ -19,6 +20,7 @@ public class ApplicationActivity extends AppCompatActivity {
     //Logout button
     protected void onLogoutPressed(View view) {
         startActivity(new Intent(getBaseContext(),OpeningActivity.class));
+        Model.getInstance().logout();
         finish();
     }
 }
