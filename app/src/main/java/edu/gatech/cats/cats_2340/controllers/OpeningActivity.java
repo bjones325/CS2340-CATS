@@ -22,5 +22,12 @@ public class OpeningActivity extends AppCompatActivity {
                 startActivity(new Intent(getBaseContext(),LoginActivity.class));
             }
         });
+
+        Button registerButton = (Button) findViewById(R.id.registerButton);
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(getBaseContext(), RegisterActivity.class));
+            }
+        });
     }
 }
