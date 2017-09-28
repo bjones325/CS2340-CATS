@@ -1,31 +1,35 @@
 package edu.gatech.cats.cats_2340.controllers;
 
-import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
+import android.os.Bundle;
 
 import edu.gatech.cats.cats_2340.R;
+import android.widget.TextView;
+
+import edu.gatech.cats.cats_2340.model.Model;
+import edu.gatech.cats.cats_2340.model.User;
 
 public class RegisterActivity extends AppCompatActivity {
+
+    private TextView nameText;
+    private TextView userText;
+    private TextView passText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
     }
 
+    protected void onRegisterPressed() {
+        Model model = Model.getInstance();
+
+        String name = nameText.getText().toString();
+        String user = userText.getText().toString();
+        String pass = userText.getText().toString();
+
+        User newUser = new User(name, user, pass, true);
+
+        model.register(newUser);
+    }
 }
