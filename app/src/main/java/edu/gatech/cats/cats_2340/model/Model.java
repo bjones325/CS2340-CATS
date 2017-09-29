@@ -15,9 +15,6 @@ public class Model {
     //Singleton instance
     private static final Model _instance = new Model();
 
-    private String user;
-    private String pass;
-
     private List<User> userList = new ArrayList<User>();
 
     private boolean loggedIn = false;
@@ -27,23 +24,26 @@ public class Model {
     }
 
     private Model() {
-        user = "user";
-        pass = "pass";
+        User u = new User("Elijah", "user", "pass", true);
+        userList.add(u);
     }
 
     //Basic logic for a log in implemented here. The username and password are hardcoded but will
     //obviously be replaced in the future
     public boolean attemptLogin(String user, String pass) {
         boolean foundUser = false;
+
+
         for (User u : userList) {
-            if (u.getName() == user) {
+            if (u.getId().equals(user)) {
                 foundUser = true;
 
-                if (u.getPass() == pass) {
+                if (u.getPass().equals(pass)) {
                     loggedIn = true;
                     return true;
                 } else {
                     Log.d("ERROR:", "Incorrect password"); //TODO: Add in user facing
+                    Log.d("ERROR:", "Entered : " + pass + "Looking for : " + u.getPass());
                     return false;
                 }
             }

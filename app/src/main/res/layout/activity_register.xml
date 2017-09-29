@@ -17,7 +17,7 @@
         android:layout_marginTop="15dp" />
 
     <EditText
-        android:id="@+id/name"
+        android:id="@+id/nameField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -32,8 +32,8 @@
         android:id="@+id/userID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/name"
-        android:layout_below="@+id/name"
+        android:layout_alignStart="@+id/nameField"
+        android:layout_below="@+id/nameField"
         android:layout_marginTop="39dp"
         android:ems="10"
         android:inputType="textPersonName"
@@ -67,12 +67,14 @@
         android:layout_alignStart="@+id/userTypeLabel"
         android:layout_marginBottom="54dp"
         android:layout_marginStart="30dp"
+        android:onClick="onCancelPressed"
         android:text="Cancel" />
 
     <Button
         android:id="@+id/submitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="onRegisterPressed"
         android:layout_alignTop="@+id/cancelButton"
         android:layout_toEndOf="@+id/password"
         android:text="Submit" />
