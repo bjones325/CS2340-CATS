@@ -37,7 +37,7 @@
         android:layout_marginTop="39dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="user ID" />
+        android:text="Username" />
 
     <EditText
         android:id="@+id/password"
@@ -58,6 +58,15 @@
         android:layout_below="@+id/password"
         android:layout_marginTop="58dp"
         android:text="User Type" />
+
+    <TextView
+        android:id="@+id/invalidSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/password"
+        android:layout_below="@+id/userTypeLabel"
+        android:layout_marginTop="40dp"
+        android:text="Please fill out all four fields" />
 
     <Button
         android:id="@+id/cancelButton"

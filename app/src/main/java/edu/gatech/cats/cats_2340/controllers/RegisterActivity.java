@@ -36,6 +36,9 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         passText = (TextView) findViewById(R.id.password);
         userTypeLabel = (Spinner) findViewById(R.id.userTypeLabel);
 
+        TextView failedRegisterText = (TextView) findViewById(R.id.invalidSubmit);
+        failedRegisterText.setVisibility(View.INVISIBLE);
+
         // Set up adapter to display the allowable types inside the spinner
         ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, User.type);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -57,6 +60,14 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         if (userTypeLabel.getSelectedItem().equals("Admin")) {
             isAdmin = true;
         }
+
+        if (name.equals("") || user.equals("") || pass.equals("")) {
+            TextView failedRegisterText = (TextView) findViewById(R.id.invalidSubmit);
+            failedRegisterText.setVisibility(View.VISIBLE);
+
+            return;
+        }
+
         User newUser = new User(name, user, pass, isAdmin);
 
         model.register(newUser);
