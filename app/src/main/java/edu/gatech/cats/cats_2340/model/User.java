@@ -1,5 +1,8 @@
 package edu.gatech.cats.cats_2340.model;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * User class to store information about specific users of our application
  */
@@ -9,6 +12,8 @@ public class User {
     private String _id;
     private String _pass;
     private boolean _isAdmin;
+    public static List<String> type = Arrays.asList("User", "Admin");
+    private String _type;
 
     /**
      * Constructor for user. The application only proceeds when all fields filled so we can
@@ -56,4 +61,5 @@ public class User {
     public boolean getIsAdmin() {
         return _isAdmin;
     }
+
 }
