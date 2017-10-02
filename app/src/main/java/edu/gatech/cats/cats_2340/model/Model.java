@@ -23,13 +23,21 @@ public class Model {
         return _instance;
     }
 
+    /**
+     * Basic Model constructor. Empty right now but editable as needed
+     */
     private Model() {
-        User u = new User("Elijah", "user", "pass", true);
-        userList.add(u);
+        //User u = new User("Elijah", "user", "pass", true);
+        //userList.add(u);
     }
 
-    //Basic logic for a log in implemented here. The username and password are hardcoded but will
-    //obviously be replaced in the future
+    /**
+     * Basic logic for Log-In. Username/password in a list currently, will probably switch to a
+     * Database soon
+     * @param user The username entered
+     * @param pass The password entered
+     * @return Whether a user was found with the entered username/password
+     */
     public boolean attemptLogin(String user, String pass) {
         boolean foundUser = false;
 
@@ -56,6 +64,9 @@ public class Model {
         return false;
     }
 
+    /**
+     * Logs the user out of the application
+     */
     public void logout() {
         if (!loggedIn) {
             Log.d("ERROR:", "User logged out but was not logged in!");
@@ -63,6 +74,10 @@ public class Model {
         loggedIn = false;
     }
 
+    /**
+     * Adds the user to a list of users. Will most likely utilize a database in the future
+     * @param u User to be added
+     */
     public void register(User u) {
         userList.add(u);
     }

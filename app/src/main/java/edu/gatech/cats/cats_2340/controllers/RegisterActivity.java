@@ -28,6 +28,11 @@ public class RegisterActivity extends AppCompatActivity {
         passText = (TextView) findViewById(R.id.password);
     }
 
+    /**
+     * Adds a new user with submitted data to the list of users. Will most likely update with
+     * database functionality soon
+     * @param view
+     */
     protected void onRegisterPressed(View view) {
         Model model = Model.getInstance();
 
@@ -43,6 +48,10 @@ public class RegisterActivity extends AppCompatActivity {
         finish();
     }
 
+    /**
+     * Goes back to splash screen when the user presses cancel
+     * @param view
+     */
     protected void onCancelPressed(View view) {
         startActivity(new Intent(getBaseContext(),OpeningActivity.class));
         finish();

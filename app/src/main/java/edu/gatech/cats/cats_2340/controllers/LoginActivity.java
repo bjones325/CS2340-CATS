@@ -25,19 +25,27 @@ public class LoginActivity extends AppCompatActivity{
         setContentView(R.layout.activity_login);
         usernameField = (TextView) findViewById(R.id.usernameField);
         passwordField = (TextView) findViewById(R.id.passwordField);
-        //Log-in failed text
 
+        //Log-in failed text
         failedSuccessText = (TextView) findViewById(R.id.textView4);
+
         //We want it invisible at the start
         failedSuccessText.setVisibility(View.INVISIBLE);
 
     }
 
+    /**
+     * This is a button called by the Log-In button- it calls the Model's log in function. If
+     * a user with a matching password is found, the user is logged in and sent to the application
+     * otherwise they are stuck on the same screen
+     * @param view
+     */
     protected void onLoginPressed(View view) {
         Model model = Model.getInstance();
         String username = usernameField.getText().toString();
         String password = passwordField.getText().toString();
 
+        //If they log in, put them in the application
         if(model.attemptLogin(username, password)) {
             startActivity(new Intent(getBaseContext(),ApplicationActivity.class));
             finish();
