@@ -1,9 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="edu.gatech.cats.cats_2340.controllers.RatSightingScreen">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/reportKey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="34dp"
+        android:text="Report Key:"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/dateCreated"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/reportKey"
+        android:layout_below="@+id/reportKey"
+        android:layout_marginTop="27dp"
+        android:text="Date Created:" />
+
+    <TextView
+        android:id="@+id/locationType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/dateCreated"
+        android:layout_below="@+id/dateCreated"
+        android:layout_marginTop="36dp"
+        android:text="Location Type:" />
+
+    <TextView
+        android:id="@+id/zip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/locationType"
+        android:layout_below="@+id/locationType"
+        android:layout_marginTop="33dp"
+        android:text="Zip Code:" />
+
+    <TextView
+        android:id="@+id/address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/zip"
+        android:layout_below="@+id/zip"
+        android:layout_marginTop="34dp"
+        android:text="Address:" />
+
+    <TextView
+        android:id="@+id/city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/address"
+        android:layout_below="@+id/address"
+        android:layout_marginTop="36dp"
+        android:text="City:" />
+
+    <TextView
+        android:id="@+id/borough"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/city"
+        android:layout_below="@+id/city"
+        android:layout_marginTop="34dp"
+        android:text="Borough:" />
+
+    <TextView
+        android:id="@+id/latitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/borough"
+        android:layout_below="@+id/borough"
+        android:layout_marginTop="38dp"
+        android:text="Latitude:" />
+
+    <TextView
+        android:id="@+id/longitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="33dp"
+        android:text="Longitude:"
+        android:layout_below="@+id/latitude"
+        android:layout_alignStart="@+id/latitude" />
+</RelativeLayout>
