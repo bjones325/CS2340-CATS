@@ -7,23 +7,23 @@
     tools:context="edu.gatech.cats.cats_2340.controllers.RatSightingScreen">
 
     <TextView
-        android:id="@+id/reportKey"
+        android:id="@+id/location_field"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="37dp"
-        android:layout_marginTop="34dp"
-        android:text="Report Key:"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignBottom="@+id/locationType"
+        android:layout_alignStart="@+id/textView2"
+        android:text="TextView"
+        android:visibility="invisible" />
 
     <TextView
         android:id="@+id/dateCreated"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/reportKey"
-        android:layout_below="@+id/reportKey"
-        android:layout_marginTop="27dp"
-        android:text="Date Created:" />
+        android:layout_marginTop="26dp"
+        android:text="Date Created:"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="38dp" />
 
     <TextView
         android:id="@+id/locationType"
@@ -87,4 +87,72 @@
         android:text="Longitude:"
         android:layout_below="@+id/latitude"
         android:layout_alignStart="@+id/latitude" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/locationType"
+        android:layout_marginStart="91dp"
+        android:layout_toEndOf="@+id/locationType"
+        android:text="TextView"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/zip_field"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/zip"
+        android:layout_alignBottom="@+id/zip"
+        android:layout_alignStart="@+id/location_field"
+        android:text="TextView"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/address_field"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/address"
+        android:layout_alignBottom="@+id/address"
+        android:layout_alignStart="@+id/zip_field"
+        android:text="TextView"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/city_field"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/borough"
+        android:layout_alignStart="@+id/address_field"
+        android:text="TextView"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/borough_field"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/borough"
+        android:layout_alignBottom="@+id/borough"
+        android:layout_alignStart="@+id/city_field"
+        android:text="TextView"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/latitude_field"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/longitude"
+        android:layout_alignStart="@+id/borough_field"
+        android:text="TextView"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/longitude_field"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/longitude"
+        android:layout_alignBottom="@+id/longitude"
+        android:layout_alignStart="@+id/latitude_field"
+        android:text="TextView"
+        android:visibility="invisible" />
 </RelativeLayout>
