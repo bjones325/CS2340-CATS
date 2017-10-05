@@ -34,5 +34,6 @@ public class OpeningActivity extends AppCompatActivity {
                 startActivity(new Intent(getBaseContext(), RegisterActivity.class));
             }
         });
+        SQLController.initializeConnection();
     }
 }
