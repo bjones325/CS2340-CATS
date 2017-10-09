@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
+import com.mysql.jdbc.Driver;
 
 import android.content.Intent;
 import android.util.Log;
@@ -16,9 +17,9 @@ import android.util.Log;
 public class SQLController {
 
     private static String username = "acer";
-    private static String password = "cs2340SQL";
+    private static String password = "cs2340CATS";
     private static String dbName = "cs2340";
-    private static String serverName = "127.0.0.1";
+    private static String serverName = "10.0.2.2";
     private static int portNumber = 3306;
 
     private static Connection SQLconnection;
@@ -32,6 +33,7 @@ public class SQLController {
         connectionProps.put("user", username);
         connectionProps.put("password", password);
         try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
             Connection conn = DriverManager.getConnection(
                     "jdbc:mysql://" +
                             serverName +
@@ -43,8 +45,9 @@ public class SQLController {
 
             SQLconnection = conn;
             Log.d("INFO", "Initialized Connection to Database");
-        } catch (SQLException e){
+        } catch (Exception e){
             Log.d("ERROR", "Failed to Connect to Database!");
+            Log.d("ERROR", "MSG: " + e.getMessage());
         }
 
     }
