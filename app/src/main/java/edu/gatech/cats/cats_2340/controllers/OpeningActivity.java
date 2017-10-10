@@ -1,11 +1,13 @@
 package edu.gatech.cats.cats_2340.controllers;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.os.StrictMode;
 
 import edu.gatech.cats.cats_2340.R;
 
@@ -34,6 +36,17 @@ public class OpeningActivity extends AppCompatActivity {
                 startActivity(new Intent(getBaseContext(), RegisterActivity.class));
             }
         });
-        SQLController.initializeConnection();
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
+        new AsyncTask<Void, Void, Void>() {
+
+            @Override
+            protected Void doInBackground(Void ... params) {
+                SQLController.initializeConnection();
+                return null;
+            }
+        }.execute();
     }
 }
