@@ -4,11 +4,14 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 import java.util.Properties;
 import com.mysql.jdbc.Driver;
 
 import android.content.Intent;
 import android.util.Log;
+
+import edu.gatech.cats.cats_2340.model.RatSighting;
 
 /**
  * Created by acer_ on 10/5/2017.
@@ -95,5 +98,9 @@ public class SQLController {
         } catch (SQLException e) {
             Log.d("ERROR:", "Error closing statement " + state.toString());
         }
+    }
+
+    public List<RatSighting> getSightings() {
+        return null;
     }
 }

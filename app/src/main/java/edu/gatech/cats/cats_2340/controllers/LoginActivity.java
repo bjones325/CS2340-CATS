@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity{
      * otherwise they are stuck on the same screen
      * @param view
      */
-    protected void onLoginPressed(View view) {
+    public void onLoginPressed(View view) {
         Model model = Model.getInstance();
         String username = usernameField.getText().toString();
         String password = passwordField.getText().toString();
@@ -54,7 +54,7 @@ public class LoginActivity extends AppCompatActivity{
         }
     }
 
-    protected void onCancelPressed(View view) {
+    public void onCancelPressed(View view) {
         startActivity(new Intent(getBaseContext(),OpeningActivity.class));
         finish();
     }

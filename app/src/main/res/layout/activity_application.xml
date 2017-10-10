@@ -26,4 +26,13 @@
         android:text="Our Awesome Application"
         android:textSize="24sp" />
 
+    <Button
+        android:id="@+id/getRatList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView6"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="44dp"
+        android:text="Button" />
+
 </RelativeLayout>

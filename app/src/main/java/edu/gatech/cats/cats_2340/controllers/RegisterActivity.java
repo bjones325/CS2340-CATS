@@ -50,7 +50,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
      * database functionality soon
      * @param view
      */
-    protected void onRegisterPressed(View view) {
+    public void onRegisterPressed(View view) {
         Model model = Model.getInstance();
 
         String name = nameText.getText().toString();
@@ -78,7 +78,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
      * Goes back to splash screen when the user presses cancel
      * @param view
      */
-    protected void onCancelPressed(View view) {
+    public void onCancelPressed(View view) {
         startActivity(new Intent(getBaseContext(),OpeningActivity.class));
         finish();
     }

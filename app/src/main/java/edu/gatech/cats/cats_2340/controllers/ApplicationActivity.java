@@ -27,9 +27,14 @@ public class ApplicationActivity extends AppCompatActivity {
      * figure out android
      * @param view
      */
-    protected void onLogoutPressed(View view) {
+    public void onLogoutPressed(View view) {
         startActivity(new Intent(getBaseContext(),OpeningActivity.class));
         Model.getInstance().logout();
+        finish();
+    }
+
+    public void onListPressed(View view) {
+        startActivity(new Intent(getBaseContext(),RatSightingList.class));
         finish();
     }
 }

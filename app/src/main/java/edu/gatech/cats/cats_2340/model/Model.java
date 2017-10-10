@@ -15,6 +15,8 @@ public class Model {
     //Singleton instance
     private static final Model _instance = new Model();
 
+    private RatSighting currentRat;
+
     private List<User> userList = new ArrayList<User>();
 
     private boolean loggedIn = false;
@@ -80,5 +82,9 @@ public class Model {
      */
     public void register(User u) {
         userList.add(u);
+    }
+
+    public RatSighting getCurrentRat() {
+        return currentRat;
     }
 }
