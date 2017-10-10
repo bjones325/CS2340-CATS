@@ -5,8 +5,6 @@
       <module fileurl="file://$PROJECT_DIR$/CATS-2340.iml" filepath="$PROJECT_DIR$/CATS-2340.iml" />
       <module fileurl="file://$PROJECT_DIR$/CS2340-CATS.iml" filepath="$PROJECT_DIR$/CS2340-CATS.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/mysql-connector-java-5.1.43-binJDBC/mysql-connector-java-5.1.43-binJDBC.iml" filepath="$PROJECT_DIR$/mysql-connector-java-5.1.43-binJDBC/mysql-connector-java-5.1.43-binJDBC.iml" />
       <module fileurl="file://$PROJECT_DIR$/mysql-connector-java-5.1.43-binJDBC/mysql-connector-java-5.1.43-binJDBC.iml" filepath="$PROJECT_DIR$/mysql-connector-java-5.1.43-binJDBC/mysql-connector-java-5.1.43-binJDBC.iml" />
     </modules>
   </component>
