@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/locationType"
-        android:layout_alignStart="@+id/textView2"
+        android:layout_alignStart="@+id/date_field"
         android:text="TextView"
         android:visibility="invisible" />
 
@@ -89,7 +89,7 @@
         android:layout_alignStart="@+id/latitude" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/date_field"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/locationType"
