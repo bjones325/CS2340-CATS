@@ -22,7 +22,7 @@ public class RatSightingScreen extends AppCompatActivity {
     }
 
     private void printData(RatSighting rs) {
-        TextView key = (TextView) findViewById(R.id.textView2);
+        TextView key = (TextView) findViewById(R.id.date_field);
 
         key.setText(rs.getKey());
     }
