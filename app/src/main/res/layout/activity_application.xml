@@ -33,6 +33,7 @@
         android:layout_below="@+id/textView6"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="44dp"
+        android:onClick="onListPressed"
         android:text="Button" />
 
 </RelativeLayout>
