@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.util.Log;
 
 import edu.gatech.cats.cats_2340.model.RatSighting;
+import edu.gatech.cats.cats_2340.model.SearchCriteria;
 
 /**
  * Created by acer_ on 10/5/2017.
@@ -69,20 +70,6 @@ public class SQLController {
         }
     }
 
-    public static void executeInsert(String statementString) {
-        if (!isSQLInitialized()) return;
-        Statement statement = null;
-        try {
-            statement = SQLconnection.createStatement();
-            statement.execute(statementString);
-
-        } catch(SQLException e) {
-            Log.d("ERROR:", "Error executing statement: " + statementString);
-        } finally {
-            closeStatement(statement);
-        }
-    }
-
     private static boolean isSQLInitialized() {
         if (SQLconnection == null) {
             Log.d("ERROR", "Not connected to Database! Attempted to reinitialize");
@@ -101,7 +88,42 @@ public class SQLController {
         }
     }
 
-    public ArrayList<RatSighting> getSightings() {
+    private void executeStatement(String statementString) {
+        if (!isSQLInitialized()) return;
+        Statement statement = null;
+        try {
+            statement = SQLconnection.createStatement();
+            statement.execute(statementString);
+
+        } catch(SQLException e) {
+            Log.d("ERROR:", "Error executing statement: " + statementString);
+        } finally {
+            closeStatement(statement);
+        }
+    }
+
+    public ArrayList<RatSighting> getAllSightings() {
         return null;
     }
+
+    public ArrayList<RatSighting> getFilteredSightings(SearchCriteria sc) {
+        return null;
+    }
+
+    public RatSighting getIndividualRatSighting(int key) {
+        return null;
+    }
+
+    public boolean addRatSighting() {
+        return false;
+    }
+
+    public boolean updateRatSighting() {
+        return false;
+    }
+
+    public boolean removeRatSighting() {
+        return false;
+    }
+
 }
