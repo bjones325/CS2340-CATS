@@ -31,6 +31,7 @@ public class Model {
     private Model() {
         //User u = new User("Elijah", "user", "pass", true);
         //userList.add(u);
+        RatSighting currentRat = new RatSighting(1, 1, "place", 23114, "add", "city", "b", 10, 10);
     }
 
     /**
@@ -85,6 +86,6 @@ public class Model {
     }
 
     public RatSighting getCurrentRat() {
-        return currentRat;
+        return  new RatSighting(1, 1, "place", 23114, "add", "city", "b", 10, 10);
     }
 }
