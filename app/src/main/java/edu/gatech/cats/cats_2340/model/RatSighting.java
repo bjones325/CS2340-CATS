@@ -9,15 +9,15 @@ import java.util.Date;
 public class RatSighting {
     private int _key;
     private int _created;
-    private String _locationType;
+    private LocationType _locationType;
     public int _zip;
     public String _address;
     public String _city;
-    public String _borough;
+    public BuroughType _borough;
     public int _latitude;
     public int _longitude;
 
-    public RatSighting(int key, int created, String locationType, int zip, String address, String city, String borough, int latitude, int longitude) {
+    public RatSighting(int key, int created, LocationType locationType, int zip, String address, String city, BuroughType borough, int latitude, int longitude) {
         _key = key;
         _created = created;
         _locationType = locationType;
@@ -37,7 +37,7 @@ public class RatSighting {
         return _created;
     }
 
-    public String getLocationType() {
+    public LocationType getLocationType() {
         return _locationType;
     }
 
@@ -51,7 +51,7 @@ public class RatSighting {
     public String getCity() {
         return _city;
     }
-    public String getBorough() {
+    public BuroughType getBorough() {
         return _borough;
     }
     public int getLat() {

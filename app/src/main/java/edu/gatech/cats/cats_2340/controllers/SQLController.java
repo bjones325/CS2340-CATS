@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import com.mysql.jdbc.Driver;
@@ -100,7 +101,7 @@ public class SQLController {
         }
     }
 
-    public List<RatSighting> getSightings() {
+    public ArrayList<RatSighting> getSightings() {
         return null;
     }
 }
