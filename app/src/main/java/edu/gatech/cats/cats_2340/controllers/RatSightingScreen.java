@@ -20,6 +20,7 @@ public class RatSightingScreen extends AppCompatActivity {
 
         Model model = Model.getInstance();
 
+        // Get the rat sighting we were passed
         rs = (RatSighting) getIntent().getSerializableExtra("RatSighting");
         printData(rs);
     }

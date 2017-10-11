@@ -46,31 +46,36 @@ public class RatSightingList extends AppCompatActivity implements AdapterView.On
 
 
         final Model model = Model.getInstance();
-        // Load in the rat .csv data
 
+        //Get list view
         ListView listView = (ListView) findViewById(R.id.ratInfoList);
 
+        //Sample list to test list view
         RatSighting[] ratArray = new RatSighting[2];
         ratArray[0] = new RatSighting(1, "2", LocationType.BUILDING, 23114, "add", "city1", BuroughType.BRONX, 2, 3);
         ratArray[1] = new RatSighting(2, "3", LocationType.COMMERCIAL_BUILDING, 30309, "add2", "cit1", BuroughType.MANHATTAN, 4, 5);
 
-        //@Blake change this sh*t
+        //Switch this to our SQL method
         ArrayAdapter<RatSighting> adapter = new ArrayAdapter<RatSighting>(this, android.R.layout.simple_list_item_1, ratArray);
 
+        //Connect our list to the adapter
         listView.setAdapter(adapter);
 
+        //If an item is clicked we want to:
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> av, View v, int posn, long id) {
                 Log.d("testing", "Item clicked listener");
 
+                // Don't think this works
                 model.setCurrentRat((RatSighting) av.getItemAtPosition(posn));
 
                 Intent i = new Intent(getBaseContext(),RatSightingScreen.class);
 
+                // Getting the rat sighting and passing it to the next activity
                 RatSighting tmp = (RatSighting) av.getItemAtPosition(posn);
-
                 i.putExtra("RatSighting", tmp);
+
                 startActivity(i);
                 finish();
             }
@@ -117,6 +122,7 @@ public class RatSightingList extends AppCompatActivity implements AdapterView.On
 
     }
 
+    //Don't think this does anything but lets keep it for now
     public void onItemClick(AdapterView<?> adapter, View listView, int position, long id) {
         Log.d("testing", "Item clicked");
         startActivity(new Intent(getBaseContext(),RatSightingScreen.class));
