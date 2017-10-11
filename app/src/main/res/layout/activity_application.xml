@@ -22,11 +22,12 @@
         android:id="@+id/getRatList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/logout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="130dp"
         android:background="@color/colorPrimary"
         android:onClick="onListPressed"
         android:text="Sighting List"
-        android:layout_below="@+id/logout"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="130dp" />
+        android:textColor="@color/common_google_signin_btn_text_dark_default" />
 
 </RelativeLayout>

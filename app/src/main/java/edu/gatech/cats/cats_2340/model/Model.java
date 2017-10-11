@@ -31,7 +31,7 @@ public class Model {
     private Model() {
         //User u = new User("Elijah", "user", "pass", true);
         //userList.add(u);
-        RatSighting currentRat = new RatSighting(1, 1, "place", 23114, "add", "city", "b", 10, 10);
+        //RatSighting currentRat = new RatSighting(1, 1, LocationType.valueOf("place"), 23114, "add", "city", BuroughType.valueOf("b"), 10, 10);
     }
 
     /**
@@ -84,8 +84,8 @@ public class Model {
     public void register(User u) {
         userList.add(u);
     }
-
+/*
     public RatSighting getCurrentRat() {
-        return  new RatSighting(1, 1, "place", 23114, "add", "city", "b", 10, 10);
-    }
+        return  new RatSighting(1, 1, LocationType.valueOf("place"), 23114, "add", "city", BuroughType.valueOf("b"), 10, 10);
+    }*/
 }

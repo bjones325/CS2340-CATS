@@ -8,16 +8,16 @@ import java.util.Date;
 
 public class RatSighting {
     private int _key;
-    private int _created;
+    private String _created;
     private LocationType _locationType;
-    public int _zip;
-    public String _address;
-    public String _city;
-    public BuroughType _borough;
-    public int _latitude;
-    public int _longitude;
+    private int _zip;
+    private String _address;
+    private String _city;
+    private BuroughType _borough;
+    private int _latitude;
+    private int _longitude;
 
-    public RatSighting(int key, int created, LocationType locationType, int zip, String address, String city, BuroughType borough, int latitude, int longitude) {
+    public RatSighting(int key, String created, LocationType locationType, int zip, String address, String city, BuroughType borough, int latitude, int longitude) {
         _key = key;
         _created = created;
         _locationType = locationType;
@@ -29,22 +29,21 @@ public class RatSighting {
         _longitude = longitude;
     }
 
+    public RatSighting() {
+
+    }
     public int getKey() {
         return _key;
     }
-
-    public int getCreated() {
+    public String getCreated() {
         return _created;
     }
-
     public LocationType getLocationType() {
         return _locationType;
     }
-
     public int getZip() {
         return _zip;
     }
-
     public String getAddr() {
         return _address;
     }
@@ -61,5 +60,39 @@ public class RatSighting {
         return _key;
     }
 
+    public void setKey(int key) {
+        this._key = key;
+    }
 
+    public void setCreated(String created) {
+        this._created = created;
+    }
+
+    public void setLocationType(LocationType locationType) {
+        this._locationType = locationType;
+    }
+
+    public void setZip(int zip) {
+        this._zip = zip;
+    }
+
+    public void setAddress(String address) {
+        this._address = address;
+    }
+
+    public void setCity(String city) {
+        this._city = city;
+    }
+
+    public void setBorough(BuroughType borough) {
+        this._borough = borough;
+    }
+
+    public void setLatitude(int _latitude) {
+        this._latitude = _latitude;
+    }
+
+    public void setLongitude(int _longitude) {
+        this._longitude = _longitude;
+    }
 }

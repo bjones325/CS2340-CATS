@@ -111,10 +111,10 @@
         android:id="@+id/address_field"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="TextView"
         android:layout_alignBaseline="@+id/address"
         android:layout_alignBottom="@+id/address"
-        android:layout_alignStart="@+id/zip_field"
-        android:text="TextView" />
+        android:layout_alignStart="@+id/zip_field" />
 
     <TextView
         android:id="@+id/city_field"
