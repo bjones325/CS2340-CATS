@@ -10,22 +10,21 @@
         android:id="@+id/ratInfoList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="61dp"
-        android:divider="@android:drawable/divider_horizontal_textfield" />
+        android:divider="@android:drawable/divider_horizontal_textfield"
+        android:layout_below="@+id/searchResultsHeader"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="18dp" />
 
     <TextView
         android:id="@+id/searchResultsHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
         android:selectAllOnFocus="true"
         android:text="Search Results"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:layout_alignBottom="@+id/backButton"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:id="@+id/backButton"
@@ -35,4 +34,16 @@
         android:background="@android:drawable/ic_menu_revert"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/resetButton"
+        style="@style/Widget.AppCompat.Button.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:background="@android:color/holo_orange_light"
+        android:onClick="resetData"
+        android:text="RESET" />
+
 </RelativeLayout>

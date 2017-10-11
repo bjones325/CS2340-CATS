@@ -36,13 +36,6 @@ public class RatSightingList extends AppCompatActivity implements AdapterView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rat_sighting_list);
 
-        /* try {
-         readRatData();
-         } catch (IOException e) {
-         e.printStackTrace();
-         Log.w("RatSightingList", "Error in reading a line from data");
-         }*/
-
         // BACK button
         Button backButton = (Button) findViewById(R.id.backButton);
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -67,6 +60,9 @@ public class RatSightingList extends AppCompatActivity implements AdapterView.On
         //Connect our list to the adapter
         listView.setAdapter(adapter);
 
+        // If the reset Button is clicked, we should
+        Button reset = (Button) findViewById(R.id.resetButton);
+
         //If an item is clicked we want to:
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -89,43 +85,6 @@ public class RatSightingList extends AppCompatActivity implements AdapterView.On
     }
 
 
-    /**
-     * Loads the rat sighting data upon creation of the RatSightingList
-     * @throws IOException
-     */
-    private void readRatData() throws IOException {
-        InputStream stream = getResources().openRawResource(R.raw.data);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(stream, Charset.forName("UTF-8")));
-
-        String row = "";
-        row = reader.readLine();
-        while ((row = reader.readLine()) != null) {
-            String[] s = row.split(",");
-
-            // Import data from each column into a new RatSighting()
-            //RatSighting sighting = new RatSighting(s[0], s[1], s[7], s[8], s[9], s[16], s[23], s[49], s[50]);
-            RatSighting sighting = new RatSighting();
-            sighting.setKey(Integer.parseInt(s[0]));
-            sighting.setCreated(s[1]);
-            sighting.setLocationType(LocationType.valueOf(s[7]));
-            sighting.setZip(Integer.parseInt(s[8]));
-            sighting.setAddress(s[9]);
-            sighting.setCity(s[16]);
-            sighting.setBorough(BuroughType.valueOf(s[23]));
-            sighting.setLatitude(Integer.parseInt(s[49]));
-            sighting.setLongitude(Integer.parseInt(s[50]));
-
-        }
-
-
-    }
-
-    /**
-     *
-     */
-    private void writeRatData() {
-
-    }
 
     //Don't think this does anything but lets keep it for now
     public void onItemClick(AdapterView<?> adapter, View listView, int position, long id) {

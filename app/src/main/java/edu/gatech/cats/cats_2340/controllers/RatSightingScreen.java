@@ -41,6 +41,7 @@ public class RatSightingScreen extends AppCompatActivity {
 
 
     private void printData(RatSighting rs) {
+        TextView key_text = (TextView) findViewById(R.id.key_field);
         TextView date_text = (TextView) findViewById(R.id.date_field);
         TextView locationType_text = (TextView) findViewById(R.id.location_field);
         TextView zip_text = (TextView) findViewById(R.id.zip_field);
@@ -50,7 +51,8 @@ public class RatSightingScreen extends AppCompatActivity {
         TextView latitude_text = (TextView) findViewById(R.id.latitude_field);
         TextView longitude_text = (TextView) findViewById(R.id.longitude_field);
 
-        date_text.setText(Integer.toString( rs.getKey()));
+        key_text.setText(Integer.toString(rs.getKey()));
+        date_text.setText(rs.getCreated());
         locationType_text.setText(rs.getLocationType().toString());
         zip_text.setText(Integer.toString(rs.getZip()));
         address_text.setText(rs.getAddr());
