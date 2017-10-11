@@ -61,5 +61,8 @@ public class RatSighting {
         return _key;
     }
 
+    public String toString() {
+        return _locationType.toString() + _borough.toString();
+    }
 
 }

@@ -4,6 +4,8 @@ import android.util.Log;
 import java.util.List;
 import java.util.ArrayList;
 
+import edu.gatech.cats.cats_2340.controllers.SQLController;
+
 /**
  * Created by acer_ on 9/21/2017.
  * Modified 9/21/17
@@ -21,6 +23,8 @@ public class Model {
 
     private boolean loggedIn = false;
 
+    private SQLController sqlController;
+
     public static Model getInstance() {
         return _instance;
     }
@@ -31,7 +35,7 @@ public class Model {
     private Model() {
         //User u = new User("Elijah", "user", "pass", true);
         //userList.add(u);
-        RatSighting currentRat = new RatSighting(1, 1, "place", 23114, "add", "city", "b", 10, 10);
+        RatSighting currentRat = new RatSighting(1, 1, LocationType.BUILDING, 23114, "add", "city", BuroughType.BRONX, 10, 10);
     }
 
     /**
@@ -86,6 +90,11 @@ public class Model {
     }
 
     public RatSighting getCurrentRat() {
-        return  new RatSighting(1, 1, "place", 23114, "add", "city", "b", 10, 10);
+        return  new RatSighting(1, 1, LocationType.BUILDING, 23114, "add", "city", BuroughType.BRONX, 10, 10);
+    }
+
+    public RatSighting[] getRatArray() {
+        return ((RatSighting[]) sqlController.getAllSightings().toArray());
+
     }
 }

@@ -34,7 +34,7 @@ public class ApplicationActivity extends AppCompatActivity {
     }
 
     public void onListPressed(View view) {
-        startActivity(new Intent(getBaseContext(),RatSightingScreen.class));
+        startActivity(new Intent(getBaseContext(),RatSightingList.class));
         finish();
     }
 }
