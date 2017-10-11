@@ -14,6 +14,7 @@ import android.util.Log;
 
 import edu.gatech.cats.cats_2340.model.RatSighting;
 import edu.gatech.cats.cats_2340.model.SearchCriteria;
+import edu.gatech.cats.cats_2340.model.User;
 
 /**
  * Created by acer_ on 10/5/2017.
@@ -32,7 +33,7 @@ public class SQLController {
     /**
      * Initializes connection to the database, setting SQLconnection.
      */
-    public static void initializeConnection(){
+    public static boolean initializeConnection(){
         Log.d("INFO", "Initializing Connection to Database");
         Properties connectionProps = new Properties();
         connectionProps.put("user", username);
@@ -50,11 +51,12 @@ public class SQLController {
 
             SQLconnection = conn;
             Log.d("INFO", "Initialized Connection to Database");
+            return true;
         } catch (Exception e){
             Log.d("ERROR", "Failed to Connect to Database!");
             Log.d("ERROR", "MSG: " + e.getMessage());
+            return false;
         }
-
     }
 
     /**
@@ -70,11 +72,15 @@ public class SQLController {
         }
     }
 
+    /**
+     * Checks if the SQLDatabase connection has been established.
+     * If not, will attempt to reinitialize connection.
+     * @return If the database is connected, or has been reconnected.
+     */
     private static boolean isSQLInitialized() {
         if (SQLconnection == null) {
             Log.d("ERROR", "Not connected to Database! Attempted to reinitialize");
-            initializeConnection();
-            return false;
+            return initializeConnection();
         }
         return true;
     }
@@ -88,15 +94,16 @@ public class SQLController {
         }
     }
 
-    private void executeStatement(String statementString) {
-        if (!isSQLInitialized()) return;
+    private boolean executeStatement(String statementString) {
+        if (!isSQLInitialized()) return false;
         Statement statement = null;
         try {
             statement = SQLconnection.createStatement();
             statement.execute(statementString);
-
+            return  true;
         } catch(SQLException e) {
             Log.d("ERROR:", "Error executing statement: " + statementString);
+            return false;
         } finally {
             closeStatement(statement);
         }
@@ -118,11 +125,23 @@ public class SQLController {
         return false;
     }
 
-    public boolean updateRatSighting() {
+    public boolean updateRatSighting(int key, RatSighting newSighting) {
         return false;
     }
 
     public boolean removeRatSighting() {
+        return false;
+    }
+
+    public User getUser(int key) {
+        return null;
+    }
+
+    public boolean updateUser(int key, User newUser) {
+        return false;
+    }
+
+    public boolean removeUser() {
         return false;
     }
 
