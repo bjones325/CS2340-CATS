@@ -1,5 +1,6 @@
 package edu.gatech.cats.cats_2340.controllers;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +12,9 @@ import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
+
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -23,7 +27,7 @@ import edu.gatech.cats.cats_2340.model.LocationType;
 import edu.gatech.cats.cats_2340.model.Model;
 import edu.gatech.cats.cats_2340.model.RatSighting;
 
-public class RatSightingList extends AppCompatActivity {
+public class RatSightingList extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     List<RatSighting> ratData = new ArrayList<>();
 
@@ -41,7 +45,7 @@ public class RatSightingList extends AppCompatActivity {
          */
 
 
-        Model model = Model.getInstance();
+        final Model model = Model.getInstance();
         // Load in the rat .csv data
 
         ListView listView = (ListView) findViewById(R.id.ratInfoList);
@@ -54,7 +58,25 @@ public class RatSightingList extends AppCompatActivity {
         ArrayAdapter<RatSighting> adapter = new ArrayAdapter<RatSighting>(this, android.R.layout.simple_list_item_1, ratArray);
 
         listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> av, View v, int posn, long id) {
+                Log.d("testing", "Item clicked listener");
+
+                model.setCurrentRat((RatSighting) av.getItemAtPosition(posn));
+
+                Intent i = new Intent(getBaseContext(),RatSightingScreen.class);
+
+                RatSighting tmp = (RatSighting) av.getItemAtPosition(posn);
+
+                i.putExtra("RatSighting", tmp);
+                startActivity(i);
+                finish();
+            }
+        });
     }
+
 
     /**
      * Loads the rat sighting data upon creation of the RatSightingList
@@ -95,4 +117,9 @@ public class RatSightingList extends AppCompatActivity {
 
     }
 
+    public void onItemClick(AdapterView<?> adapter, View listView, int position, long id) {
+        Log.d("testing", "Item clicked");
+        startActivity(new Intent(getBaseContext(),RatSightingScreen.class));
+        finish();
+    }
 }

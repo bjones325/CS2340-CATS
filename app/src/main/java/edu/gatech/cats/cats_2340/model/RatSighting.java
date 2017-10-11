@@ -1,12 +1,13 @@
 package edu.gatech.cats.cats_2340.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by Elijah on 10/10/2017.
  */
 
-public class RatSighting {
+public class RatSighting implements Serializable {
     private int _key;
     private String _created;
     private LocationType _locationType;

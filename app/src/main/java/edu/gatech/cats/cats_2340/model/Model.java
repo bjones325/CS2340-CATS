@@ -95,4 +95,8 @@ public class Model {
         //return ((RatSighting[]) sqlController.getAllSightings().toArray());
         return null;
     }
+
+    public void setCurrentRat(RatSighting rats) {
+        currentRat = rats;
+    }
 }
