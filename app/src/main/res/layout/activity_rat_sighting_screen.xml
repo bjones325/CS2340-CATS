@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context="edu.gatech.cats.cats_2340.controllers.RatSightingScreen">
 
+    <Button
+        android:id="@+id/backButton"
+        style="@style/Widget.AppCompat.Button.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@android:drawable/ic_menu_revert" />
+
     <TextView
         android:id="@+id/location_field"
         android:layout_width="wrap_content"
@@ -19,11 +28,10 @@
         android:id="@+id/dateCreated"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="26dp"
         android:text="Date Created:"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="38dp" />
+        android:layout_marginTop="24dp"
+        android:layout_below="@+id/backButton"
+        android:layout_toEndOf="@+id/backButton" />
 
     <TextView
         android:id="@+id/locationType"

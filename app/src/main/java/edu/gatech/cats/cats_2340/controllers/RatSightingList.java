@@ -16,6 +16,7 @@ import java.util.List;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import edu.gatech.cats.cats_2340.R;
@@ -29,34 +30,39 @@ import edu.gatech.cats.cats_2340.model.RatSighting;
 
 public class RatSightingList extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
-    List<RatSighting> ratData = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rat_sighting_list);
-        /**
-         try {
+
+        /* try {
          readRatData();
          } catch (IOException e) {
          e.printStackTrace();
          Log.w("RatSightingList", "Error in reading a line from data");
-         }
-         */
+         }*/
 
+        // BACK button
+        Button backButton = (Button) findViewById(R.id.backButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(getBaseContext(),ApplicationActivity.class));
+            }
+        });
+
+
+        // SQL Object to give access to methods
+        SQLController control = new SQLController();
 
         final Model model = Model.getInstance();
 
         //Get list view
         ListView listView = (ListView) findViewById(R.id.ratInfoList);
 
-        //Sample list to test list view
-        RatSighting[] ratArray = new RatSighting[2];
-        ratArray[0] = new RatSighting(1, "2", LocationType.BUILDING, 23114, "add", "city1", BuroughType.BRONX, 2, 3);
-        ratArray[1] = new RatSighting(2, "3", LocationType.COMMERCIAL_BUILDING, 30309, "add2", "cit1", BuroughType.MANHATTAN, 4, 5);
 
-        //Switch this to our SQL method
-        ArrayAdapter<RatSighting> adapter = new ArrayAdapter<RatSighting>(this, android.R.layout.simple_list_item_1, ratArray);
+        // Pulls in the getAllSightings method to the ArrayAdapter
+        ArrayAdapter<RatSighting> adapter = new ArrayAdapter<RatSighting>(this, android.R.layout.simple_list_item_1, control.getAllSightings());
 
         //Connect our list to the adapter
         listView.setAdapter(adapter);
@@ -109,7 +115,6 @@ public class RatSightingList extends AppCompatActivity implements AdapterView.On
             sighting.setLatitude(Integer.parseInt(s[49]));
             sighting.setLongitude(Integer.parseInt(s[50]));
 
-            ratData.add(sighting);
         }
 
 

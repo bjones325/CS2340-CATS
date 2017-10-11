@@ -26,4 +26,13 @@
         android:text="Search Results"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/backButton"
+        style="@style/Widget.AppCompat.Button.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/ic_menu_revert"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>

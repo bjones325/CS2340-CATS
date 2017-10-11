@@ -12,6 +12,8 @@ import com.mysql.jdbc.Driver;
 import android.content.Intent;
 import android.util.Log;
 
+import edu.gatech.cats.cats_2340.model.BuroughType;
+import edu.gatech.cats.cats_2340.model.LocationType;
 import edu.gatech.cats.cats_2340.model.RatSighting;
 import edu.gatech.cats.cats_2340.model.SearchCriteria;
 import edu.gatech.cats.cats_2340.model.User;
@@ -110,7 +112,12 @@ public class SQLController {
     }
 
     public ArrayList<RatSighting> getAllSightings() {
-        return null;
+        ArrayList<RatSighting> ratData = new ArrayList<>();
+
+        // Test Code
+        ratData.add(new RatSighting(1, "2", LocationType.BUILDING, 23114, "add", "city1", BuroughType.BRONX, 2, 3));
+        ratData.add(new RatSighting(2, "3", LocationType.COMMERCIAL_BUILDING, 30309, "add2", "cit1", BuroughType.MANHATTAN, 4, 5));
+        return ratData;
     }
 
     public ArrayList<RatSighting> getFilteredSightings(SearchCriteria sc) {

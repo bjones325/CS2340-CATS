@@ -1,7 +1,10 @@
 package edu.gatech.cats.cats_2340.controllers;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -9,6 +12,8 @@ import org.w3c.dom.Text;
 import edu.gatech.cats.cats_2340.R;
 import edu.gatech.cats.cats_2340.model.Model;
 import edu.gatech.cats.cats_2340.model.RatSighting;
+
+import static edu.gatech.cats.cats_2340.R.id.loginButton;
 
 public class RatSightingScreen extends AppCompatActivity {
     private RatSighting rs;
@@ -23,7 +28,17 @@ public class RatSightingScreen extends AppCompatActivity {
         // Get the rat sighting we were passed
         rs = (RatSighting) getIntent().getSerializableExtra("RatSighting");
         printData(rs);
+
+
+        // BACK Button
+        Button backButton = (Button) findViewById(R.id.backButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(getBaseContext(),RatSightingList.class));
+            }
+        });
     }
+
 
     private void printData(RatSighting rs) {
         TextView date_text = (TextView) findViewById(R.id.date_field);
