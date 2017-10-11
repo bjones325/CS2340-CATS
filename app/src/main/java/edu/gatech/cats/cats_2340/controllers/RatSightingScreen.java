@@ -40,8 +40,8 @@ public class RatSightingScreen extends AppCompatActivity {
         address_text.setText(rs.getAddr());
         city_text.setText(rs.getCity());
         borough_text.setText(rs.getBorough().toString());
-        latitude_text.setText(Integer.toString(rs.getLat()));
-        longitude_text.setText(Integer.toString(rs.getLong()));
+        latitude_text.setText(Float.toString(rs.getLat()));
+        longitude_text.setText(Float.toString(rs.getLong()));
 
     }
 }

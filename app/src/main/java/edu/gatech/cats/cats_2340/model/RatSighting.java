@@ -14,10 +14,10 @@ public class RatSighting {
     private String _address;
     private String _city;
     private BuroughType _borough;
-    private int _latitude;
-    private int _longitude;
+    private float _latitude;
+    private float _longitude;
 
-    public RatSighting(int key, String created, LocationType locationType, int zip, String address, String city, BuroughType borough, int latitude, int longitude) {
+    public RatSighting(int key, String created, LocationType locationType, int zip, String address, String city, BuroughType borough, float latitude, float longitude) {
         _key = key;
         _created = created;
         _locationType = locationType;
@@ -56,15 +56,15 @@ public class RatSighting {
     public BuroughType getBorough() {
         return _borough;
     }
-    public int getLat() {
-        return _key;
+    public float getLat() {
+        return _latitude;
     }
-    public int getLong() {
-        return _key;
+    public float getLong() {
+        return _longitude;
     }
 
     public String toString() {
-        return _locationType.toString() + _borough.toString();
+        return _locationType.toString() + " " + _borough.toString();
     }
     public void setKey(int key) {
         this._key = key;
@@ -94,11 +94,11 @@ public class RatSighting {
         this._borough = borough;
     }
 
-    public void setLatitude(int _latitude) {
+    public void setLatitude(float _latitude) {
         this._latitude = _latitude;
     }
 
-    public void setLongitude(int _longitude) {
+    public void setLongitude(float _longitude) {
         this._longitude = _longitude;
     }
 }

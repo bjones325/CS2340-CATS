@@ -92,7 +92,7 @@ public class Model {
     }
 
     public RatSighting[] getRatArray() {
-        return ((RatSighting[]) sqlController.getAllSightings().toArray());
-
+        //return ((RatSighting[]) sqlController.getAllSightings().toArray());
+        return null;
     }
 }
