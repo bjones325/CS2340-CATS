@@ -11,5 +11,8 @@ public class RatSightingList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rat_sighting_list);
+
+        // Load in the rat .csv data
+
     }
 }
