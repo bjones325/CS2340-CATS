@@ -95,6 +95,10 @@ public class SQLController {
         return true;
     }
 
+    /**
+     * Attempts to close the SQL
+     * @throws SQLException if error in closing statemetn
+     */
     private static void closeStatement(Statement state) {
         if (state == null) return;
         try {
@@ -103,7 +107,10 @@ public class SQLController {
             Log.d("ERROR:", "Error closing statement " + state.toString());
         }
     }
-
+    /**
+     * Executes statementString
+     * @return If the database is executed, or if it has failed to execute
+     */
     private ResultSet executeStatement(String statementString) {
         if (!isSQLInitialized()) return null;
         Statement statement = null;
@@ -118,6 +125,10 @@ public class SQLController {
         }
     }
 
+    /**
+     * creates an arraylist full of all the rat sightings from the csv
+     * @return ArrayList<RatSightings> full of all the rat sighting in the csv
+     */
     public RatSighting[] getAllSightings() {
         String statement = "SELECT * FROM `cs2340`.`rat_sighting`;";
         ResultSet result = executeStatement(statement);
@@ -138,14 +149,28 @@ public class SQLController {
         }
     }
 
+    /**
+     * creates an arraylist full of all the rat sightings from the csv given specific criteria
+     * @param sc search criteria
+     * @return ArrayList<RatSightings> full of all the rat sighting with specificed criteria
+     */
     public ArrayList<RatSighting> getFilteredSightings(SearchCriteria sc) {
         return null;
     }
 
+    /**
+     * searches through arraylist of rat signtings for the specified key
+     * @param key unique key of the rat sighting
+     * @return ratsighting information that matches passed in key
+     */
     public RatSighting getIndividualRatSighting(int key) {
         return null;
     }
 
+    /**
+     * adds rat sighting to the database
+     * @return boolean if adding a ratsighting was successful or not
+     */
     public boolean addRatSighting(RatSighting rs) {
         String statement = "INSERT INTO `cs2340`.`rat_sighting` VALUES(" +
                 rs.getKey() + "," +
@@ -163,6 +188,10 @@ public class SQLController {
         return true;
     }
 
+    /**
+     * Clears the rat data table
+     * @return boolean if worked correctly
+     */
     public boolean clearRatTable() {
         String safeStatement = "SET sql_safe_updates=0";
         executeStatement(safeStatement);
@@ -173,22 +202,50 @@ public class SQLController {
         return true;
     }
 
+    /**
+     * Updates the specific RatSighting associated with the passed in key given the newSighting information
+     * @param key unique key associated with specific RatSighting
+     * @param newSighting new information we want to replace to the specific RatSighting
+     * associated with the key
+     * @return boolean if updating the RatSighting was successful or not
+     */
     public boolean updateRatSighting(int key, RatSighting newSighting) {
         return false;
     }
 
+    /**
+     * Removes RatSighting from the database
+     * @return boolean if removing a ratsighting was successful or not
+     */
     public boolean removeRatSighting() {
         return false;
     }
 
+    /**
+     * Gets user information associated with the RatSighting given the key
+     * @param key unique key to find instance of RatSighting
+     * @return the User associated with creating the RatSighting instance given the key
+     */
     public User getUser(int key) {
         return null;
     }
 
+    /**
+     * Updates User profile- user can change username, password, or name
+     * updates the username associated with the RatSightings created by the User
+     * @param key unique key associated with the RatSighting instance created by the User
+     * @param newUser new information we want to replace with old user infomation
+     * @return boolean updating the User profile was successful or not
+     */
     public boolean updateUser(int key, User newUser) {
         return false;
     }
 
+    /**
+     * removes User from database
+     * ?? if we remove a user do we remove the RatSightings associated with them as well ??
+     * @return boolean if removing user was successful or not
+     */
     public boolean removeUser() {
         return false;
     }
