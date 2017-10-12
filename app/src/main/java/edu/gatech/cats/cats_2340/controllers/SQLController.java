@@ -2,6 +2,7 @@ package edu.gatech.cats.cats_2340.controllers;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -113,10 +114,10 @@ public class SQLController {
      */
     private ResultSet executeStatement(String statementString) {
         if (!isSQLInitialized()) return null;
-        Statement statement = null;
+        PreparedStatement statement = null;
         try {
-            statement = SQLconnection.createStatement();
-            return statement.executeQuery(statementString);
+            statement = SQLconnection.prepareStatement(statementString);
+            return statement.executeQuery();
         } catch(SQLException e) {
             Log.d("ERROR:", "Error executing statement: " + statementString);
             return null;
@@ -145,6 +146,7 @@ public class SQLController {
             return (RatSighting[]) list.toArray();
         } catch (Exception e) {
             Log.d("ERROR:", "Failed GetAllSightings");
+            Log.d("ERROR:", "MSG: " + e.getMessage());
             return null;
         }
     }
