@@ -36,6 +36,6 @@ public enum LocationType {
                 return lt;
             }
         }
-        return null;
+        return LocationType.OTHER;
     }
 }

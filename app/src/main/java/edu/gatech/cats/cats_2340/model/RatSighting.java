@@ -46,6 +46,8 @@ public class RatSighting implements Serializable {
      * no-args constructor for a RatSighting
      */
     public RatSighting() {
+        _latitude = 0;
+        _longitude = 0;
 
     }
     /**

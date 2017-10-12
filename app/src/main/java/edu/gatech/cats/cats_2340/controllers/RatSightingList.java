@@ -94,28 +94,38 @@ public class RatSightingList extends AppCompatActivity implements AdapterView.On
         finish();
     }
 
-    private void resetRatData() throws IOException {
-        SQLController.getSQLController().clearRatTable();
-        InputStream stream = getResources().openRawResource(R.raw.data);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(stream, Charset.forName("UTF-8")));
-        String row = "";
-        row = reader.readLine();
-        while ((row = reader.readLine()) != null) {
-            String[] s = row.split(",");
-            // Import data from each column into a new RatSighting()
-            //RatSighting sighting = new RatSighting(s[0], s[1], s[7], s[8], s[9], s[16], s[23], s[49], s[50]);
-            RatSighting sighting = new RatSighting();
-            sighting.setKey(Integer.parseInt(s[0]));
-            sighting.setCreated(s[1]);
-            sighting.setLocationType(LocationType.valueOf(s[7]));
-            sighting.setZip(Integer.parseInt(s[8]));
-            sighting.setAddress(s[9]);
-            sighting.setCity(s[16]);
-            sighting.setBorough(BuroughType.valueOf(s[23]));
-            sighting.setLatitude(Integer.parseInt(s[49]));
-            sighting.setLongitude(Integer.parseInt(s[50]));
+    public void resetRatData(View view) {
+        try {
+            SQLController.getSQLController().clearRatTable();
+            InputStream stream = getResources().openRawResource(R.raw.data);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(stream, Charset.forName("UTF-8")));
+            String row = "";
+            row = reader.readLine();
+            while ((row = reader.readLine()) != null) {
+                String[] s = row.split(",");
+                // Import data from each column into a new RatSighting()
+                //RatSighting sighting = new RatSighting(s[0], s[1], s[7], s[8], s[9], s[16], s[23], s[49], s[50]);
+                RatSighting sighting = new RatSighting();
+                sighting.setKey(Integer.parseInt(s[0]));
+                sighting.setCreated(s[1]);
+                sighting.setLocationType(LocationType.toLocationType(s[7]));
+                sighting.setZip(Integer.parseInt(s[8]));
+                sighting.setAddress(s[9]);
+                sighting.setCity(s[16]);
+                sighting.setBorough(BuroughType.toBuroughType(s[23]));
+                if (s[49] != null && s[50] != null) {
+                    sighting.setLatitude(Float.parseFloat(s[49]));
+                    sighting.setLongitude(Float.parseFloat(s[50]));
+                } else {
+                    sighting.setLatitude(0);
+                    sighting.setLongitude(0);
+                }
 
-            SQLController.getSQLController().addRatSighting(sighting);
+                SQLController.getSQLController().addRatSighting(sighting);
+                Log.d("INFO:", "READ SUCCESS" + sighting.getKey());
+            }
+        } catch (Exception e) {
+            Log.d("ERROR: ", "RESET FAIl..." + e.getMessage());
         }
     }
 }
