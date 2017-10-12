@@ -43,7 +43,7 @@
         android:text="Location Type:" />
 
     <TextView
-        android:id="@+id/zip"
+        android:id="@+id/zip_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/locationType"
@@ -52,38 +52,38 @@
         android:text="Zip Code:" />
 
     <TextView
-        android:id="@+id/address"
+        android:id="@+id/address_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/zip"
-        android:layout_below="@+id/zip"
+        android:layout_alignStart="@+id/zip_text"
+        android:layout_below="@+id/zip_text"
         android:layout_marginTop="34dp"
         android:text="Address:" />
 
     <TextView
-        android:id="@+id/city"
+        android:id="@+id/city_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/address"
-        android:layout_below="@+id/address"
+        android:layout_alignStart="@+id/address_text"
+        android:layout_below="@+id/address_text"
         android:layout_marginTop="36dp"
         android:text="City:" />
 
     <TextView
-        android:id="@+id/borough"
+        android:id="@+id/borough_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/city"
-        android:layout_below="@+id/city"
+        android:layout_alignStart="@+id/city_text"
+        android:layout_below="@+id/city_text"
         android:layout_marginTop="34dp"
         android:text="Borough:" />
 
     <TextView
-        android:id="@+id/latitude"
+        android:id="@+id/latitude_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/borough"
-        android:layout_below="@+id/borough"
+        android:layout_alignStart="@+id/borough_text"
+        android:layout_below="@+id/borough_text"
         android:layout_marginTop="38dp"
         android:text="Latitude:" />
 
@@ -93,8 +93,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="33dp"
         android:text="Longitude:"
-        android:layout_below="@+id/latitude"
-        android:layout_alignStart="@+id/latitude" />
+        android:layout_below="@+id/latitude_text"
+        android:layout_alignStart="@+id/latitude_text" />
 
     <TextView
         android:id="@+id/date_field"
@@ -110,8 +110,8 @@
         android:id="@+id/zip_field"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/zip"
-        android:layout_alignBottom="@+id/zip"
+        android:layout_alignBaseline="@+id/zip_text"
+        android:layout_alignBottom="@+id/zip_text"
         android:layout_alignStart="@+id/location_field"
         android:text="TextView" />
 
@@ -120,15 +120,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        android:layout_alignBaseline="@+id/address"
-        android:layout_alignBottom="@+id/address"
+        android:layout_alignBaseline="@+id/address_text"
+        android:layout_alignBottom="@+id/address_text"
         android:layout_alignStart="@+id/zip_field" />
 
     <TextView
         android:id="@+id/city_field"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/borough"
+        android:layout_above="@+id/borough_text"
         android:layout_alignStart="@+id/address_field"
         android:text="TextView" />
 
@@ -136,8 +136,8 @@
         android:id="@+id/borough_field"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/borough"
-        android:layout_alignBottom="@+id/borough"
+        android:layout_alignBaseline="@+id/borough_text"
+        android:layout_alignBottom="@+id/borough_text"
         android:layout_alignStart="@+id/city_field"
         android:text="TextView" />
 

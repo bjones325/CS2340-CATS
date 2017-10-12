@@ -6,4 +6,179 @@
     android:layout_height="match_parent"
     tools:context="edu.gatech.cats.cats_2340.controllers.InputRatSighting">
 
+    <TextView
+        android:id="@+id/Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create Rat Report"
+        android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
+        tools:layout_editor_absoluteX="100dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <TextView
+        android:id="@+id/latitude_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Latitude"
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="83dp" />
+
+    <TextView
+        android:id="@+id/longitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Longitude"
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="127dp" />
+
+    <TextView
+        android:id="@+id/date_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date"
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="168dp" />
+
+    <TextView
+        android:id="@+id/time_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Time"
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="208dp" />
+
+    <TextView
+        android:id="@+id/location_type_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Location Type"
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="246dp" />
+
+    <TextView
+        android:id="@+id/zip_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Zip Code"
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="285dp" />
+
+    <TextView
+        android:id="@+id/address_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Address"
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="320dp" />
+
+    <TextView
+        android:id="@+id/city_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="City"
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="361dp" />
+
+    <TextView
+        android:id="@+id/borough_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Borough"
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="401dp" />
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        tools:layout_editor_absoluteX="136dp"
+        tools:layout_editor_absoluteY="447dp" />
+
+    <EditText
+        android:id="@+id/date"
+        android:layout_width="221dp"
+        android:layout_height="35dp"
+        android:ems="10"
+        android:inputType="date"
+        tools:layout_editor_absoluteX="109dp"
+        tools:layout_editor_absoluteY="150dp" />
+
+    <Spinner
+        android:id="@+id/borough_spinner"
+        android:layout_width="212dp"
+        android:layout_height="30dp"
+        tools:layout_editor_absoluteX="124dp"
+        tools:layout_editor_absoluteY="395dp" />
+
+    <Spinner
+        android:id="@+id/location_type_spinner"
+        android:layout_width="191dp"
+        android:layout_height="32dp"
+        tools:layout_editor_absoluteX="146dp"
+        tools:layout_editor_absoluteY="235dp" />
+
+    <EditText
+        android:id="@+id/latitude_text"
+        android:layout_width="196dp"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:inputType="none"
+        tools:layout_editor_absoluteX="4dp"
+        tools:layout_editor_absoluteY="-50dp" />
+
+    <EditText
+        android:id="@+id/latitude"
+        android:layout_width="221dp"
+        android:layout_height="38dp"
+        android:ems="10"
+        android:inputType="number"
+        tools:layout_editor_absoluteX="112dp"
+        tools:layout_editor_absoluteY="63dp" />
+
+    <EditText
+        android:id="@+id/longitude"
+        android:layout_width="222dp"
+        android:layout_height="31dp"
+        android:ems="10"
+        android:inputType="number"
+        tools:layout_editor_absoluteX="109dp"
+        tools:layout_editor_absoluteY="113dp" />
+
+    <EditText
+        android:id="@+id/zip"
+        android:layout_width="225dp"
+        android:layout_height="36dp"
+        android:ems="10"
+        android:inputType="number"
+        tools:layout_editor_absoluteX="109dp"
+        tools:layout_editor_absoluteY="266dp" />
+
+    <EditText
+        android:id="@+id/address"
+        android:layout_width="229dp"
+        android:layout_height="31dp"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        tools:layout_editor_absoluteX="110dp"
+        tools:layout_editor_absoluteY="314dp" />
+
+    <EditText
+        android:id="@+id/city"
+        android:layout_width="260dp"
+        android:layout_height="36dp"
+        android:ems="10"
+        android:inputType="text"
+        tools:layout_editor_absoluteX="79dp"
+        tools:layout_editor_absoluteY="356dp" />
+
+    <EditText
+        android:id="@+id/time"
+        android:layout_width="224dp"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:inputType="time"
+        tools:layout_editor_absoluteX="109dp"
+        tools:layout_editor_absoluteY="195dp" />
+
 </android.support.constraint.ConstraintLayout>
