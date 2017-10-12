@@ -18,6 +18,10 @@ import static edu.gatech.cats.cats_2340.R.id.loginButton;
 public class RatSightingScreen extends AppCompatActivity {
     private RatSighting rs;
 
+    /**
+     * Overriden on-create sets the view to the application view
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +43,11 @@ public class RatSightingScreen extends AppCompatActivity {
         });
     }
 
-
+    /**
+     * Manually displays individual rat information to the rat_sighting_screen for the RatSighting
+     * to be printed and viewd by the user/admin
+     * @param rs instance of RatSighting
+     */
     private void printData(RatSighting rs) {
         TextView key_text = (TextView) findViewById(R.id.key_field);
         TextView date_text = (TextView) findViewById(R.id.date_field);

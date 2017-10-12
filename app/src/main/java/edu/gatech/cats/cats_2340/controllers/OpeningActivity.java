@@ -14,6 +14,10 @@ import edu.gatech.cats.cats_2340.R;
 //Splash screen
 public class OpeningActivity extends AppCompatActivity {
 
+    /**
+     * Creates first screen the user/admin sees when the app is initially opened
+     * @param savedInstanceState passes data between various android activities
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
