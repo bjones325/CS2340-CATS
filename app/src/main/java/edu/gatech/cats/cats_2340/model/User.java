@@ -13,7 +13,6 @@ public class User {
     private String _pass;
     private boolean _isAdmin;
     public static List<String> type = Arrays.asList("User", "Admin");
-    private String _type;
 
     /**
      * Constructor for user. The application only proceeds when all fields filled so we can

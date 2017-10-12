@@ -61,6 +61,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         String user = userText.getText().toString();
         String pass = passText.getText().toString();
 
+        boolean isAdmin = false;
         if (userTypeLabel.getSelectedItem().equals("Admin")) {
             isAdmin = true;
         }
