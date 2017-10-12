@@ -47,7 +47,7 @@ public class RatSightingList extends AppCompatActivity implements AdapterView.On
 
 
         // SQL Object to give access to methods
-        SQLController control = new SQLController();
+        SQLController control = SQLController.getSQLController();
 
         final Model model = Model.getInstance();
 
