@@ -6,8 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
+import com.mysql.jdbc.Driver;
 
+import android.content.Intent;
 import android.util.Log;
 
 import edu.gatech.cats.cats_2340.model.BuroughType;
@@ -95,6 +98,10 @@ public class SQLController {
         return true;
     }
 
+    /**
+     * Attempts to close the SQL
+     * @throws SQLException if error in closing statemetn
+     */
     private static void closeStatement(Statement state) {
         if (state == null) return;
         try {
@@ -104,63 +111,50 @@ public class SQLController {
         }
     }
 
-    private ResultSet executeStatement(String statementString) {
-        if (!isSQLInitialized()) return null;
+    private boolean executeStatement(String statementString) {
+        if (!isSQLInitialized()) return false;
         Statement statement = null;
         try {
             statement = SQLconnection.createStatement();
-            return statement.executeQuery(statementString);
+            statement.execute(statementString);
+            return  true;
         } catch(SQLException e) {
             Log.d("ERROR:", "Error executing statement: " + statementString);
-            return null;
+            return false;
         } finally {
             closeStatement(statement);
         }
     }
 
-    public RatSighting[] getAllSightings() {
-        String statement = "SELECT * FROM `cs2340`.`rat_sighting`;";
-        ResultSet result = executeStatement(statement);
-        if (result == null) return null;
-        try {
-            result.beforeFirst();
-            ArrayList<RatSighting> list = new ArrayList<RatSighting>();
-            while (result.next()) {
-                RatSighting newSight = new RatSighting(result.getInt(1), result.getString(2),
-                        LocationType.toLocationType(result.getString(3)), result.getInt(4), result.getString(5), result.getString(6),
-                        BuroughType.toBuroughType(result.getString(7)), result.getFloat(8), result.getFloat(9));
-                list.add(newSight);
-            }
-            return (RatSighting[]) list.toArray();
-        } catch (Exception e) {
-            Log.d("ERROR:", "Failed GetAllSightings");
-            return null;
-        }
+    public ArrayList<RatSighting> getAllSightings() {
+        ArrayList<RatSighting> ratData = new ArrayList<>();
+
+        // Test Code
+        ratData.add(new RatSighting(1, "2", LocationType.BUILDING, 23114, "add", "city1", BuroughType.BRONX, 2, 3));
+        ratData.add(new RatSighting(2, "3", LocationType.COMMERCIAL_BUILDING, 30309, "add2", "cit1", BuroughType.MANHATTAN, 4, 5));
+        return ratData;
     }
 
+    /**
+     * creates an arraylist full of all the rat sightings from the csv given specific criteria
+     * @param sc search criteria
+     * @return ArrayList<RatSightings> full of all the rat sighting with specificed criteria
+     */
     public ArrayList<RatSighting> getFilteredSightings(SearchCriteria sc) {
         return null;
     }
 
+    /**
+     * searches through arraylist of rat signtings for the specified key
+     * @param key unique key of the rat sighting
+     * @return ratsighting information that matches passed in key
+     */
     public RatSighting getIndividualRatSighting(int key) {
         return null;
     }
 
-    public boolean addRatSighting(RatSighting rs) {
-        String statement = "INSERT INTO `cs2340`.`rat_sighting` VALUES(" +
-                rs.getKey() + "," +
-                rs.getCreated() + "," +
-                rs.getLocationType().toString() + "," +
-                rs.getZip() + "," +
-                rs.getAddr() + "," +
-                rs.getCity() + "," +
-                rs.getBorough().toString() + "," +
-                rs.getLat() + "," +
-                rs.getLong() + ");";
-        if (executeStatement(statement) == null) {
-            return false;
-        }
-        return true;
+    public boolean addRatSighting() {
+        return false;
     }
 
     public boolean clearRatTable() {
@@ -173,14 +167,30 @@ public class SQLController {
         return true;
     }
 
+    /**
+     * Updates the specific RatSighting associated with the passed in key given the newSighting information
+     * @param key unique key associated with specific RatSighting
+     * @param newSighting new information we want to replace to the specific RatSighting
+     * associated with the key
+     * @return boolean if updating the RatSighting was successful or not
+     */
     public boolean updateRatSighting(int key, RatSighting newSighting) {
         return false;
     }
 
+    /**
+     * Removes RatSighting from the database
+     * @return boolean if removing a ratsighting was successful or not
+     */
     public boolean removeRatSighting() {
         return false;
     }
 
+    /**
+     * Gets user information associated with the RatSighting given the key
+     * @param key unique key to find instance of RatSighting
+     * @return the User associated with creating the RatSighting instance given the key
+     */
     public User getUser(int key) {
         return null;
     }

@@ -26,6 +26,10 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
     private String _type = "Unselected";
     boolean isAdmin = false;
 
+    /**
+     * Overriden on-create sets the view to the application view
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,7 +87,13 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         finish();
     }
 
-
+    /**
+     * Informs the application that the item has been selected or not
+     * @param parent
+     * @param view
+     * @param position
+     * @param id
+     */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         _type = parent.getItemAtPosition(position).toString();

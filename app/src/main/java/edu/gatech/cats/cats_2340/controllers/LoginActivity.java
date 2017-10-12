@@ -19,6 +19,10 @@ public class LoginActivity extends AppCompatActivity{
     private TextView usernameField;
     private TextView passwordField;
 
+    /**
+     * Overriden on-create sets the view to the activity_login view
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +57,11 @@ public class LoginActivity extends AppCompatActivity{
             failedSuccessText.setVisibility(View.VISIBLE);
         }
     }
-
+    /**
+     * User is on the login screen but pushes the cancel button. This takes the user back to the
+     * preliminary screen
+     * @param view
+     */
     public void onCancelPressed(View view) {
         startActivity(new Intent(getBaseContext(),OpeningActivity.class));
         finish();

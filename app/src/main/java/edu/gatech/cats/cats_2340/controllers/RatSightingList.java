@@ -31,6 +31,7 @@ import edu.gatech.cats.cats_2340.model.RatSighting;
 public class RatSightingList extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
