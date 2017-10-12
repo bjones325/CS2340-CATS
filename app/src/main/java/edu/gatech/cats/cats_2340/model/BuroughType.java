@@ -6,11 +6,11 @@ package edu.gatech.cats.cats_2340.model;
 
 public enum BuroughType {
 
-    MANHATTAN("Manhattan"),
-    STATEN_ISLAND("Staten Island"),
-    QUEENS("Queens"),
-    BROOKLYN("Brooklyn"),
-    BRONX("Bronx");
+    MANHATTAN("MANHATTAN"),
+    STATEN_ISLAND("STATEN ISLAND"),
+    QUEENS("QUEENS"),
+    BROOKLYN("BROOKLYN"),
+    BRONX("BRONX");
 
     private String name;
 
@@ -22,4 +22,14 @@ public enum BuroughType {
     public String toString() {
         return name;
     }
+
+    public static BuroughType toBuroughType(String s) {
+        for (BuroughType bt : BuroughType.values()) {
+            if (bt.toString().equalsIgnoreCase(s)) {
+                return bt;
+            }
+        }
+        return null;
+    }
+
 }

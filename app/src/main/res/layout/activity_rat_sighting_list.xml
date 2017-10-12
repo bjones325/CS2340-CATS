@@ -42,8 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        android:background="@android:color/holo_orange_light"
-        android:onClick="resetData"
+        android:onClick="resetRatData"
         android:text="RESET" />
 
 </RelativeLayout>

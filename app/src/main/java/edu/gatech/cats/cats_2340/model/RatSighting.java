@@ -67,6 +67,7 @@ public class RatSighting implements Serializable {
     public String toString() {
         return _locationType.toString() + " " + _borough.toString();
     }
+
     public void setKey(int key) {
         this._key = key;
     }

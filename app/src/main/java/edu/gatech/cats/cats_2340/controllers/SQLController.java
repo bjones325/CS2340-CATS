@@ -2,14 +2,12 @@ package edu.gatech.cats.cats_2340.controllers;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Properties;
-import com.mysql.jdbc.Driver;
 
-import android.content.Intent;
 import android.util.Log;
 
 import edu.gatech.cats.cats_2340.model.BuroughType;
@@ -106,28 +104,38 @@ public class SQLController {
         }
     }
 
-    private boolean executeStatement(String statementString) {
-        if (!isSQLInitialized()) return false;
+    private ResultSet executeStatement(String statementString) {
+        if (!isSQLInitialized()) return null;
         Statement statement = null;
         try {
             statement = SQLconnection.createStatement();
-            statement.execute(statementString);
-            return  true;
+            return statement.executeQuery(statementString);
         } catch(SQLException e) {
             Log.d("ERROR:", "Error executing statement: " + statementString);
-            return false;
+            return null;
         } finally {
             closeStatement(statement);
         }
     }
 
-    public ArrayList<RatSighting> getAllSightings() {
-        ArrayList<RatSighting> ratData = new ArrayList<>();
-
-        // Test Code
-        ratData.add(new RatSighting(1, "2", LocationType.BUILDING, 23114, "add", "city1", BuroughType.BRONX, 2, 3));
-        ratData.add(new RatSighting(2, "3", LocationType.COMMERCIAL_BUILDING, 30309, "add2", "cit1", BuroughType.MANHATTAN, 4, 5));
-        return ratData;
+    public RatSighting[] getAllSightings() {
+        String statement = "SELECT * FROM `cs2340`.`rat_sighting`;";
+        ResultSet result = executeStatement(statement);
+        if (result == null) return null;
+        try {
+            result.beforeFirst();
+            ArrayList<RatSighting> list = new ArrayList<RatSighting>();
+            while (result.next()) {
+                RatSighting newSight = new RatSighting(result.getInt(1), result.getString(2),
+                        LocationType.toLocationType(result.getString(3)), result.getInt(4), result.getString(5), result.getString(6),
+                        BuroughType.toBuroughType(result.getString(7)), result.getFloat(8), result.getFloat(9));
+                list.add(newSight);
+            }
+            return (RatSighting[]) list.toArray();
+        } catch (Exception e) {
+            Log.d("ERROR:", "Failed GetAllSightings");
+            return null;
+        }
     }
 
     public ArrayList<RatSighting> getFilteredSightings(SearchCriteria sc) {
@@ -138,8 +146,31 @@ public class SQLController {
         return null;
     }
 
-    public boolean addRatSighting() {
-        return false;
+    public boolean addRatSighting(RatSighting rs) {
+        String statement = "INSERT INTO `cs2340`.`rat_sighting` VALUES(" +
+                rs.getKey() + "," +
+                rs.getCreated() + "," +
+                rs.getLocationType().toString() + "," +
+                rs.getZip() + "," +
+                rs.getAddr() + "," +
+                rs.getCity() + "," +
+                rs.getBorough().toString() + "," +
+                rs.getLat() + "," +
+                rs.getLong() + ");";
+        if (executeStatement(statement) == null) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean clearRatTable() {
+        String safeStatement = "SET sql_safe_updates=0";
+        executeStatement(safeStatement);
+        String statement = "DELETE FROM `cs2340`.`rat_sighting`";
+        if (executeStatement(statement) == null) {
+            return false;
+        }
+        return true;
     }
 
     public boolean updateRatSighting(int key, RatSighting newSighting) {

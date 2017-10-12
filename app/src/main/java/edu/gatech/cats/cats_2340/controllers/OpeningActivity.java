@@ -45,7 +45,7 @@ public class OpeningActivity extends AppCompatActivity {
 
             @Override
             protected Void doInBackground(Void ... params) {
-                SQLController.initializeConnection();
+                SQLController.getSQLController().initializeConnection();
                 return null;
             }
         }.execute();

@@ -8,7 +8,7 @@ public enum LocationType {
 
     FAMILY_DWELLING("1-2 Family Dwelling"),
     FAMILY_APARTMENT("3+ Family Apt. Building"),
-    BUILDING("Building"),
+    BUILDING("Vacant Building"),
     PARKING_LOT_GARAGE("Parking Lot/Garage"),
     FAMILY_MIXED_USE_BUILDING("3+ Family Mixed Use Building"),
     COMMERCIAL_BUILDING("Commercial Building"),
@@ -28,5 +28,14 @@ public enum LocationType {
     @Override
     public String toString() {
         return name;
+    }
+
+    public static LocationType toLocationType(String s) {
+        for (LocationType lt : LocationType.values()) {
+            if (lt.toString().equalsIgnoreCase(s)) {
+                return lt;
+            }
+        }
+        return null;
     }
 }
