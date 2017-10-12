@@ -30,12 +30,22 @@ public class SQLController {
     private static String serverName = "10.0.2.2";
     private static int portNumber = 3306;
 
-    private static Connection SQLconnection;
+    private Connection SQLconnection;
+
+    private static SQLController singleton = new SQLController();
+
+    private SQLController() {
+
+    }
+
+    public SQLController getSQLController() {
+        return singleton;
+    }
 
     /**
      * Initializes connection to the database, setting SQLconnection.
      */
-    public static boolean initializeConnection(){
+    public boolean initializeConnection(){
         Log.d("INFO", "Initializing Connection to Database");
         Properties connectionProps = new Properties();
         connectionProps.put("user", username);
@@ -64,7 +74,7 @@ public class SQLController {
     /**
      * Disconnects from the SQL database, if connected at all.
      */
-    public static void disconnect() {
+    public void disconnect() {
         if (SQLconnection != null) {
             try {
                 SQLconnection.close();
@@ -79,7 +89,7 @@ public class SQLController {
      * If not, will attempt to reinitialize connection.
      * @return If the database is connected, or has been reconnected.
      */
-    private static boolean isSQLInitialized() {
+    private boolean isSQLInitialized() {
         if (SQLconnection == null) {
             Log.d("ERROR", "Not connected to Database! Attempted to reinitialize");
             return initializeConnection();
