@@ -113,7 +113,7 @@ public class RatSightingList extends AppCompatActivity implements AdapterView.On
                 sighting.setAddress(s[9]);
                 sighting.setCity(s[16]);
                 sighting.setBorough(BuroughType.toBuroughType(s[23]));
-                if (s[49] != null && s[50] != null) {
+                if (s.length > 45) {
                     sighting.setLatitude(Float.parseFloat(s[49]));
                     sighting.setLongitude(Float.parseFloat(s[50]));
                 } else {
