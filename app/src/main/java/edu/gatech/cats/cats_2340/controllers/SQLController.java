@@ -38,7 +38,7 @@ public class SQLController {
 
     }
 
-    public SQLController getSQLController() {
+    public static SQLController getSQLController() {
         return singleton;
     }
 
