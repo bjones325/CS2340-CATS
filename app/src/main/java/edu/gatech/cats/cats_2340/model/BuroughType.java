@@ -10,7 +10,8 @@ public enum BuroughType {
     STATEN_ISLAND("STATEN ISLAND"),
     QUEENS("QUEENS"),
     BROOKLYN("BROOKLYN"),
-    BRONX("BRONX");
+    BRONX("BRONX"),
+    NONE("None");
 
     private String name;
 
@@ -29,7 +30,7 @@ public enum BuroughType {
                 return bt;
             }
         }
-        return null;
+        return BuroughType.NONE;
     }
 
 }

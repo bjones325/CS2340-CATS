@@ -46,9 +46,7 @@ public class RatSighting implements Serializable {
      * no-args constructor for a RatSighting
      */
     public RatSighting() {
-        _latitude = 0;
-        _longitude = 0;
-
+        this(0, "null", LocationType.OTHER, 0, "null", "null", BuroughType.NONE, 0, 0);
     }
     /**
      * getter for key for a RatSighting
