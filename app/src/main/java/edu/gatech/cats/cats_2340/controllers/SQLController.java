@@ -121,8 +121,6 @@ public class SQLController {
         } catch(SQLException e) {
             Log.d("ERROR:", "Error executing statement: " + statementString);
             return null;
-        } finally {
-            closeStatement(statement);
         }
     }
 
@@ -133,10 +131,11 @@ public class SQLController {
     public RatSighting[] getAllSightings() {
         String statement = "SELECT * FROM `cs2340`.`rat_sighting`;";
         ResultSet result = executeStatement(statement);
-        if (result == null) return null;
+        ArrayList<RatSighting> list = new ArrayList<RatSighting>();
+        if (result == null) return (RatSighting[]) list.toArray();
         try {
             result.beforeFirst();
-            ArrayList<RatSighting> list = new ArrayList<RatSighting>();
+
             while (result.next()) {
                 RatSighting newSight = new RatSighting(result.getInt(1), result.getString(2),
                         LocationType.toLocationType(result.getString(3)), result.getInt(4), result.getString(5), result.getString(6),
@@ -147,7 +146,7 @@ public class SQLController {
         } catch (Exception e) {
             Log.d("ERROR:", "Failed GetAllSightings");
             Log.d("ERROR:", "MSG: " + e.getMessage());
-            return null;
+            return (RatSighting[]) list.toArray();
         }
     }
 

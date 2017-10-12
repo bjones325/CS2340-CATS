@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
 
 import android.view.View;
 import android.widget.AdapterView;
@@ -21,7 +23,10 @@ import edu.gatech.cats.cats_2340.R;
 import edu.gatech.cats.cats_2340.model.BuroughType;
 import edu.gatech.cats.cats_2340.model.LocationType;
 import edu.gatech.cats.cats_2340.model.RatSighting;
+import edu.gatech.cats.cats_2340.model.BuroughType;
+import edu.gatech.cats.cats_2340.model.LocationType;
 import edu.gatech.cats.cats_2340.model.Model;
+import edu.gatech.cats.cats_2340.model.RatSighting;
 
 public class RatSightingList extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
