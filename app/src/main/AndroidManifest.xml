@@ -26,9 +26,10 @@
             android:name=".controllers.LoginActivity"
             android:label="@string/title_activity_login" />
         <activity android:name=".controllers.ApplicationActivity" />
-        <activity android:name=".controllers.RegisterActivity"/>
-        <activity android:name=".controllers.RatSightingList"/>
-        <activity android:name=".controllers.RatSightingScreen"/>
+        <activity android:name=".controllers.RegisterActivity" />
+        <activity android:name=".controllers.RatSightingList" />
+        <activity android:name=".controllers.RatSightingScreen" />
+        <activity android:name=".controllers.InputRatSighting"></activity>
     </application>
 
 </manifest>

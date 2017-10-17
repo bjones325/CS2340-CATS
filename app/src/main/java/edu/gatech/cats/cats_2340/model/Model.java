@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 import edu.gatech.cats.cats_2340.controllers.SQLController;
 
+import static android.R.id.list;
+
 /**
  * Created by acer_ on 9/21/2017.
  * Modified 9/21/17
@@ -20,6 +22,8 @@ public class Model {
     private RatSighting currentRat;
 
     private List<User> userList = new ArrayList<User>();
+
+    private List<RatSighting> reportList = new ArrayList<RatSighting>();
 
     private boolean loggedIn = false;
 
@@ -87,8 +91,12 @@ public class Model {
         userList.add(u);
     }
 
+    public void addReport(RatSighting report) {
+        reportList.add(report);
+    }
+
     public RatSighting getCurrentRat() {
-        return  null;
+        return null;
     }
 
     public RatSighting[] getRatArray() {

@@ -113,7 +113,21 @@ public class SQLController {
      * Executes statementString
      * @return If the database is executed, or if it has failed to execute
      */
-    private ResultSet executeStatement(String statementString) {
+    private boolean executeInsert(String statementString) {
+        if (!isSQLInitialized()) return false;
+        Statement statement = null;
+        try {
+            statement = SQLconnection.createStatement();
+            statement.execute(statementString);
+            return true;
+        } catch(SQLException e) {
+            Log.d("ERROR:", "Error executing statement: " + statementString);
+            Log.d("ERROR:", "MSG: " + e.getMessage());
+            return false;
+        }
+    }
+
+    private ResultSet executeRetrieval(String statementString) {
         if (!isSQLInitialized()) return null;
         PreparedStatement statement = null;
         try {
@@ -121,6 +135,7 @@ public class SQLController {
             return statement.executeQuery();
         } catch(SQLException e) {
             Log.d("ERROR:", "Error executing statement: " + statementString);
+            Log.d("ERROR:", "MSG: " + e.getMessage());
             return null;
         }
     }
@@ -131,9 +146,12 @@ public class SQLController {
      */
     public RatSighting[] getAllSightings() {
         String statement = "SELECT * FROM `cs2340`.`rat_sighting`;";
-        ResultSet result = executeStatement(statement);
+        ResultSet result = executeRetrieval(statement);
         ArrayList<RatSighting> list = new ArrayList<RatSighting>();
-        if (result == null) return (RatSighting[]) list.toArray();
+        if (result == null) {
+            RatSighting[] rats = new RatSighting[0];
+            return rats;
+        }
         try {
             result.beforeFirst();
 
@@ -143,11 +161,14 @@ public class SQLController {
                         BuroughType.toBuroughType(result.getString(7)), result.getFloat(8), result.getFloat(9));
                 list.add(newSight);
             }
-            return (RatSighting[]) list.toArray();
+            RatSighting[] rats = new RatSighting[list.size()];
+            rats = list.toArray(rats);
+            return rats;
         } catch (Exception e) {
             Log.d("ERROR:", "Failed GetAllSightings");
             Log.d("ERROR:", "MSG: " + e.getMessage());
-            return (RatSighting[]) list.toArray();
+            RatSighting[] rats = new RatSighting[0];
+            return rats;
         }
     }
 
@@ -175,19 +196,16 @@ public class SQLController {
      */
     public boolean addRatSighting(RatSighting rs) {
         String statement = "INSERT INTO `cs2340`.`rat_sighting` VALUES(" +
-                rs.getKey() + "," +
-                rs.getCreated() + "," +
-                rs.getLocationType().toString() + "," +
-                rs.getZip() + "," +
-                rs.getAddr() + "," +
-                rs.getCity() + "," +
-                rs.getBorough().toString() + "," +
+                rs.getKey() + ",'" +
+                rs.getCreated() + "','" +
+                rs.getLocationType().toString() + "'," +
+                rs.getZip() + ",'" +
+                rs.getAddr() + "','" +
+                rs.getCity() + "','" +
+                rs.getBorough().toString() + "'," +
                 rs.getLat() + "," +
                 rs.getLong() + ");";
-        if (executeStatement(statement) == null) {
-            return false;
-        }
-        return true;
+        return executeInsert(statement);
     }
 
     /**
@@ -196,12 +214,9 @@ public class SQLController {
      */
     public boolean clearRatTable() {
         String safeStatement = "SET sql_safe_updates=0";
-        executeStatement(safeStatement);
+        executeInsert(safeStatement);
         String statement = "DELETE FROM `cs2340`.`rat_sighting`";
-        if (executeStatement(statement) == null) {
-            return false;
-        }
-        return true;
+        return executeInsert(statement) == false;
     }
 
     /**

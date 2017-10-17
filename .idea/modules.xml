@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CATS-2340.iml" filepath="$PROJECT_DIR$/CATS-2340.iml" />
       <module fileurl="file://$PROJECT_DIR$/CS2340-CATS.iml" filepath="$PROJECT_DIR$/CS2340-CATS.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CS2340-CATSLEGIT.iml" filepath="$PROJECT_DIR$/CS2340-CATSLEGIT.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/mysql-connector-java-3.0.17-ga-bin/mysql-connector-java-3.0.17-ga-bin.iml" filepath="$PROJECT_DIR$/mysql-connector-java-3.0.17-ga-bin/mysql-connector-java-3.0.17-ga-bin.iml" />
     </modules>
