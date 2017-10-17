@@ -23,10 +23,10 @@ import edu.gatech.cats.cats_2340.model.User;
 
 public class SQLController {
 
-    private static String username = "acer";
-    private static String password = "cs2340CATS";
-    private static String dbName = "cs2340";
-    private static String serverName = "10.0.2.2";
+    private static String username = "cs2340user";
+    private static String password = "cs2340pass";
+    private static String dbName = "cs2340db"; //cs2340db
+    private static String serverName = "cs2340cats.cypdijxckqjj.us-east-2.rds.amazonaws.com";
     private static int portNumber = 3306;
 
     private Connection SQLconnection;
@@ -61,13 +61,14 @@ public class SQLController {
             conn.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
 
             SQLconnection = conn;
-            Log.d("INFO", "Initialized Connection to Database");
+            Log.d("INFO", "Success! Initialized to Database our Connection has!");
             return true;
         } catch (Exception e){
             Log.d("ERROR", "Failed to Connect to Database!");
             Log.d("ERROR", "MSG: " + e.getMessage());
             return false;
         }
+
     }
 
     /**
