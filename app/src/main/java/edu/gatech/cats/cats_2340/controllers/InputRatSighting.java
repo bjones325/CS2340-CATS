@@ -1,27 +1,18 @@
 package edu.gatech.cats.cats_2340.controllers;
 
-import android.app.Application;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.format.Time;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
-
-import java.util.Date;
 
 import edu.gatech.cats.cats_2340.R;
 import edu.gatech.cats.cats_2340.model.BuroughType;
 import edu.gatech.cats.cats_2340.model.LocationType;
 import edu.gatech.cats.cats_2340.model.Model;
 import edu.gatech.cats.cats_2340.model.RatSighting;
-import edu.gatech.cats.cats_2340.model.User;
 
 import static edu.gatech.cats.cats_2340.R.id.address;
 import static edu.gatech.cats.cats_2340.R.id.borough_spinner;
@@ -38,6 +29,8 @@ public class InputRatSighting extends AppCompatActivity {
     private TextView cityText;
     private Spinner borough;
     private TextView failReportText;
+
+    SQLController controller = new SQLController();
 
 
     @Override
@@ -56,17 +49,16 @@ public class InputRatSighting extends AppCompatActivity {
         addressText = (TextView) findViewById(address);
         cityText = (TextView) findViewById(city);
         borough = (Spinner) findViewById(borough_spinner);
-
         failReportText = (TextView) findViewById(R.id.invalidReport);
         failReportText.setVisibility(View.INVISIBLE);
 
         // Set up adapter to display the allowable types inside the location type spinner
-        ArrayAdapter<String> adapter1 = new ArrayAdapter(this,android.R.layout.simple_spinner_item, User.type);
+        ArrayAdapter<String> adapter1 = new ArrayAdapter(this,android.R.layout.simple_spinner_item, LocationType.type);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         locationType.setAdapter(adapter1);
 
         // Set up adapter to display the allowable types inside the borough spinner
-        ArrayAdapter<String> adapter2 = new ArrayAdapter(this,android.R.layout.simple_spinner_item, User.type);
+        ArrayAdapter<String> adapter2 = new ArrayAdapter(this,android.R.layout.simple_spinner_item, BuroughType.type);
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         borough.setAdapter(adapter2);
 
@@ -91,12 +83,9 @@ public class InputRatSighting extends AppCompatActivity {
             return;
         }
 
-        //@BLAKE: HELP PLEASE :)
-        //RatSighting newRatSighting = new RatSighting(0, dateStr, locationStr, zipStr,
-                //addressStr, cityStr, boroughStr, latStr, lonStr);
         RatSighting newRatSighting = new RatSighting();
         //
-        // **Must Add a key.. is it randomized or the next integer?**
+        // **Must Add a key.. is it randomized or the next integer?** -Mark
         //
         if (dateStr.length() != 0)
             newRatSighting.setCreated(dateStr);
@@ -117,6 +106,9 @@ public class InputRatSighting extends AppCompatActivity {
         if (lonStr.length() != 0) {
             newRatSighting.setLongitude(Float.parseFloat(lonStr));
         }
+
+        // adding the ratsighting to the controller
+        controller.addRatSighting(newRatSighting);
 
         //model.addReport(newRatSighting);
         startActivity(new Intent(getBaseContext(),ApplicationActivity.class));

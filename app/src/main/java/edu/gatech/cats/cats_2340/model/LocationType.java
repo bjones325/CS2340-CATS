@@ -1,5 +1,8 @@
 package edu.gatech.cats.cats_2340.model;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Created by Blake on 10/10/2017.
  */
@@ -18,6 +21,11 @@ public enum LocationType {
     HOSPITAL("Hospital"),
     CATCH_BASIN_SEWER("Catch Basin/Sewer"),
     OTHER("Other (Explain Below)");
+
+    public static List<String> type = Arrays.asList("1-2 Family Dwelling", "3+ Family Apt. Building",
+            "Vacant Building", "Parking Lot/Garage", "3+ Family Mixed Use Building",
+            "Commercial Building", "Vacant Lot", "Public Garden", "Construction Site",
+            "Hospital", "Catch Basin/Sewer", "Other");
 
     private String name;
 

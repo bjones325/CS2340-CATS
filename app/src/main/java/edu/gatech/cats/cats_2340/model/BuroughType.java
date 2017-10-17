@@ -1,5 +1,8 @@
 package edu.gatech.cats.cats_2340.model;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Created by Blake on 10/10/2017.
  */
@@ -12,6 +15,9 @@ public enum BuroughType {
     BROOKLYN("BROOKLYN"),
     BRONX("BRONX"),
     NONE("None");
+
+    public static List<String> type = Arrays.asList("MANHATTAN", "STATEN ISLAND", "QUEENS",
+            "BROOKLYN", "BRONX", "None");
 
     private String name;
 

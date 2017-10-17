@@ -33,7 +33,7 @@ public class SQLController {
 
     private static SQLController singleton = new SQLController();
 
-    private SQLController() {
+    SQLController() {
 
     }
 
