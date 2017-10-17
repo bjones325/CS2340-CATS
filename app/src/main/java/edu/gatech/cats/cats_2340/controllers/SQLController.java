@@ -187,7 +187,23 @@ public class SQLController {
      * @return ratsighting information that matches passed in key
      */
     public RatSighting getIndividualRatSighting(int key) {
-        return null;
+        String statement = "SELECT * FROM `cs2340`.`rat_sighting` WHERE `key` = 1;";
+        ResultSet result = executeRetrieval(statement);
+        if (result == null) {
+            return null;
+        }
+        try {
+            result.beforeFirst();
+            result.next();
+            RatSighting newSight = new RatSighting(result.getInt(1), result.getString(2),
+                    LocationType.toLocationType(result.getString(3)), result.getInt(4), result.getString(5), result.getString(6),
+                    BuroughType.toBuroughType(result.getString(7)), result.getFloat(8), result.getFloat(9));
+            return newSight;
+        } catch (Exception e) {
+            Log.d("ERROR:", "Failed GetIndividualSighting for Key-" + key);
+            Log.d("ERROR:", "MSG: " + e.getMessage());
+            return null;
+        }
     }
 
     /**
@@ -216,7 +232,7 @@ public class SQLController {
         String safeStatement = "SET sql_safe_updates=0";
         executeInsert(safeStatement);
         String statement = "DELETE FROM `cs2340`.`rat_sighting`";
-        return executeInsert(statement) == false;
+        return executeInsert(statement);
     }
 
     /**
@@ -234,8 +250,10 @@ public class SQLController {
      * Removes RatSighting from the database
      * @return boolean if removing a ratsighting was successful or not
      */
-    public boolean removeRatSighting() {
-        return false;
+    public boolean removeRatSighting(int key) {
+        String statement = "DELETE FROM `cs2340`.`rat_sighting`" +
+                "WHERE `key` = " + key + ";";
+        return executeInsert(statement);
     }
 
     /**
