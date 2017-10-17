@@ -37,4 +37,9 @@ public class ApplicationActivity extends AppCompatActivity {
         startActivity(new Intent(getBaseContext(),RatSightingList.class));
         finish();
     }
+
+    public void onReportPressed(View view) {
+        startActivity(new Intent(getBaseContext(), InputRatSighting.class));
+        finish();
+    }
 }

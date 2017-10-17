@@ -92,8 +92,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Submit"
-        tools:layout_editor_absoluteX="136dp"
-        tools:layout_editor_absoluteY="447dp" />
+        android:onClick="onSubmitPressed"
+        tools:layout_editor_absoluteX="242dp"
+        tools:layout_editor_absoluteY="458dp" />
 
     <EditText
         android:id="@+id/date"
@@ -180,5 +181,22 @@
         android:inputType="time"
         tools:layout_editor_absoluteX="109dp"
         tools:layout_editor_absoluteY="195dp" />
+
+    <TextView
+        android:id="@+id/invalidReport"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Must fill out all fields"
+        tools:layout_editor_absoluteX="127dp"
+        tools:layout_editor_absoluteY="432dp" />
+
+    <Button
+        android:id="@+id/cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        tools:layout_editor_absoluteX="76dp"
+        tools:layout_editor_absoluteY="458dp"
+        android:onClick="onCancelPressed" />
 
 </android.support.constraint.ConstraintLayout>
