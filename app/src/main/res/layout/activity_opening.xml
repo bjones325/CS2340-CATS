@@ -1,43 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="edu.gatech.cats.cats_2340.controllers.OpeningActivity">
+    tools:context="edu.gatech.cats.cats_2340.controllers.OpeningActivity"
+    android:background="@drawable/bg_logo">
 
     <Button
         android:id="@+id/loginButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/login"
-        tools:layout_editor_absoluteX="47dp"
-        tools:layout_editor_absoluteY="353dp"
-        android:layout_marginStart="52dp"
-        android:layout_alignBaseline="@+id/registerButton"
-        android:layout_alignBottom="@+id/registerButton"
-        android:layout_alignParentStart="true" />
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:background="@drawable/login"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintTop_creator="1"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="140dp" />
 
     <Button
         android:id="@+id/registerButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/register"
-        tools:layout_editor_absoluteX="250dp"
-        tools:layout_editor_absoluteY="353dp"
-        android:layout_marginBottom="117dp"
-        android:layout_marginEnd="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/register"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintRight_creator="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="80dp" />
 
-    <ImageView
-        android:id="@+id/titlebar"
-        android:contentDescription="@string/title_logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:adjustViewBounds="true"
-        app:srcCompat="@drawable/titlebar" />
-
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>

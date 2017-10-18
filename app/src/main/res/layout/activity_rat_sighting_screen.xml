@@ -4,16 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="edu.gatech.cats.cats_2340.controllers.RatSightingScreen">
+    tools:context="edu.gatech.cats.cats_2340.controllers.RatSightingScreen"
+    android:background="@drawable/bg_no_logo">
 
     <Button
         android:id="@+id/backButton"
         style="@style/Widget.AppCompat.Button.Small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
+        android:background="@android:drawable/ic_menu_revert"
         android:layout_alignParentTop="true"
-        android:background="@android:drawable/ic_menu_revert" />
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:id="@+id/location_field"
@@ -163,9 +164,9 @@
         android:id="@+id/key_field"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/dateCreated"
         android:layout_centerHorizontal="true"
         android:text="KEY"
         android:textSize="22sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_above="@+id/dateCreated" />
 </RelativeLayout>

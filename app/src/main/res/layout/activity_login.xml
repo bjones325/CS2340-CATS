@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="edu.gatech.cats.cats_2340.controllers.LoginActivity">
+    tools:context="edu.gatech.cats.cats_2340.controllers.LoginActivity"
+    android:background="@drawable/bg_no_logo">
 
     <EditText
         android:id="@+id/usernameField"
@@ -68,12 +69,11 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Username or Password Incorrect!"
-        android:textColor="@android:color/holo_red_dark"
-        android:visibility="invisible"
-        android:layout_marginTop="30dp"
         android:layout_below="@+id/passwordField"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="Username or Password Incorrect!"
+        android:textColor="@color/colorAccent" />
 
     <Button
         android:id="@+id/cancelButton"
