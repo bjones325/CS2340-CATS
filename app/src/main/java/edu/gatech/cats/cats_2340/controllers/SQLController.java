@@ -145,7 +145,7 @@ public class SQLController {
      * @return ArrayList<RatSightings> full of all the rat sighting in the csv
      */
     public RatSighting[] getAllSightings() {
-        String statement = "SELECT * FROM `cs2340`.`rat_sighting`;";
+        String statement = "SELECT * FROM `cs2340db`.`rat_sighting`;";
         ResultSet result = executeRetrieval(statement);
         ArrayList<RatSighting> list = new ArrayList<RatSighting>();
         if (result == null) {
@@ -187,7 +187,7 @@ public class SQLController {
      * @return ratsighting information that matches passed in key
      */
     public RatSighting getIndividualRatSighting(int key) {
-        String statement = "SELECT * FROM `cs2340`.`rat_sighting` WHERE `key` = 1;";
+        String statement = "SELECT * FROM `cs2340db`.`rat_sighting` WHERE `key` = 1;";
         ResultSet result = executeRetrieval(statement);
         if (result == null) {
             return null;
@@ -211,7 +211,8 @@ public class SQLController {
      * @return boolean if adding a ratsighting was successful or not
      */
     public boolean addRatSighting(RatSighting rs) {
-        String statement = "INSERT INTO `cs2340`.`rat_sighting` VALUES(" +
+        rs.setKey(getNextRatKey());
+        String statement = "INSERT INTO `cs2340db`.`rat_sighting` VALUES(" +
                 rs.getKey() + ",'" +
                 rs.getCreated() + "','" +
                 rs.getLocationType().toString() + "'," +
@@ -224,6 +225,21 @@ public class SQLController {
         return executeInsert(statement);
     }
 
+    private int getNextRatKey() {
+        String statement = "SELECT COUNT(`key`) AS numOfRats FROM `cs2340db`.`rat_sighting`";
+        ResultSet result = executeRetrieval(statement);
+        if (result == null) return 0;
+        try {
+            result.beforeFirst();
+            result.next();
+            return result.getInt(1) + 1;
+        } catch(Exception e) {
+            Log.d("ERROR:", "Failed GetNextRatKey");
+            Log.d("ERROR:", "MSG: " + e.getMessage());
+        }
+        return 0;
+    }
+
     /**
      * Clears the rat data table
      * @return boolean if worked correctly
@@ -231,7 +247,7 @@ public class SQLController {
     public boolean clearRatTable() {
         String safeStatement = "SET sql_safe_updates=0";
         executeInsert(safeStatement);
-        String statement = "DELETE FROM `cs2340`.`rat_sighting`";
+        String statement = "DELETE FROM `cs2340db`.`rat_sighting`";
         return executeInsert(statement);
     }
 
@@ -251,7 +267,7 @@ public class SQLController {
      * @return boolean if removing a ratsighting was successful or not
      */
     public boolean removeRatSighting(int key) {
-        String statement = "DELETE FROM `cs2340`.`rat_sighting`" +
+        String statement = "DELETE FROM `cs2340db`.`rat_sighting`" +
                 "WHERE `key` = " + key + ";";
         return executeInsert(statement);
     }
