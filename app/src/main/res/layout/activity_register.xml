@@ -4,17 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="edu.gatech.cats.cats_2340.controllers.RegisterActivity">
+    tools:context="edu.gatech.cats.cats_2340.controllers.RegisterActivity"
+    android:background="@drawable/bg_no_logo">
 
     <Spinner
         android:id="@+id/userTypeLabel"
         android:layout_width="278dp"
-        android:layout_height="22dp"
+        android:layout_height="30dp"
         tools:layout_editor_absoluteX="38dp"
         tools:layout_editor_absoluteY="335dp"
         android:layout_below="@+id/userTypeLabel"
         android:layout_alignStart="@+id/userTypeLabel"
-        android:layout_marginTop="15dp" />
+        android:layout_marginTop="8dp"
+        android:layout_alignEnd="@+id/password" />
 
     <EditText
         android:id="@+id/nameField"
@@ -24,9 +26,9 @@
         android:inputType="textPersonName"
         android:text="Name"
         android:layout_marginStart="21dp"
+        android:layout_marginTop="82dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="33dp" />
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:id="@+id/userID"
@@ -54,19 +56,20 @@
         android:id="@+id/userTypeLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/password"
+        android:layout_marginTop="53dp"
+        android:text="User Type"
         android:layout_below="@+id/password"
-        android:layout_marginTop="58dp"
-        android:text="User Type" />
+        android:layout_alignStart="@+id/password" />
 
     <TextView
         android:id="@+id/invalidSubmit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/password"
-        android:layout_below="@+id/userTypeLabel"
-        android:layout_marginTop="40dp"
-        android:text="Please fill out all four fields" />
+        android:layout_above="@+id/cancelButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="14dp"
+        android:text="Please fill out all four fields"
+        android:textColor="@color/colorAccent" />
 
     <Button
         android:id="@+id/cancelButton"

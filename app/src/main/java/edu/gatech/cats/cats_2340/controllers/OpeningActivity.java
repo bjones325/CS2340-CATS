@@ -23,10 +23,6 @@ public class OpeningActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_opening);
 
-        // Loads Titlebar Image
-        ImageView titleImg = (ImageView) findViewById(R.id.titlebar);
-        titleImg.setImageResource(R.drawable.titlebar);
-
         Button loginButton = (Button) findViewById(R.id.loginButton);
         loginButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
