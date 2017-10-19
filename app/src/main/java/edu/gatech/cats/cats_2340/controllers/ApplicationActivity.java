@@ -44,4 +44,8 @@ public class ApplicationActivity extends AppCompatActivity {
         startActivity(new Intent(getBaseContext(), InputRatSighting.class));
         finish();
     }
+
+    public void onMapPressed(View view) {
+        startActivity(new Intent(getBaseContext(), MapsActivity.class));
+    }
 }
