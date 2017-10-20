@@ -7,8 +7,23 @@
     tools:context="edu.gatech.cats.cats_2340.controllers.RegisterActivity"
     android:background="@drawable/bg_no_logo">
 
+    <!-- Dummy item which doesn't allow text fields to be auto-selected on creation-->
+    <LinearLayout
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layout_width="0px"
+        android:layout_height="0px"/>
+
+    <AutoCompleteTextView
+        android:id="@+id/autotext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:nextFocusUp="@id/autotext"
+        android:nextFocusLeft="@id/autotext"/>
+    <!-- End of dummy item -->
+
     <Spinner
-        android:id="@+id/userTypeLabel"
+        android:id="@+id/userTypeField"
         android:layout_width="278dp"
         android:layout_height="30dp"
         tools:layout_editor_absoluteX="38dp"
@@ -23,12 +38,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="text"
         android:text="Name"
         android:layout_marginStart="21dp"
         android:layout_marginTop="82dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:imeOptions="actionNext"/>
 
     <EditText
         android:id="@+id/userID"
@@ -38,8 +54,10 @@
         android:layout_below="@+id/nameField"
         android:layout_marginTop="39dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Username" />
+        android:inputType="text"
+        android:text="Username"
+        android:focusable="true"
+        android:focusableInTouchMode="true"/>
 
     <EditText
         android:id="@+id/password"
@@ -49,8 +67,10 @@
         android:layout_below="@+id/userID"
         android:layout_marginTop="48dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Password" />
+        android:inputType="text"
+        android:text="Password"
+        android:focusable="true"
+        android:focusableInTouchMode="true"/>
 
     <TextView
         android:id="@+id/userTypeLabel"
@@ -76,7 +96,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/userTypeLabel"
+        android:layout_alignStart="@+id/userTypeField"
         android:layout_marginBottom="54dp"
         android:layout_marginStart="30dp"
         android:onClick="onCancelPressed"
