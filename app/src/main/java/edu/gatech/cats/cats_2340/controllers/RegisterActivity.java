@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import edu.gatech.cats.cats_2340.R;
 
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -18,10 +19,13 @@ import edu.gatech.cats.cats_2340.model.User;
 import android.view.*;
 
 public class RegisterActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    private TextView nameText;
-    private TextView userText;
-    private TextView passText;
+    private EditText nameText;
+    private EditText userText;
+    private EditText passText;
     private Spinner userTypeLabel;
+    private boolean nameEdit;
+    private boolean userEdit;
+    private boolean passEdit;
     // Keeps track of spinner changes
     private String _type = "Unselected";
     boolean isAdmin = false;
@@ -35,10 +39,14 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        nameText = (TextView) findViewById(R.id.nameField);
-        userText = (TextView) findViewById(R.id.userID);
-        passText = (TextView) findViewById(R.id.password);
-        userTypeLabel = (Spinner) findViewById(R.id.userTypeLabel);
+        nameText = (EditText) findViewById(R.id.nameField);
+        userText = (EditText) findViewById(R.id.userID);
+        passText = (EditText) findViewById(R.id.password);
+        userTypeLabel = (Spinner) findViewById(R.id.userTypeField);
+
+        nameEdit = false;
+        userEdit = false;
+        passEdit = false;
 
         TextView failedRegisterText = (TextView) findViewById(R.id.invalidSubmit);
         failedRegisterText.setVisibility(View.INVISIBLE);
@@ -47,6 +55,46 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, User.type);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         userTypeLabel.setAdapter(adapter);
+
+        // Clears name entry when first clicked on
+        nameText.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (!nameEdit) {
+                    nameText.setText("");
+                    nameEdit = true;
+                } else if (!nameText.getText().toString().equals("")) {
+                    userText.requestFocus();
+                    userText.setText("");
+                    userEdit = true;
+                }
+            }
+        });
+        // Clears user entry when first clicked on
+        userText.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (!userEdit) {
+                    userText.setText("");
+                    userEdit = true;
+                } else if (!userText.getText().toString().equals("")) {
+                    passText.requestFocus();
+                    passText.setText("");
+                    passEdit = true;
+
+                }
+            }
+        });
+        // Clears pass entry when first clicked on
+        passText.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (!passEdit) {
+                    passText.setText("");
+                    passEdit = true;
+                }
+                else if (!userText.getText().toString().equals("")) {
+                    userTypeLabel.requestFocus();
+                }
+            }
+        });
     }
 
     /**
