@@ -108,7 +108,7 @@ public class InputRatSighting extends AppCompatActivity {
         }
 
         // adding the ratsighting to the controller
-        controller.addRatSighting(newRatSighting);
+        controller.addRatSighting(newRatSighting, Model.getInstance().getCurrentUser());
 
         //model.addReport(newRatSighting);
         startActivity(new Intent(getBaseContext(),ApplicationActivity.class));

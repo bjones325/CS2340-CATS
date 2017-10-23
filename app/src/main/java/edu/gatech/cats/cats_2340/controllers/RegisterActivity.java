@@ -58,7 +58,6 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         Model model = Model.getInstance();
 
         String name = nameText.getText().toString();
-        String user = userText.getText().toString();
         String pass = passText.getText().toString();
 
         boolean isAdmin = false;
@@ -66,16 +65,14 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
             isAdmin = true;
         }
 
-        if (name.equals("") || user.equals("") || pass.equals("")) {
+        User newUser = new User(name, pass, isAdmin);
+
+        if (name.equals("") || pass.equals("") || !model.registerUser(newUser)) {
             TextView failedRegisterText = (TextView) findViewById(R.id.invalidSubmit);
             failedRegisterText.setVisibility(View.VISIBLE);
-
             return;
         }
 
-        User newUser = new User(name, user, pass, isAdmin);
-
-        model.register(newUser);
         startActivity(new Intent(getBaseContext(),OpeningActivity.class));
         finish();
     }

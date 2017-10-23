@@ -60,7 +60,7 @@ public class RatSightingScreen extends AppCompatActivity {
         TextView longitude_text = (TextView) findViewById(R.id.longitude_field);
 
         key_text.setText(Integer.toString(rs.getKey()));
-        date_text.setText(rs.getCreated());
+        date_text.setText(rs.getCreated().toString());
         locationType_text.setText(rs.getLocationType().toString());
         zip_text.setText(Integer.toString(rs.getZip()));
         address_text.setText(rs.getAddr());

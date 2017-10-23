@@ -1,7 +1,7 @@
 package edu.gatech.cats.cats_2340.model;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 
 /**
  * Created by Elijah on 10/10/2017.
@@ -9,7 +9,7 @@ import java.util.Date;
 
 public class RatSighting implements Serializable {
     private int _key;
-    private String _created;
+    private Date _created;
     private LocationType _locationType;
     private int _zip;
     private String _address;
@@ -32,7 +32,7 @@ public class RatSighting implements Serializable {
      */
     public RatSighting(int key, String created, LocationType locationType, int zip, String address, String city, BuroughType borough, float latitude, float longitude) {
         _key = key;
-        _created = created;
+        _created = java.sql.Date.valueOf(formatDateString(created));
         _locationType = locationType;
         _zip = zip;
         _address = address;
@@ -60,7 +60,7 @@ public class RatSighting implements Serializable {
      * getter for created for a RatSighting
      * @return created
      */
-    public String getCreated() {
+    public Date getCreated() {
         return _created;
     }
 
@@ -140,7 +140,7 @@ public class RatSighting implements Serializable {
      * setter for created for a RatSighting
      */
     public void setCreated(String created) {
-        this._created = created;
+        this._created = Date.valueOf(created);
     }
 
     /**
@@ -190,5 +190,22 @@ public class RatSighting implements Serializable {
      */
     public void setLongitude(float _longitude) {
         this._longitude = _longitude;
+    }
+
+    private String formatDateString(String created) {
+        String s = "";
+        for (char c : created.toCharArray()) {
+            s += c;
+            if (s.length() == 10) break;
+            if (c == '/') {
+                if (s.length() == 2) {
+                    s = "0" + s;
+                }
+                if (s.length() == 5) {
+                    s = s.substring(0, 2) + "0" + s.substring(3);
+                }
+            }
+        }
+        return s;
     }
 }

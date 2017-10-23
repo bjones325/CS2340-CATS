@@ -21,11 +21,9 @@ public class Model {
 
     private RatSighting currentRat;
 
-    private List<User> userList = new ArrayList<User>();
+    private User currentUser;
 
     private List<RatSighting> reportList = new ArrayList<RatSighting>();
-
-    private boolean loggedIn = false;
 
     public static Model getInstance() {
         return _instance;
@@ -48,47 +46,38 @@ public class Model {
      * @return Whether a user was found with the entered username/password
      */
     public boolean attemptLogin(String user, String pass) {
-        boolean foundUser = false;
-
-
-        for (User u : userList) {
-            if (u.getId().equals(user)) {
-                foundUser = true;
-
-                if (u.getPass().equals(pass)) {
-                    loggedIn = true;
-                    return true;
-                } else {
-                    Log.d("ERROR:", "Incorrect password"); //TODO: Add in user facing
-                    Log.d("ERROR:", "Entered : " + pass + "Looking for : " + u.getPass());
-                    return false;
-                }
-            }
+        if (currentUser != null) {
+            Log.d("ERROR:", "User trying to login, but is already logged in?");
+            return false;
         }
-
-        if (!foundUser) {
-            Log.d("ERROR:", "Username not found"); //TODO: Add in user facing
+        User u = SQLController.getSQLController().getUser(user, pass);
+        if (u == null) {
+            return false;
         }
-
-        return false;
+        currentUser = u;
+        return true;
     }
 
     /**
      * Logs the user out of the application
      */
     public void logout() {
-        if (!loggedIn) {
+        if (currentUser == null) {
             Log.d("ERROR:", "User logged out but was not logged in!");
         }
-        loggedIn = false;
+        currentUser = null;
     }
 
     /**
      * Adds the user to a list of users. Will most likely utilize a database in the future
      * @param u User to be added
      */
-    public void register(User u) {
-        userList.add(u);
+    public boolean registerUser(User u) {
+        return SQLController.getSQLController().addUser(u);
+    }
+
+    public User getCurrentUser() {
+        return currentUser;
     }
 
     public void addReport(RatSighting report) {

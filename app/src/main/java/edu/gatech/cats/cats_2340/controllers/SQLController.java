@@ -145,21 +145,27 @@ public class SQLController {
      * @return ArrayList<RatSightings> full of all the rat sighting in the csv
      */
     public RatSighting[] getAllSightings() {
-        String statement = "SELECT * FROM `cs2340db`.`rat_sighting`;";
+        return getFilteredSightings(new SearchCriteria());
+    }
+
+    /**
+     * creates an arraylist full of all the rat sightings from the csv given specific criteria
+     * @param sc search criteria
+     * @return ArrayList<RatSightings> full of all the rat sighting with specificed criteria
+     */
+    public RatSighting[] getFilteredSightings(SearchCriteria sc) {
+        String statement = getStatementMessage(sc);
         ResultSet result = executeRetrieval(statement);
         ArrayList<RatSighting> list = new ArrayList<RatSighting>();
         if (result == null) {
-            RatSighting[] rats = new RatSighting[0];
-            return rats;
+            return list.toArray(new RatSighting[0]);
         }
         try {
             result.beforeFirst();
-
             while (result.next()) {
                 RatSighting newSight = new RatSighting(result.getInt(1), result.getString(2),
-                        LocationType.toLocationType(result.getString(3)), result.getInt(4), result.getString(5), result.getString(6),
-                        BuroughType.toBuroughType(result.getString(7)), result.getFloat(8), result.getFloat(9));
-                list.add(newSight);
+                        LocationType.values()[result.getInt(3)], result.getInt(4), result.getString(5), result.getString(6),
+                        BuroughType.values()[result.getInt(7)], result.getFloat(8), result.getFloat(9));
             }
             RatSighting[] rats = new RatSighting[list.size()];
             rats = list.toArray(rats);
@@ -172,13 +178,32 @@ public class SQLController {
         }
     }
 
-    /**
-     * creates an arraylist full of all the rat sightings from the csv given specific criteria
-     * @param sc search criteria
-     * @return ArrayList<RatSightings> full of all the rat sighting with specificed criteria
-     */
-    public ArrayList<RatSighting> getFilteredSightings(SearchCriteria sc) {
-        return null;
+    private String getStatementMessage(SearchCriteria sc) {
+        StringBuilder string = new StringBuilder("SELECT * FROM `cs2340db`.`rat_sighting`");
+        boolean initialWhere = false;
+        if (sc.getBuroughs() != null) {
+            if (!initialWhere) string.append(" WHERE ");
+            initialWhere = true;
+            boolean initialBurough = true;
+            for (BuroughType bt : sc.getBuroughs()) {
+                if(!initialBurough) string.append(" OR");
+                initialBurough = false;
+                string.append(" `borough` = " + bt.ordinal());
+            }
+        }
+        if (sc.getLocations() != null) {
+            if (!initialWhere) string.append(" WHERE");
+                else string.append(" AND");
+            initialWhere = true;
+            boolean initialLoc = true;
+            for (LocationType bt : sc.getLocations()) {
+                if(!initialLoc) string.append(" OR");
+                initialLoc = false;
+                string.append(" `locationType` = " + bt.ordinal());
+            }
+        }
+        string.append(";");
+        return string.toString();
     }
 
     /**
@@ -196,8 +221,8 @@ public class SQLController {
             result.beforeFirst();
             result.next();
             RatSighting newSight = new RatSighting(result.getInt(1), result.getString(2),
-                    LocationType.toLocationType(result.getString(3)), result.getInt(4), result.getString(5), result.getString(6),
-                    BuroughType.toBuroughType(result.getString(7)), result.getFloat(8), result.getFloat(9));
+                    LocationType.values()[result.getInt(3)], result.getInt(4), result.getString(5), result.getString(6),
+                    BuroughType.values()[result.getInt(7)], result.getFloat(8), result.getFloat(9));
             return newSight;
         } catch (Exception e) {
             Log.d("ERROR:", "Failed GetIndividualSighting for Key-" + key);
@@ -210,18 +235,19 @@ public class SQLController {
      * adds rat sighting to the database
      * @return boolean if adding a ratsighting was successful or not
      */
-    public boolean addRatSighting(RatSighting rs) {
+    public boolean addRatSighting(RatSighting rs, User user) {
         rs.setKey(getNextRatKey());
         String statement = "INSERT INTO `cs2340db`.`rat_sighting` VALUES(" +
                 rs.getKey() + ",'" +
                 rs.getCreated() + "','" +
-                rs.getLocationType().toString() + "'," +
+                rs.getLocationType().ordinal() + "'," +
                 rs.getZip() + ",'" +
                 rs.getAddr() + "','" +
                 rs.getCity() + "','" +
-                rs.getBorough().toString() + "'," +
+                rs.getBorough().ordinal() + "'," +
                 rs.getLat() + "," +
-                rs.getLong() + ");";
+                rs.getLong() + "," +
+                user.getName() + ");";
         return executeInsert(statement);
     }
 
@@ -274,11 +300,63 @@ public class SQLController {
 
     /**
      * Gets user information associated with the RatSighting given the key
-     * @param key unique key to find instance of RatSighting
+     * @param userName unique UserName associated with that user account
      * @return the User associated with creating the RatSighting instance given the key
      */
-    public User getUser(int key) {
-        return null;
+    public User getUser(String userName) {
+        String statement = "SELECT * FROM `cs2340db`.`user` WHERE `name` = '" + userName + "';";
+        ResultSet result = executeRetrieval(statement);
+        if (result == null) {
+            return null;
+        }
+        try {
+            result.beforeFirst();
+            if (!result.next()) return null;
+            User currentUser = new User(result.getString(1),
+                    result.getString(2), result.getBoolean(3));
+            return currentUser;
+        } catch (Exception e) {
+            Log.d("ERROR:", "Failed GetUser for Name-" + userName);
+            Log.d("ERROR:", "MSG: " + e.getMessage());
+            return null;
+        }
+    }
+
+    /**
+     * Gets user information associated with the RatSighting given the key
+     * @param userName unique UserName associated with that user account
+     * @return the User associated with creating the RatSighting instance given the key
+     */
+    public User getUser(String userName, String password) {
+        String statement = "SELECT * FROM `cs2340db`.`user` WHERE `name` = '" + userName + "' AND `password` = '" + password + "';";
+        ResultSet result = executeRetrieval(statement);
+        if (result == null) {
+            return null;
+        }
+        try {
+            result.beforeFirst();
+            result.next();
+            User currentUser = new User(result.getString(1),
+                    result.getString(2), result.getBoolean(3));
+            return currentUser;
+        } catch (Exception e) {
+            Log.d("ERROR:", "Failed GetUser for Name-" + userName);
+            Log.d("ERROR:", "MSG: " + e.getMessage());
+            return null;
+        }
+    }
+
+    /**
+     * Registers a new username with the database
+     * @param user User data to add to the database
+     * @return was the insertion completed
+     */
+    public boolean addUser(User user) {
+        String statement = "INSERT INTO `cs2340db`.`user` VALUES('" +
+                user.getName() + "', '" +
+                user.getPass() + "', " +
+                user.getIsAdmin() + ");";
+        return executeInsert(statement);
     }
 
     /**

@@ -27,6 +27,7 @@ import edu.gatech.cats.cats_2340.model.BuroughType;
 import edu.gatech.cats.cats_2340.model.LocationType;
 import edu.gatech.cats.cats_2340.model.Model;
 import edu.gatech.cats.cats_2340.model.RatSighting;
+import edu.gatech.cats.cats_2340.model.User;
 
 public class RatSightingList extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
@@ -109,9 +110,6 @@ public class RatSightingList extends AppCompatActivity implements AdapterView.On
                 if (s.length == 0) continue;
                 RatSighting sighting = new RatSighting();
                 sighting.setKey(Integer.parseInt(s[0]));
-                if (sighting.getKey() % 10 == 0) {
-                    Log.d("INFO:", "Key: " + sighting.getKey());
-                }
                 if (s.length > 0 && s[1] != null && s[1].length() != 0)
                     s[1] = s[1].replace("'", "");
                     sighting.setCreated(s[1]);
@@ -137,16 +135,12 @@ public class RatSightingList extends AppCompatActivity implements AdapterView.On
                 if (s.length > 49 && s[50] != null && s[50].length() != 0) {
                     sighting.setLongitude(Float.parseFloat(s[50]));
                 }
-
-                SQLController.getSQLController().addRatSighting(sighting);
+                User csvuser = SQLController.getSQLController().getUser("CSV");
+                SQLController.getSQLController().addRatSighting(sighting, csvuser);
             }
             Log.d("INFO:", "Data has been reloaded");
         } catch (Exception e) {
-            Log.d("ERROR: ", "RESET FAIl..." + e.getMessage());
-            Log.d("ERROR:", e.getLocalizedMessage());
-            for (int i = 0; i < e.getStackTrace().length; i++) {
-                Log.d("ERROR:", (e.getStackTrace()[i]).toString());
-            }
+            Log.d("ERROR: ", "RESET FAIl...");
         }
     }
 }

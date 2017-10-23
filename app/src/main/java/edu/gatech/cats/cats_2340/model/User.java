@@ -9,7 +9,6 @@ import java.util.List;
 
 public class User {
     private String _name;
-    private String _id;
     private String _pass;
     private boolean _isAdmin;
     public static List<String> type = Arrays.asList("User", "Admin");
@@ -18,13 +17,11 @@ public class User {
      * Constructor for user. The application only proceeds when all fields filled so we can
      * safely make a 4 param version for now
      * @param name Name submitted
-     * @param id User ID
      * @param pass Password submitted
      * @param isAdmin Whether or not they are an admin
      */
-    public User(String name, String id, String pass, boolean isAdmin) {
+    public User(String name, String pass, boolean isAdmin) {
         _name = name;
-        _id = id;
         _pass = pass;
         _isAdmin = isAdmin;
     }
@@ -37,13 +34,6 @@ public class User {
         return _name;
     }
 
-    /**
-     * Getter for ID
-     * @return id
-     */
-    public String getId() {
-        return _id;
-    }
 
     /**
      * Getter for pass
