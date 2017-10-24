@@ -41,4 +41,14 @@
         android:layout_below="@+id/getRatList"
         android:layout_centerHorizontal="true" />
 
+    <Button
+        android:id="@+id/map_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/getRatList"
+        android:layout_below="@+id/makeReport"
+        android:layout_marginTop="25dp"
+        android:text="Map"
+        android:onClick="onMapPressed"/>
+
 </RelativeLayout>
