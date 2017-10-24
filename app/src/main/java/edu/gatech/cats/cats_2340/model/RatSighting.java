@@ -1,5 +1,7 @@
 package edu.gatech.cats.cats_2340.model;
 
+import android.util.Log;
+
 import java.io.Serializable;
 import java.sql.Date;
 
@@ -32,7 +34,9 @@ public class RatSighting implements Serializable {
      */
     public RatSighting(int key, String created, LocationType locationType, int zip, String address, String city, BuroughType borough, float latitude, float longitude) {
         _key = key;
-        _created = java.sql.Date.valueOf(formatDateString(created));
+        Log.d("INFO", created);
+        Log.d("INFO", "2---" + formatDateString(created));
+        _created = Date.valueOf(formatDateString(created));
         _locationType = locationType;
         _zip = zip;
         _address = address;
@@ -193,19 +197,15 @@ public class RatSighting implements Serializable {
     }
 
     private String formatDateString(String created) {
-        String s = "";
-        for (char c : created.toCharArray()) {
-            s += c;
-            if (s.length() == 10) break;
-            if (c == '/') {
-                if (s.length() == 2) {
-                    s = "0" + s;
-                }
-                if (s.length() == 5) {
-                    s = s.substring(0, 2) + "0" + s.substring(3);
-                }
-            }
+        created = created.substring(0, created.length() - 13);
+        if (created.charAt(1) == '/') {
+            created = "0" + created;
         }
-        return s;
+        if (created.charAt(4) == '/') {
+            created = created.substring(0, 3) + "0" + created.substring(3);
+        }
+        created = created.substring(6) + "/" + created.substring(0, 5);
+        created.replace("/", "-");
+        return created;
     }
 }
