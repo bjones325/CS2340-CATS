@@ -48,7 +48,7 @@ public class RatSighting implements Serializable {
      * no-args constructor for a RatSighting
      */
     public RatSighting() {
-        this(0, Date.valueOf("0000-00-00"), LocationType.OTHER, 0, "null", "null", BuroughType.NONE, 0, 0);
+        this(0, new Date(0,0,0), LocationType.OTHER, 0, "null", "null", BuroughType.NONE, 0, 0);
     }
     /**
      * getter for key for a RatSighting

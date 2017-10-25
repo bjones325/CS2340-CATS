@@ -8,6 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.sql.Date;
+
 import edu.gatech.cats.cats_2340.R;
 import edu.gatech.cats.cats_2340.model.BuroughType;
 import edu.gatech.cats.cats_2340.model.LocationType;
