@@ -163,9 +163,10 @@ public class SQLController {
         try {
             result.beforeFirst();
             while (result.next()) {
-                RatSighting newSight = new RatSighting(result.getInt(1), result.getString(2),
+                RatSighting newSight = new RatSighting(result.getInt(1), result.getDate(2),
                         LocationType.values()[result.getInt(3)], result.getInt(4), result.getString(5), result.getString(6),
                         BuroughType.values()[result.getInt(7)], result.getFloat(8), result.getFloat(9));
+                list.add(newSight);
             }
             RatSighting[] rats = new RatSighting[list.size()];
             rats = list.toArray(rats);
@@ -179,8 +180,8 @@ public class SQLController {
     }
 
     private String getStatementMessage(SearchCriteria sc) {
-        StringBuilder string = new StringBuilder("SELECT * FROM `cs2340db`.`rat_sighting`");
-        boolean initialWhere = false;
+        StringBuilder string = new StringBuilder("SELECT * FROM `cs2340db`.`rat_sighting`;");
+        /*boolean initialWhere = false;
         if (sc.getBuroughs() != null) {
             if (!initialWhere) string.append(" WHERE ");
             initialWhere = true;
@@ -202,7 +203,7 @@ public class SQLController {
                 string.append(" `locationType` = " + bt.ordinal());
             }
         }
-        string.append(";");
+        string.append(";");*/
         return string.toString();
     }
 
@@ -212,7 +213,7 @@ public class SQLController {
      * @return ratsighting information that matches passed in key
      */
     public RatSighting getIndividualRatSighting(int key) {
-        String statement = "SELECT * FROM `cs2340db`.`rat_sighting` WHERE `key` = 1;";
+        String statement = "SELECT * FROM `cs2340db`.`rat_sighting` WHERE `key` = " + key + ";";
         ResultSet result = executeRetrieval(statement);
         if (result == null) {
             return null;
@@ -220,7 +221,7 @@ public class SQLController {
         try {
             result.beforeFirst();
             result.next();
-            RatSighting newSight = new RatSighting(result.getInt(1), result.getString(2),
+            RatSighting newSight = new RatSighting(result.getInt(1), result.getDate(2),
                     LocationType.values()[result.getInt(3)], result.getInt(4), result.getString(5), result.getString(6),
                     BuroughType.values()[result.getInt(7)], result.getFloat(8), result.getFloat(9));
             return newSight;
@@ -246,8 +247,8 @@ public class SQLController {
                 rs.getCity() + "','" +
                 rs.getBorough().ordinal() + "'," +
                 rs.getLat() + "," +
-                rs.getLong() + "," +
-                user.getName() + ");";
+                rs.getLong() + ",'" +
+                user.getName() + "');";
         return executeInsert(statement);
     }
 

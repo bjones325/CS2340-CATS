@@ -32,11 +32,9 @@ public class RatSighting implements Serializable {
      * @param latitude
      * @param longitude
      */
-    public RatSighting(int key, String created, LocationType locationType, int zip, String address, String city, BuroughType borough, float latitude, float longitude) {
+    public RatSighting(int key, Date created, LocationType locationType, int zip, String address, String city, BuroughType borough, float latitude, float longitude) {
         _key = key;
-        Log.d("INFO", created);
-        Log.d("INFO", "2---" + formatDateString(created));
-        _created = Date.valueOf(formatDateString(created));
+        _created = created;
         _locationType = locationType;
         _zip = zip;
         _address = address;
@@ -50,7 +48,7 @@ public class RatSighting implements Serializable {
      * no-args constructor for a RatSighting
      */
     public RatSighting() {
-        this(0, "null", LocationType.OTHER, 0, "null", "null", BuroughType.NONE, 0, 0);
+        this(0, Date.valueOf("0000-00-00"), LocationType.OTHER, 0, "null", "null", BuroughType.NONE, 0, 0);
     }
     /**
      * getter for key for a RatSighting
@@ -196,16 +194,10 @@ public class RatSighting implements Serializable {
         this._longitude = _longitude;
     }
 
-    private String formatDateString(String created) {
-        created = created.substring(0, created.length() - 13);
-        if (created.charAt(1) == '/') {
-            created = "0" + created;
-        }
-        if (created.charAt(4) == '/') {
-            created = created.substring(0, 3) + "0" + created.substring(3);
-        }
-        created = created.substring(6) + "/" + created.substring(0, 5);
-        created.replace("/", "-");
-        return created;
+    public String formatDateString(String created) {
+        String[] split = created.split("/");
+        String year = split[2].substring(0, 4);
+        String result = year + "-" + split[0] + "-" + split[1];
+        return result;
     }
 }

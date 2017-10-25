@@ -110,29 +110,30 @@ public class RatSightingList extends AppCompatActivity implements AdapterView.On
                 if (s.length == 0) continue;
                 RatSighting sighting = new RatSighting();
                 sighting.setKey(Integer.parseInt(s[0]));
-                if (s.length > 0 && s[1] != null && s[1].length() != 0)
-                    s[1] = s[1].replace("'", "");
-                    sighting.setCreated(s[1]);
-                if (s.length > 6 && s[7] != null && s[7].length() != 0)
+                if (sighting.getKey() % 10 == 0)
+                    Log.d("INFO", "Key- " + sighting.getKey());
+                if (s.length > 0 && s[1] != null && s[1].length() != 0 && s[1] != "N/A")
+                    sighting.setCreated(sighting.formatDateString(s[1]));
+                if (s.length > 6 && s[7] != null && s[7].length() != 0 && s[7] != "N/A")
                     s[7] = s[7].replace("'", "");
                     sighting.setLocationType(LocationType.toLocationType(s[7]));
-                if (s.length > 7 && s[8] != null && s[8].length() != 0) {
+                if (s.length > 7 && s[8] != null && s[8].length() != 0 && s[8] != "N/A") {
                     s[8] = s[8].replace("'", "");
                     sighting.setZip(Integer.parseInt(s[8]));
                 }
-                if (s.length > 8 && s[9] != null && s[9].length() != 0)
+                if (s.length > 8 && s[9] != null && s[9].length() != 0 && s[9] != "N/A")
                     s[9] = s[9].replace("'", "");
                     sighting.setAddress(s[9]);
-                if (s.length > 15 && s[16] != null && s[16].length() != 0)
+                if (s.length > 15 && s[16] != null && s[16].length() != 0 && s[16] != "N/A")
                     s[16] = s[16].replace("'", "");
                     sighting.setCity(s[16]);
-                if (s.length > 22 && s[23] != null && s[23].length() != 0)
+                if (s.length > 22 && s[23] != null && s[23].length() != 0 && s[23] != "N/A")
                     s[23] = s[23].replace("'", "");
                     sighting.setBorough(BuroughType.toBuroughType(s[23]));
-                if (s.length > 48 && s[49] != null && s[49].length() != 0) {
+                if (s.length > 48 && s[49] != null && s[49].length() != 0 && s[49] != "N/A") {
                     sighting.setLatitude(Float.parseFloat(s[49]));
                 }
-                if (s.length > 49 && s[50] != null && s[50].length() != 0) {
+                if (s.length > 49 && s[50] != null && s[50].length() != 0 && s[50] != "N/A") {
                     sighting.setLongitude(Float.parseFloat(s[50]));
                 }
                 User csvuser = SQLController.getSQLController().getUser("CSV");
@@ -141,6 +142,9 @@ public class RatSightingList extends AppCompatActivity implements AdapterView.On
             Log.d("INFO:", "Data has been reloaded");
         } catch (Exception e) {
             Log.d("ERROR: ", "RESET FAIl...");
+            if (e != null) {
+                Log.d("ERROR: ", " " + e.getMessage());
+            }
         }
     }
 }
