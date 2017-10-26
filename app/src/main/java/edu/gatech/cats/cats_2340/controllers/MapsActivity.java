@@ -10,7 +10,11 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.sql.Array;
+import java.util.ArrayList;
+
 import edu.gatech.cats.cats_2340.R;
+import edu.gatech.cats.cats_2340.model.RatSighting;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -40,10 +44,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        LatLng newyork = new LatLng(40.7, -74.0);
-        mMap.addMarker(new MarkerOptions().position(newyork).title("Marker in New York City"));
+        ArrayList<LatLng> latlngTups = new ArrayList<>();
+        for (RatSighting rs : SQLController.getAllSightings()) {
+            LatLng latlngTuple = new LatLng(rs.getLat(), rs.getLong());
+            latlngTups.add(latlngTuple);
+        }
+
+        for (LatLng latlng : latlngTups) {
+            mMap.addMarker(new MarkerOptions().position(latlng).title(""));
+        }
+
+        // Add a marker in New York City and move the camera
+        LatLng newyork = latlngTups.get(100);
+        mMap.addMarker(new MarkerOptions().position(newyork));
         mMap.moveCamera( CameraUpdateFactory.newLatLngZoom(newyork , 14.0f));
-        //mMap.moveCamera(CameraUpdateFactory.newLatLng(newyork));
+
     }
 }

@@ -17,8 +17,8 @@ public class RatSighting implements Serializable {
     private String _address;
     private String _city;
     private BuroughType _borough;
-    private float _latitude;
-    private float _longitude;
+    private double _latitude;
+    private double _longitude;
 
     /**
      * Constructor for an instance for a RatSighting
@@ -110,7 +110,7 @@ public class RatSighting implements Serializable {
      * getter for latitude for a RatSighting
      * @return latitude
      */
-    public float getLat() {
+    public double getLat() {
         return _latitude;
     }
 
@@ -118,7 +118,7 @@ public class RatSighting implements Serializable {
      * getter for longitude for a RatSighting
      * @return longitude
      */
-    public float getLong() {
+    public double getLong() {
         return _longitude;
     }
 

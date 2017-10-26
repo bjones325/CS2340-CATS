@@ -29,7 +29,7 @@ public class SQLController {
     private static String serverName = "cs2340cats.cypdijxckqjj.us-east-2.rds.amazonaws.com";
     private static int portNumber = 3306;
 
-    private Connection SQLconnection;
+    private static Connection SQLconnection;
 
     private static SQLController singleton = new SQLController();
 
@@ -44,7 +44,7 @@ public class SQLController {
     /**
      * Initializes connection to the database, setting SQLconnection.
      */
-    public boolean initializeConnection(){
+    public static boolean initializeConnection(){
         Log.d("INFO", "Initializing Connection to Database");
         Properties connectionProps = new Properties();
         connectionProps.put("user", username);
@@ -89,7 +89,7 @@ public class SQLController {
      * If not, will attempt to reinitialize connection.
      * @return If the database is connected, or has been reconnected.
      */
-    private boolean isSQLInitialized() {
+    private static boolean isSQLInitialized() {
         if (SQLconnection == null) {
             Log.d("ERROR", "Not connected to Database! Attempted to reinitialize");
             return initializeConnection();
@@ -127,7 +127,7 @@ public class SQLController {
         }
     }
 
-    private ResultSet executeRetrieval(String statementString) {
+    private static ResultSet executeRetrieval(String statementString) {
         if (!isSQLInitialized()) return null;
         PreparedStatement statement = null;
         try {
@@ -144,7 +144,7 @@ public class SQLController {
      * creates an arraylist full of all the rat sightings from the csv
      * @return ArrayList<RatSightings> full of all the rat sighting in the csv
      */
-    public RatSighting[] getAllSightings() {
+    public static RatSighting[] getAllSightings() {
         return getFilteredSightings(new SearchCriteria());
     }
 
@@ -153,7 +153,7 @@ public class SQLController {
      * @param sc search criteria
      * @return ArrayList<RatSightings> full of all the rat sighting with specificed criteria
      */
-    public RatSighting[] getFilteredSightings(SearchCriteria sc) {
+    public static RatSighting[] getFilteredSightings(SearchCriteria sc) {
         String statement = getStatementMessage(sc);
         ResultSet result = executeRetrieval(statement);
         ArrayList<RatSighting> list = new ArrayList<RatSighting>();
@@ -179,7 +179,7 @@ public class SQLController {
         }
     }
 
-    private String getStatementMessage(SearchCriteria sc) {
+    private static String getStatementMessage(SearchCriteria sc) {
         StringBuilder string = new StringBuilder("SELECT * FROM `cs2340db`.`rat_sighting`;");
         /*boolean initialWhere = false;
         if (sc.getBuroughs() != null) {
