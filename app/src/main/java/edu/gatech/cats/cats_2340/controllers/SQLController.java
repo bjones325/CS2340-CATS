@@ -29,7 +29,7 @@ public class SQLController {
     private static String serverName = "cs2340cats.cypdijxckqjj.us-east-2.rds.amazonaws.com";
     private static int portNumber = 3306;
 
-    private static Connection SQLconnection;
+    private Connection SQLconnection;
 
     private static SQLController singleton = new SQLController();
 
@@ -44,7 +44,7 @@ public class SQLController {
     /**
      * Initializes connection to the database, setting SQLconnection.
      */
-    public static boolean initializeConnection(){
+    public boolean initializeConnection(){
         Log.d("INFO", "Initializing Connection to Database");
         Properties connectionProps = new Properties();
         connectionProps.put("user", username);
@@ -89,7 +89,7 @@ public class SQLController {
      * If not, will attempt to reinitialize connection.
      * @return If the database is connected, or has been reconnected.
      */
-    private static boolean isSQLInitialized() {
+    private boolean isSQLInitialized() {
         if (SQLconnection == null) {
             Log.d("ERROR", "Not connected to Database! Attempted to reinitialize");
             return initializeConnection();
@@ -127,7 +127,7 @@ public class SQLController {
         }
     }
 
-    private static ResultSet executeRetrieval(String statementString) {
+    private ResultSet executeRetrieval(String statementString) {
         if (!isSQLInitialized()) return null;
         PreparedStatement statement = null;
         try {
@@ -144,7 +144,7 @@ public class SQLController {
      * creates an arraylist full of all the rat sightings from the csv
      * @return ArrayList<RatSightings> full of all the rat sighting in the csv
      */
-    public static RatSighting[] getAllSightings() {
+    public RatSighting[] getAllSightings() {
         return getFilteredSightings(new SearchCriteria());
     }
 
@@ -153,7 +153,7 @@ public class SQLController {
      * @param sc search criteria
      * @return ArrayList<RatSightings> full of all the rat sighting with specificed criteria
      */
-    public static RatSighting[] getFilteredSightings(SearchCriteria sc) {
+    public RatSighting[] getFilteredSightings(SearchCriteria sc) {
         String statement = getStatementMessage(sc);
         ResultSet result = executeRetrieval(statement);
         ArrayList<RatSighting> list = new ArrayList<RatSighting>();
@@ -179,31 +179,37 @@ public class SQLController {
         }
     }
 
-    private static String getStatementMessage(SearchCriteria sc) {
-        StringBuilder string = new StringBuilder("SELECT * FROM `cs2340db`.`rat_sighting`;");
-        /*boolean initialWhere = false;
+    private String getStatementMessage(SearchCriteria sc) {
+        StringBuilder string = new StringBuilder("SELECT * FROM `cs2340db`.`rat_sighting`");
+        boolean insertedWhere = false;
         if (sc.getBuroughs() != null) {
-            if (!initialWhere) string.append(" WHERE ");
-            initialWhere = true;
-            boolean initialBurough = true;
-            for (BuroughType bt : sc.getBuroughs()) {
-                if(!initialBurough) string.append(" OR");
-                initialBurough = false;
-                string.append(" `borough` = " + bt.ordinal());
+            insertedWhere = true;
+            string.append(" WHERE `borough` = " + sc.getBuroughs().get(0).ordinal());
+            for (int i = 1; i < sc.getBuroughs().size(); i++) {
+                string.append(" OR `borough` = " + sc.getBuroughs().get(i).ordinal());
             }
         }
         if (sc.getLocations() != null) {
-            if (!initialWhere) string.append(" WHERE");
-                else string.append(" AND");
-            initialWhere = true;
-            boolean initialLoc = true;
-            for (LocationType bt : sc.getLocations()) {
-                if(!initialLoc) string.append(" OR");
-                initialLoc = false;
-                string.append(" `locationType` = " + bt.ordinal());
+            if (insertedWhere) {
+                string.append(" AND ");
+            } else {
+                string.append(" WHERE ");
+                insertedWhere = true;
+            }
+            string.append("`locationType` = " + sc.getLocations().get(0).ordinal());
+            for (int i = 1; i < sc.getLocations().size(); i++) {
+                string.append(" OR `locationType` = " + sc.getLocations().get(i).ordinal());
             }
         }
-        string.append(";");*/
+        if (sc.getStartDate() != null && sc.getEndDate() != null) {
+            if (insertedWhere) {
+                string.append(" AND ");
+            } else {
+                string.append(" WHERE ");
+            }
+            string.append(" `dateCreated` BETWEEN " + sc.getStartDate() + " AND " + sc.getEndDate());
+        }
+        string.append(";");
         return string.toString();
     }
 
