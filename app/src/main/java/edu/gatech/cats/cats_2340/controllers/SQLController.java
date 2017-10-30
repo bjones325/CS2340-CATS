@@ -180,7 +180,7 @@ public class SQLController {
         }
     }
 
-    public static List<int[]> getRatCount() {
+    public List<int[]> getRatCount() {
         ResultSet result = executeRetrieval(
                 "SELECT EXTRACT(month FROM dateCreated) AS 'Month', count(*) AS 'Count' FROM `cs2340db`.`rat_sighting` GROUP BY EXTRACT(month FROM dateCreated) ORDER BY EXTRACT(month FROM dateCreated)");
 
@@ -231,7 +231,7 @@ public class SQLController {
             } else {
                 string.append(" WHERE ");
             }
-            string.append(" `dateCreated` BETWEEN " + sc.getStartDate() + " AND " + sc.getEndDate());
+            string.append(" `dateCreated` BETWEEN '" + sc.getStartDate().toString() + "' AND '" + sc.getEndDate().toString() + "'");
         }
         string.append(";");
         return string.toString();
