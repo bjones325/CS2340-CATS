@@ -47,17 +47,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         ArrayList<LatLng> latlngTups = new ArrayList<>();
         for (RatSighting rs : SQLController.getAllSightings()) {
             LatLng latlngTuple = new LatLng(rs.getLat(), rs.getLong());
-            latlngTups.add(latlngTuple);
+            mMap.addMarker(new MarkerOptions().position(latlngTuple).title(rs.toString()));
+            //latlngTups.add(latlngTuple);
         }
 
-        for (LatLng latlng : latlngTups) {
-            mMap.addMarker(new MarkerOptions().position(latlng).title(""));
-        }
+        //for (LatLng latlng : latlngTups) {
+            //mMap.addMarker(new MarkerOptions().position(latlng).title());
+        //}
 
         // Add a marker in New York City and move the camera
-        LatLng newyork = latlngTups.get(100);
-        mMap.addMarker(new MarkerOptions().position(newyork));
-        mMap.moveCamera( CameraUpdateFactory.newLatLngZoom(newyork , 14.0f));
+        //mMap.addMarker(new MarkerOptions().position(newyork));
+        mMap.moveCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(40.7128,-74.006), 10.0f));
 
     }
 }
