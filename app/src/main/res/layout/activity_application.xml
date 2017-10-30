@@ -51,4 +51,14 @@
         android:text="Map"
         android:onClick="onMapPressed"/>
 
+    <Button
+        android:id="@+id/graphButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/map_button"
+        android:layout_below="@+id/map_button"
+        android:layout_marginTop="39dp"
+        android:onClick="onGraphPressed"
+        android:text="Button" />
+
 </RelativeLayout>

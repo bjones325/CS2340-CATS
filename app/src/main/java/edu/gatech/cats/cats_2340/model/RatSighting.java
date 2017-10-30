@@ -127,7 +127,7 @@ public class RatSighting implements Serializable {
      * @return string that holds information about the locationType and borough
      */
     public String toString() {
-        return _locationType.toString() + " " + _borough.toString();
+        return getKey() + " " + _locationType.toString() + " " + _borough.toString();
     }
 
 
