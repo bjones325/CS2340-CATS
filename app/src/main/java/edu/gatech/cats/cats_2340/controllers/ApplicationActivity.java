@@ -52,4 +52,8 @@ public class ApplicationActivity extends AppCompatActivity {
     public void onGraphPressed(View view) {
         startActivity(new Intent(getBaseContext(), GraphActivity.class));
     }
+
+    public void onSearchPressed(View view) {
+        startActivity(new Intent(getBaseContext(), SearchActivity.class));
+    }
 }

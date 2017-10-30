@@ -51,12 +51,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             //latlngTups.add(latlngTuple);
         }
 
-        //for (LatLng latlng : latlngTups) {
-            //mMap.addMarker(new MarkerOptions().position(latlng).title());
-        //}
-
-        // Add a marker in New York City and move the camera
-        //mMap.addMarker(new MarkerOptions().position(newyork));
         mMap.moveCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(40.7128,-74.006), 10.0f));
 
     }
