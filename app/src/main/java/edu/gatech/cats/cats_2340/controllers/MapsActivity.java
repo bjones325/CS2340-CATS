@@ -45,7 +45,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         ArrayList<LatLng> latlngTups = new ArrayList<>();
-        for (RatSighting rs : SQLController.getAllSightings()) {
+        for (RatSighting rs : SQLController.getSQLController().getAllSightings()) {
             LatLng latlngTuple = new LatLng(rs.getLat(), rs.getLong());
             mMap.addMarker(new MarkerOptions().position(latlngTuple).title(rs.toString()));
             //latlngTups.add(latlngTuple);
