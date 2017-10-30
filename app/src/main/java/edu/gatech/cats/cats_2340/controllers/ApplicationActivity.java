@@ -48,4 +48,8 @@ public class ApplicationActivity extends AppCompatActivity {
     public void onMapPressed(View view) {
         startActivity(new Intent(getBaseContext(), MapsActivity.class));
     }
+
+    public void onGraphPressed(View view) {
+        startActivity(new Intent(getBaseContext(), GraphActivity.class));
+    }
 }
