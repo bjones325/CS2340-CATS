@@ -36,7 +36,7 @@ public class GraphActivity extends AppCompatActivity {
         List<int[]> ans = sql.getRatCount();
 
         for(int[] r : ans) {
-            entries.add(new Entry(r[0], r[1]));
+            entries.add(new Entry(r[0] * 12 + r[1], r[2]));
         }
 
         Collections.sort(entries, new EntryXComparator());
