@@ -25,7 +25,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sightings = (ArrayList<RatSighting>) getIntent().getSerializableExtra("mapsList");
-        System.out.println("Here Mkay Ruchi " + sightings);
         if (sightings == null) {
             sightings = new ArrayList<RatSighting>();
             for (RatSighting r : SQLController.getSQLController().getAllSightings()) {

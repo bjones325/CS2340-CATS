@@ -54,7 +54,6 @@ public class ApplicationActivity extends AppCompatActivity {
     }
 
     public void onSearchPressed(View view) {
-        System.out.println("Hate Ruchi");
         startActivity(new Intent(getBaseContext(), SearchActivity.class));
     }
 }

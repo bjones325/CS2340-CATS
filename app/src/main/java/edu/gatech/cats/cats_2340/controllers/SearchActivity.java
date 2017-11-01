@@ -34,7 +34,6 @@ public class SearchActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        System.out.println("Here yo");
         setContentView(R.layout.activity_search);
 
         _startDate = (TextView) findViewById(R.id.startDate);
@@ -58,42 +57,40 @@ public class SearchActivity extends AppCompatActivity{
     }
 
     public void onSearchPressed(View view) {
-        /*
-        String startDateStr= _startDate.getText().toString();
-        SimpleDateFormat startdateFormat = new SimpleDateFormat("yyyy-MM-DD");
-        Calendar cal = Calendar.getInstance();
-        cal.set(0000,00,00);
-        Date startConvertedDate = cal.getTime();
+
+        String startDateStr = _startDate.getText().toString();
+        SimpleDateFormat endDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        java.sql.Date sqlStartDate = null;
+        try {
+            sqlStartDate = new java.sql.Date(endDateFormat.parse(startDateStr).getTime());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
 
 
         String endDateStr = _endDate.getText().toString();
-        SimpleDateFormat enddateFormat = new SimpleDateFormat("yyyy-MM-DD");
-        Calendar cal = Calendar.getInstance();
-        cal.set(0000,00,00);
-        Date endConvertedDate = cal.getTime();
+        java.sql.Date sqlEndDate = null;
+        try {
+            sqlEndDate = new java.sql.Date(endDateFormat.parse(endDateStr).getTime());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
-        String startDate="01-02-2013";
-        SimpleDateFormat sdf1 = new SimpleDateFormat("dd-mm-yyyy");
-        java.util.Date date = sdf1.parse(startDate);
-        java.sql.Date sqlStartDate = new java.sql.Date(date.getTime());
-        */
         String locType = _locationType.getSelectedItem().toString();
         String borType = _boroughType.getSelectedItem().toString();
 
 
         ArrayList<RatSighting> filteredRats = new ArrayList<>();
         for (RatSighting rs : SQLController.getSQLController().getAllSightings()) {
-            System.out.println(rs.getBorough().toString());
-            System.out.println(rs.getLocationType().toString());
             if (rs.getBorough() == BuroughType.toBuroughType(borType)
                     && rs.getLocationType() == LocationType.toLocationType(locType)) {
-                /*
-                if (rs.getCreated() >= startConvertedDate  && rs.getCreated() <= endConvertedDate) {
+                if (rs.getCreated().compareTo(sqlStartDate) >= 0  && rs.getCreated().compareTo(sqlEndDate) <= 0) {
                     filteredRats.add(rs);
-                }*/
-                filteredRats.add(rs);
+                }
             }
         }
+
         Intent mapIntent = new Intent(getBaseContext(), MapsActivity.class);
         mapIntent.putExtra("mapsList", filteredRats);
         startActivity(mapIntent);
