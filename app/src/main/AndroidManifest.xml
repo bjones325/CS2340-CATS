@@ -34,6 +34,7 @@
         <activity android:name=".controllers.RatSightingList" />
         <activity android:name=".controllers.RatSightingScreen" />
         <activity android:name=".controllers.InputRatSighting" />
+        <activity android:name=".controllers.SearchActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

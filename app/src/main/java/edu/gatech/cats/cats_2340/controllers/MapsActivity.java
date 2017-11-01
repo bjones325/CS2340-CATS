@@ -19,10 +19,19 @@ import edu.gatech.cats.cats_2340.model.RatSighting;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private ArrayList<RatSighting> sightings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sightings = (ArrayList<RatSighting>) getIntent().getSerializableExtra("mapsList");
+        System.out.println("Here Mkay Ruchi " + sightings);
+        if (sightings == null) {
+            sightings = new ArrayList<RatSighting>();
+            for (RatSighting r : SQLController.getSQLController().getAllSightings()) {
+                sightings.add(r);
+            }
+        }
         setContentView(R.layout.activity_maps);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -45,7 +54,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         ArrayList<LatLng> latlngTups = new ArrayList<>();
-        for (RatSighting rs : SQLController.getSQLController().getAllSightings()) {
+        for (RatSighting rs : sightings) {
             LatLng latlngTuple = new LatLng(rs.getLat(), rs.getLong());
             mMap.addMarker(new MarkerOptions().position(latlngTuple).title(rs.toString()));
             //latlngTups.add(latlngTuple);
@@ -54,4 +63,5 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.moveCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(40.7128,-74.006), 10.0f));
 
     }
+
 }
