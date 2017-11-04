@@ -7,9 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import java.text.SimpleDateFormat;
-import java.sql.Date;
-import java.util.Locale;
+
 
 import edu.gatech.cats.cats_2340.R;
 import edu.gatech.cats.cats_2340.model.SearchCriteria;
