@@ -61,4 +61,14 @@
         android:onClick="onGraphPressed"
         android:text="Button" />
 
+    <Button
+        android:id="@+id/searchButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/graphButton"
+        android:layout_below="@+id/graphButton"
+        android:layout_marginTop="23dp"
+        android:onClick="onSearchPressed"
+        android:text="Search" />
+
 </RelativeLayout>

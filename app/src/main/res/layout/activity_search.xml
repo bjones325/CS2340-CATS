@@ -51,7 +51,7 @@
         android:layout_alignStart="@+id/endDateText" />
 
     <Spinner
-        android:id="@+id/locationType"
+        android:id="@+id/locationSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/boroughText"
@@ -63,12 +63,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Borough Type:"
-        android:layout_above="@+id/boroughType"
+        android:layout_above="@+id/boroughSpinner"
         android:layout_alignStart="@+id/locationTitle"
         android:layout_marginBottom="21dp" />
 
     <Spinner
-        android:id="@+id/boroughType"
+        android:id="@+id/boroughSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/searchButton"
@@ -81,6 +81,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:text="Search"
+        android:onClick="onSearchPressed"
         android:layout_alignParentBottom="true"
         android:layout_toEndOf="@+id/endDateText"
         android:layout_marginStart="39dp" />
@@ -92,6 +93,7 @@
         android:layout_alignBottom="@+id/searchButton"
         android:layout_alignStart="@+id/boroughText"
         android:layout_marginStart="27dp"
-        android:text="Cancel" />
+        android:text="Cancel"
+        android:onClick="onCancelPressed"/>
 
 </RelativeLayout>
