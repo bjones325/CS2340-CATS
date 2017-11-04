@@ -181,7 +181,9 @@ public class SQLController {
     }
 
     public ArrayList<Integer[]> getFilteredCounts(SearchCriteria sc) {
+        Log.d("", "Running filtered count");
         String statement = getStatementMessageCount(sc);
+        Log.d("", "Statement is " + statement);
         ResultSet result = executeRetrieval(statement);
         ArrayList<Integer[]> list = new ArrayList<Integer[]>();
         if (result == null) {
@@ -241,7 +243,7 @@ public class SQLController {
             }
             string.append(" `dateCreated` BETWEEN '" + sc.getStartDate().toString() + "' AND '" + sc.getEndDate().toString() + "'");
         }
-        string.append(";");
+        string.append("GROUP BY EXTRACT(month FROM dateCreated) ORDER BY EXTRACT(month FROM dateCreated);");
         return string.toString();
     }
 
