@@ -50,7 +50,7 @@ public class ApplicationActivity extends AppCompatActivity {
     }
 
     public void onGraphPressed(View view) {
-        startActivity(new Intent(getBaseContext(), GraphActivity.class));
+        startActivity(new Intent(getBaseContext(), GraphTimeRange.class));
     }
 
     public void onSearchPressed(View view) {

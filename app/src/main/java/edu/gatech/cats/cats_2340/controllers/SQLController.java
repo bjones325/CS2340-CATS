@@ -180,6 +180,32 @@ public class SQLController {
         }
     }
 
+    public ArrayList<Integer[]> getFilteredCounts(SearchCriteria sc) {
+        String statement = getStatementMessageCount(sc);
+        ResultSet result = executeRetrieval(statement);
+        ArrayList<Integer[]> list = new ArrayList<Integer[]>();
+        if (result == null) {
+            Integer[] elem = new Integer[] {0, 0, 0};
+            list.add(elem);
+        }
+        try {
+            result.beforeFirst();
+            while (result.next()) {
+                Integer[] row = {result.getInt(1), result.getInt(2), result.getInt(3)};
+                list.add(row);
+                Log.d("", String.valueOf(result.getInt(1)));
+                Log.d("", String.valueOf(result.getInt(2)));
+
+            }
+            return list;
+        } catch (Exception e) {
+            Log.d("ERROR:", "Failed getRatCount");
+            Log.d("ERROR:", "MSG: " + e.getMessage());
+
+            return null;
+        }
+    }
+
     public List<int[]> getRatCount() {
         ResultSet result = executeRetrieval(
                 "SELECT EXTRACT(month FROM dateCreated) AS 'Month', EXTRACT(year FROM dateCreated) AS 'Year', count(*) AS 'Count' FROM `cs2340db`.`rat_sighting` GROUP BY EXTRACT(month FROM dateCreated) ORDER BY EXTRACT(month FROM dateCreated)");
@@ -201,6 +227,22 @@ public class SQLController {
 
             return null;
         }
+    }
+
+    private String getStatementMessageCount(SearchCriteria sc) {
+        StringBuilder string = new StringBuilder("SELECT EXTRACT(month FROM dateCreated) AS 'Month', EXTRACT(year FROM dateCreated) AS 'Year', count(*) AS 'Count' FROM `cs2340db`.`rat_sighting`");
+        boolean insertedWhere = false;
+
+        if (sc.getStartDate() != null && sc.getEndDate() != null) {
+            if (insertedWhere) {
+                string.append(" AND ");
+            } else {
+                string.append(" WHERE ");
+            }
+            string.append(" `dateCreated` BETWEEN '" + sc.getStartDate().toString() + "' AND '" + sc.getEndDate().toString() + "'");
+        }
+        string.append(";");
+        return string.toString();
     }
 
     private String getStatementMessage(SearchCriteria sc) {
