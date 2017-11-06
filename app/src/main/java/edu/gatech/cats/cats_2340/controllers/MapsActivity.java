@@ -12,6 +12,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.sql.Array;
 import java.util.ArrayList;
+import java.util.Collection;
 
 import edu.gatech.cats.cats_2340.R;
 import edu.gatech.cats.cats_2340.model.RatSighting;
@@ -52,13 +53,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        ArrayList<LatLng> latlngTups = new ArrayList<>();
+        //Collection<LatLng> latlngTups = new ArrayList<>();
         for (RatSighting rs : sightings) {
             LatLng latlngTuple = new LatLng(rs.getLat(), rs.getLong());
             mMap.addMarker(new MarkerOptions().position(latlngTuple).title(rs.toString()));
             //latlngTups.add(latlngTuple);
         }
 
+        //Hard-coded NY lat/Long
         mMap.moveCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(40.7128,-74.006), 10.0f));
 
     }

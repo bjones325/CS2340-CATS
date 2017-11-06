@@ -38,7 +38,7 @@ public class RatSightingScreen extends AppCompatActivity {
         Button backButton = (Button) findViewById(R.id.backButton);
         backButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(getBaseContext(),RatSightingList.class));
+                startActivity(new Intent(getBaseContext(), RatSightingList.class));
             }
         });
     }

@@ -33,23 +33,18 @@ public class GraphActivity extends AppCompatActivity {
 
         String[] dates = (String[]) getIntent().getSerializableExtra("dates");
 
-        Log.d("", dates[0].toString());
-        Log.d("", dates[1].toString());
-
         SimpleDateFormat myDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
         Date start = null;
         Date end = null;
 
         try {
-            start = new java.sql.Date( new SimpleDateFormat("yyyy-MM-dd").parse(dates[0]).getTime());
-            end = new java.sql.Date( new SimpleDateFormat("yyyy-MM-dd").parse(dates[1]).getTime());
+            // Replaced new SimpleDateFormat("yyyy-MM-dd") with myDateFormat
+            start = new java.sql.Date( myDateFormat.parse(dates[0]).getTime());
+            end = new java.sql.Date( myDateFormat.parse(dates[1]).getTime());
         } catch (Exception e) {
             Log.d("dateerror", "coudlnt convert date");
         }
-
-        Log.d("", start.toString());
-        Log.d("", end.toString());
 
         SearchCriteria sc = new SearchCriteria(null, null, start, end);
 
@@ -72,10 +67,5 @@ public class GraphActivity extends AppCompatActivity {
         chart.invalidate();
 
     }
-
-    //LineChart chart = (LineChart) findViewById(R.id.chart);
-
-    //RatSighting[] dummy = new RatSighting[2];
-    //dummy[0] = new RatSighting(1, null, LocationType.BUILDING, 23114, "my house", "atlanta", BuroughType.BRONX, 69, 420);
 
 }

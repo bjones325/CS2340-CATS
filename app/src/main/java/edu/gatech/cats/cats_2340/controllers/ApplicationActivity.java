@@ -35,6 +35,10 @@ public class ApplicationActivity extends AppCompatActivity {
         finish();
     }
 
+    /**
+     *
+     * @param view
+     */
     public void onListPressed(View view) {
         startActivity(new Intent(getBaseContext(),RatSightingList.class));
         finish();

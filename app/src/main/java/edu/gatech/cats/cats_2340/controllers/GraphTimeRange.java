@@ -26,22 +26,24 @@ public class GraphTimeRange extends AppCompatActivity {
         _endDate = (TextView) findViewById(R.id.endGraph);
     }
 
+    /**
+     *
+     * @param view
+     */
     public void onSearchPressed(View view) {
-
-
         String startDateStr = _startDate.getText().toString();
         String endDateStr = _endDate.getText().toString();
-
         String[] dates = {startDateStr, endDateStr};
-
-        Log.d("DATES", startDateStr + " " + endDateStr);
 
         Intent i = new Intent(getBaseContext(), GraphActivity.class);
         i.putExtra("dates", dates);
-
         startActivity(i);
     }
 
+    /**
+     *
+     * @param view
+     */
     public void onCancelPressed(View view) {
         startActivity(new Intent(getBaseContext(), ApplicationActivity.class));
     }
