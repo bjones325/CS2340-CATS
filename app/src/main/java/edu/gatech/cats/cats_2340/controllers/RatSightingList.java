@@ -36,7 +36,7 @@ public class RatSightingList extends AppCompatActivity implements AdapterView.On
         Button backButton = (Button) findViewById(R.id.backButton);
         backButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(getBaseContext(),ApplicationActivity.class));
+                startActivity(new Intent(getBaseContext(), ApplicationActivity.class));
             }
         });
 
@@ -85,7 +85,7 @@ public class RatSightingList extends AppCompatActivity implements AdapterView.On
     //Don't think this does anything but lets keep it for now
     public void onItemClick(AdapterView<?> adapter, View listView, int position, long id) {
         Log.d("testing", "Item clicked");
-        startActivity(new Intent(getBaseContext(),RatSightingScreen.class));
+        startActivity(new Intent(getBaseContext(), RatSightingScreen.class));
         finish();
     }
 

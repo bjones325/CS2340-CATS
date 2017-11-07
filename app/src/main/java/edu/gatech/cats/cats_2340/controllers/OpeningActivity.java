@@ -29,6 +29,7 @@ public class OpeningActivity extends AppCompatActivity{
     private TextView failedSuccessText;
     boolean userEdit;
     public Animation shake;
+
     /**
      * Creates first screen the user/admin sees when the app is initially opened
      * @param savedInstanceState passes data between various android activities
@@ -118,6 +119,4 @@ public class OpeningActivity extends AppCompatActivity{
             passText.setText("");
         }
     }
-
-
 }

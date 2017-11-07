@@ -74,9 +74,4 @@ public class GraphActivity extends AppCompatActivity {
 
     }
 
-    //LineChart chart = (LineChart) findViewById(R.id.chart);
-
-    //RatSighting[] dummy = new RatSighting[2];
-    //dummy[0] = new RatSighting(1, null, LocationType.BUILDING, 23114, "my house", "atlanta", BoroughType.BRONX, 69, 420);
-
 }

@@ -41,6 +41,7 @@ public class InputRatSighting extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_input_rat_sighting);
 
+        //why?
         Model model = Model.getInstance();
 
         latText = (TextView) findViewById(R.id.latitude);
@@ -52,6 +53,7 @@ public class InputRatSighting extends AppCompatActivity {
         addressText = (TextView) findViewById(address);
         cityText = (TextView) findViewById(city);
         borough = (Spinner) findViewById(borough_spinner);
+
         failReportText = (TextView) findViewById(R.id.invalidReport);
         failReportText.setVisibility(View.INVISIBLE);
 

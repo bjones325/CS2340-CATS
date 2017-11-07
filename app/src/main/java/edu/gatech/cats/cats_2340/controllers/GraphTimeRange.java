@@ -39,14 +39,10 @@ public class GraphTimeRange extends AppCompatActivity {
         //Get the text, put in in an array, and give it to the next activity
         String startDateStr = _startDate.getText().toString();
         String endDateStr = _endDate.getText().toString();
-
         String[] dates = {startDateStr, endDateStr};
-
-        Log.d("DATES", startDateStr + " " + endDateStr);
 
         Intent i = new Intent(getBaseContext(), GraphActivity.class);
         i.putExtra("dates", dates);
-
         startActivity(i);
     }
 
