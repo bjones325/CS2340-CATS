@@ -23,6 +23,9 @@ import edu.gatech.cats.cats_2340.model.RatSighting;
 import edu.gatech.cats.cats_2340.model.Model;
 import edu.gatech.cats.cats_2340.model.User;
 
+/**
+ * The list screen
+ */
 public class RatSightingList extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
 
@@ -35,6 +38,7 @@ public class RatSightingList extends AppCompatActivity implements AdapterView.On
         // BACK button
         Button backButton = (Button) findViewById(R.id.backButton);
         backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 startActivity(new Intent(getBaseContext(), ApplicationActivity.class));
             }
@@ -51,7 +55,7 @@ public class RatSightingList extends AppCompatActivity implements AdapterView.On
 
 
         // Pulls in the getAllSightings method to the ArrayAdapter
-        ArrayAdapter<RatSighting> adapter = new ArrayAdapter<RatSighting>(this, android.R.layout.simple_list_item_1, control.getAllSightings());
+        ArrayAdapter<RatSighting> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, control.getAllSightings());
 
         //Connect our list to the adapter
         listView.setAdapter(adapter);
@@ -83,12 +87,17 @@ public class RatSightingList extends AppCompatActivity implements AdapterView.On
 
 
     //Don't think this does anything but lets keep it for now
+    @Override
     public void onItemClick(AdapterView<?> adapter, View listView, int position, long id) {
         Log.d("testing", "Item clicked");
         startActivity(new Intent(getBaseContext(), RatSightingScreen.class));
         finish();
     }
 
+    /**
+     * Totally resets the database
+     * @param view The view
+     */
     public void resetRatData(View view) {
         try {
             SQLController.getSQLController().clearRatTable();

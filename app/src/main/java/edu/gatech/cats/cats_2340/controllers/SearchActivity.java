@@ -19,7 +19,7 @@ import edu.gatech.cats.cats_2340.model.LocationType;
 import edu.gatech.cats.cats_2340.model.RatSighting;
 
 /**
- * Created by Ruchi Banerjee on 10/26/2017.
+ * Created by Ruchi Banerjee on 10/26/2017. This is the search view
  */
 
 public class SearchActivity extends AppCompatActivity{
@@ -49,10 +49,18 @@ public class SearchActivity extends AppCompatActivity{
         _boroughType.setAdapter(adapter2);
     }
 
+    /**
+     * When cancel is pressed
+     * @param view The view
+     */
     public void onCancelPressed(View view) {
         startActivity(new Intent(getBaseContext(),ApplicationActivity.class));
     }
 
+    /**
+     * When search is pressed
+     * @param view The view
+     */
     public void onSearchPressed(View view) {
 
         String startDateStr = _startDate.getText().toString();

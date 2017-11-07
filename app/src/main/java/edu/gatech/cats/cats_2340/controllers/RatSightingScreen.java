@@ -7,21 +7,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import edu.gatech.cats.cats_2340.R;
 import edu.gatech.cats.cats_2340.model.Model;
 import edu.gatech.cats.cats_2340.model.RatSighting;
 
-import static edu.gatech.cats.cats_2340.R.id.loginButton;
 
+/**
+ * Screen for a specific rat sighting
+ */
 public class RatSightingScreen extends AppCompatActivity {
     private RatSighting rs;
 
-    /**
-     * Overriden on-create sets the view to the application view
-     * @param savedInstanceState
-     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +33,7 @@ public class RatSightingScreen extends AppCompatActivity {
         // BACK Button
         Button backButton = (Button) findViewById(R.id.backButton);
         backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 startActivity(new Intent(getBaseContext(), RatSightingList.class));
             }

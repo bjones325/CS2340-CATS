@@ -19,7 +19,7 @@ import edu.gatech.cats.cats_2340.model.SearchCriteria;
 import edu.gatech.cats.cats_2340.model.User;
 
 /**
- * Created by Blake on 10/5/2017.
+ * Created by Blake on 10/5/2017. This is the SQL controller
  */
 
 public class SQLController {
@@ -38,12 +38,17 @@ public class SQLController {
 
     }
 
+    /**
+     * Returns singleton of SQLController
+     * @return The sql controller
+     */
     public static SQLController getSQLController() {
         return singleton;
     }
 
     /**
      * Initializes connection to the database, setting SQLconnection.
+     * @return Success of connection
      */
     public boolean initializeConnection(){
         Log.d("INFO", "Initializing Connection to Database");
@@ -100,7 +105,7 @@ public class SQLController {
 
     /**
      * Attempts to close the SQL
-     * @throws SQLException if error in closing statement
+     * @param state The statement
      */
     private static void closeStatement(Statement state) {
         if (state == null) return;
@@ -157,7 +162,7 @@ public class SQLController {
     public RatSighting[] getFilteredSightings(SearchCriteria sc) {
         String statement = getStatementMessage(sc);
         ResultSet result = executeRetrieval(statement);
-        ArrayList<RatSighting> list = new ArrayList<RatSighting>();
+        ArrayList<RatSighting> list = new ArrayList<>();
         if (result == null) {
             return list.toArray(new RatSighting[0]);
         }
@@ -180,11 +185,16 @@ public class SQLController {
         }
     }
 
+    /**
+     * Gets a filtered count by month of rat sightings based on a search criteria
+     * @param sc Search criteria
+     * @return A list of 3 element arrays containing year, month, count
+     */
     public ArrayList<Integer[]> getFilteredCounts(SearchCriteria sc) {
 
         String statement = getStatementMessageCount(sc);
         ResultSet result = executeRetrieval(statement);
-        ArrayList<Integer[]> list = new ArrayList<Integer[]>();
+        ArrayList<Integer[]> list = new ArrayList<>();
         if (result == null) {
             Integer[] elem = new Integer[] {0, 0, 0};
             list.add(elem);
@@ -207,6 +217,10 @@ public class SQLController {
         }
     }
 
+    /**
+     * Gets rat count grouped by month
+     * @return See above
+     */
     public List<int[]> getRatCount() {
         ResultSet result = executeRetrieval(
                 "SELECT EXTRACT(month FROM dateCreated) AS 'Month', EXTRACT(year FROM dateCreated) AS 'Year', count(*) AS 'Count' FROM `cs2340db`.`rat_sighting` GROUP BY EXTRACT(month FROM dateCreated) ORDER BY EXTRACT(month FROM dateCreated)");
@@ -304,6 +318,8 @@ public class SQLController {
 
     /**
      * adds rat sighting to the database
+     * @param rs The rat sighting to add
+     * @param user The user adding
      * @return boolean if adding a rat sighting was successful or not
      */
     public boolean addRatSighting(RatSighting rs, User user) {
@@ -361,6 +377,7 @@ public class SQLController {
 
     /**
      * Removes RatSighting from the database
+     * @param key The rat sighting key that you want removed
      * @return boolean if removing a rat sighting was successful or not
      */
     public boolean removeRatSighting(int key) {
@@ -396,6 +413,7 @@ public class SQLController {
     /**
      * Gets user information associated with the RatSighting given the key
      * @param userName unique UserName associated with that user account
+     * @param password password with account
      * @return the User associated with creating the RatSighting instance given the key
      */
     public User getUser(String userName, String password) {

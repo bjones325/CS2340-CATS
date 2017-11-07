@@ -6,7 +6,6 @@ import android.os.Bundle;
 
 import edu.gatech.cats.cats_2340.R;
 
-import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -18,6 +17,9 @@ import edu.gatech.cats.cats_2340.model.User;
 
 import android.view.*;
 
+/**
+ * Activity when a user begins to register
+ */
 public class RegisterActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private EditText nameText;
     private EditText userText;
@@ -30,10 +32,6 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
     private String _type = "Unselected";
     boolean isAdmin = false;
 
-    /**
-     * Overriden on-create sets the view to the application view
-     * @param savedInstanceState
-     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +56,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
 
         // Clears name entry when first clicked on
         nameText.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 if (!nameEdit) {
                     nameText.setText("");
@@ -71,6 +70,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         });
         // Clears user entry when first clicked on
         userText.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 if (!userEdit) {
                     userText.setText("");
@@ -85,6 +85,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         });
         // Clears pass entry when first clicked on
         passText.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 if (!passEdit) {
                     passText.setText("");
@@ -100,7 +101,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
     /**
      * Adds a new user with submitted data to the list of users. Will most likely update with
      * database functionality soon
-     * @param view
+     * @param view The view
      */
     public void onRegisterPressed(View view) {
         Model model = Model.getInstance();
@@ -126,7 +127,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
     }
     /**
      * Goes back to splash screen when the user presses cancel
-     * @param view
+     * @param view The view
      */
     public void onCancelPressed(View view) {
         startActivity(new Intent(getBaseContext(),OpeningActivity.class));
@@ -135,10 +136,10 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
 
     /**
      * Informs the application that the item has been selected or not
-     * @param parent
-     * @param view
-     * @param position
-     * @param id
+     * @param parent The parent
+     * @param view The view
+     * @param position The position selected
+     * @param id The id of selected
      */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

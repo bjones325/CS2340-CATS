@@ -9,26 +9,22 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.os.StrictMode;
 import android.widget.TextView;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
 import edu.gatech.cats.cats_2340.R;
 import edu.gatech.cats.cats_2340.model.Model;
 
-//Splash screen
+/**
+ * The splash screen of the app, not current in this
+ */
 public class OpeningActivity extends AppCompatActivity{
-    public EditText userText;
-    public EditText passText;
+    private EditText userText;
+    private EditText passText;
     private TextView passEdit;
     private TextView failedSuccessText;
     boolean userEdit;
-    public Animation shake;
+    private Animation shake;
 
     /**
      * Creates first screen the user/admin sees when the app is initially opened
@@ -55,6 +51,7 @@ public class OpeningActivity extends AppCompatActivity{
         // If username has yet to be changed, clears text
         // Otherwise, moves on to password (For hitting enter key counts as a click)
         userText.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 if (!userEdit) {
                     userText.setText("");
@@ -68,6 +65,7 @@ public class OpeningActivity extends AppCompatActivity{
         });
         // Changes visibility of password text
         passText.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 passEdit.setVisibility(View.INVISIBLE);
             }
@@ -77,6 +75,7 @@ public class OpeningActivity extends AppCompatActivity{
 
         Button registerButton = (Button) findViewById(R.id.registerButton);
         registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 startActivity(new Intent(getBaseContext(), RegisterActivity.class));
             }
@@ -100,7 +99,7 @@ public class OpeningActivity extends AppCompatActivity{
      * This is a button called by the Log-In button- it calls the Model's log in function. If
      * a user with a matching password is found, the user is logged in and sent to the application
      * otherwise they are stuck on the same screen
-     * @param view
+     * @param view The view
      */
     public void onLoginPressed(View view) {
         Model model = Model.getInstance();

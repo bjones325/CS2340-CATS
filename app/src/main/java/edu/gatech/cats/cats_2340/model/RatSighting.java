@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.sql.Date;
 
 /**
- * Created by Elijah on 10/10/2017.
+ * Created by Elijah on 10/10/2017. Its a rat sighting class
  */
 
 public class RatSighting implements Serializable {
@@ -20,15 +20,15 @@ public class RatSighting implements Serializable {
 
     /**
      * Constructor for an instance for a RatSighting
-     * @param key
-     * @param created
-     * @param locationType
-     * @param zip
-     * @param address
-     * @param city
-     * @param borough
-     * @param latitude
-     * @param longitude
+     * @param key key
+     * @param created when create
+     * @param locationType where found
+     * @param zip what zip
+     * @param address what address
+     * @param city where city
+     * @param borough which borough
+     * @param latitude give lat
+     * @param longitude give long
      */
     public RatSighting(int key, Date created, LocationType locationType, int zip, String address, String city, BoroughType borough, float latitude, float longitude) {
         _key = key;
@@ -131,6 +131,7 @@ public class RatSighting implements Serializable {
 
     /**
      * setter for key for a RatSighting
+     * @param key The key to set
      */
     public void setKey(int key) {
         this._key = key;
@@ -138,6 +139,7 @@ public class RatSighting implements Serializable {
 
     /**
      * setter for created for a RatSighting
+     * @param created The created date
      */
     public void setCreated(String created) {
         this._created = Date.valueOf(created);
@@ -145,6 +147,7 @@ public class RatSighting implements Serializable {
 
     /**
      * setter for locationType for a RatSighting
+     * @param locationType The location type
      */
     public void setLocationType(LocationType locationType) {
         this._locationType = locationType;
@@ -152,6 +155,7 @@ public class RatSighting implements Serializable {
 
     /**
      * setter for zip for a RatSighting
+     * @param zip The zio
      */
     public void setZip(int zip) {
         this._zip = zip;
@@ -159,6 +163,7 @@ public class RatSighting implements Serializable {
 
     /**
      * setter for address for a RatSighting
+     * @param address the address
      */
     public void setAddress(String address) {
         this._address = address;
@@ -166,6 +171,7 @@ public class RatSighting implements Serializable {
 
     /**
      * setter for city for a RatSighting
+     * @param city The city
      */
     public void setCity(String city) {
         this._city = city;
@@ -173,6 +179,7 @@ public class RatSighting implements Serializable {
 
     /**
      * setter for borough for a RatSighting
+     * @param borough The borough
      */
     public void setBorough(BoroughType borough) {
         this._borough = borough;
@@ -180,6 +187,7 @@ public class RatSighting implements Serializable {
 
     /**
      * setter for latitude for a RatSighting
+     * @param _latitude late
      */
     public void setLatitude(float _latitude) {
         this._latitude = _latitude;
@@ -187,11 +195,17 @@ public class RatSighting implements Serializable {
 
     /**
      * setter for longitude for a RatSighting
+     * @param _longitude long
      */
     public void setLongitude(float _longitude) {
         this._longitude = _longitude;
     }
 
+    /**
+     * Formats a String into a date
+     * @param created The string
+     * @return A better string
+     */
     public String formatDateString(String created) {
         String[] split = created.split("/");
         String year = split[2].substring(0, 4);

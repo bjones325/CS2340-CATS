@@ -10,13 +10,14 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.sql.Array;
 import java.util.ArrayList;
-import java.util.Collection;
 
 import edu.gatech.cats.cats_2340.R;
 import edu.gatech.cats.cats_2340.model.RatSighting;
 
+/**
+ * The map screen
+ */
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
@@ -27,7 +28,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         sightings = (ArrayList<RatSighting>) getIntent().getSerializableExtra("mapsList");
         if (sightings == null) {
-            sightings = new ArrayList<RatSighting>();
+            sightings = new ArrayList<>();
             for (RatSighting r : SQLController.getSQLController().getAllSightings()) {
                 sightings.add(r);
             }

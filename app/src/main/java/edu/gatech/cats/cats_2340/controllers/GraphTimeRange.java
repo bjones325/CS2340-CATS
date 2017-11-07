@@ -3,14 +3,12 @@ package edu.gatech.cats.cats_2340.controllers;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 
 
 import edu.gatech.cats.cats_2340.R;
-import edu.gatech.cats.cats_2340.model.SearchCriteria;
 
 /**
  * Searching screen of the time range of the graph

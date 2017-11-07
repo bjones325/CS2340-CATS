@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Created by Blake on 10/10/2017.
+ * Created by Blake on 10/10/2017. Its an eum of borough types
  */
 
 public enum BoroughType {
@@ -16,7 +16,7 @@ public enum BoroughType {
     BRONX("BRONX"),
     NONE("None");
 
-    public static List<String> type = Arrays.asList("MANHATTAN", "STATEN ISLAND", "QUEENS",
+    private static List<String> type = Arrays.asList("MANHATTAN", "STATEN ISLAND", "QUEENS",
             "BROOKLYN", "BRONX", "None");
 
     private String name;
