@@ -8,10 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import java.sql.Date;
-
 import edu.gatech.cats.cats_2340.R;
-import edu.gatech.cats.cats_2340.model.BuroughType;
+import edu.gatech.cats.cats_2340.model.BoroughType;
 import edu.gatech.cats.cats_2340.model.LocationType;
 import edu.gatech.cats.cats_2340.model.Model;
 import edu.gatech.cats.cats_2340.model.RatSighting;
@@ -20,6 +18,9 @@ import static edu.gatech.cats.cats_2340.R.id.address;
 import static edu.gatech.cats.cats_2340.R.id.borough_spinner;
 import static edu.gatech.cats.cats_2340.R.id.city;
 
+/**
+ * View for making your own rat sighting
+ */
 public class InputRatSighting extends AppCompatActivity {
     private TextView latText;
     private TextView longText;
@@ -60,12 +61,16 @@ public class InputRatSighting extends AppCompatActivity {
         locationType.setAdapter(adapter1);
 
         // Set up adapter to display the allowable types inside the borough spinner
-        ArrayAdapter<String> adapter2 = new ArrayAdapter(this,android.R.layout.simple_spinner_item, BuroughType.type);
+        ArrayAdapter<String> adapter2 = new ArrayAdapter(this,android.R.layout.simple_spinner_item, BoroughType.type);
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         borough.setAdapter(adapter2);
 
     }
 
+    /**
+     * Fires when submit is pressed
+     * @param view The view
+     */
     public void onSubmitPressed(View view) {
         Model model = Model.getInstance();
 
@@ -101,7 +106,7 @@ public class InputRatSighting extends AppCompatActivity {
         if (cityStr.length() != 0)
             newRatSighting.setCity(cityStr);
         if (boroughStr.length() != 0)
-            newRatSighting.setBorough(BuroughType.toBuroughType(boroughStr));
+            newRatSighting.setBorough(BoroughType.toBoroughType(boroughStr));
         if (latStr.length() != 0) {
             newRatSighting.setLatitude(Float.parseFloat(latStr));
         }
@@ -109,7 +114,7 @@ public class InputRatSighting extends AppCompatActivity {
             newRatSighting.setLongitude(Float.parseFloat(lonStr));
         }
 
-        // adding the ratsighting to the controller
+        // adding the rat sighting to the controller
         controller.addRatSighting(newRatSighting, Model.getInstance().getCurrentUser());
 
         //model.addReport(newRatSighting);
@@ -117,6 +122,10 @@ public class InputRatSighting extends AppCompatActivity {
         finish();
     }
 
+    /**
+     * Fires when cancel is pressed
+     * @param view The view
+     */
     public void onCancelPressed(View view) {
         startActivity(new Intent(getBaseContext(),ApplicationActivity.class));
         finish();

@@ -7,7 +7,7 @@ import java.util.List;
  * Created by Blake on 10/10/2017.
  */
 
-public enum BuroughType {
+public enum BoroughType {
 
     MANHATTAN("MANHATTAN"),
     STATEN_ISLAND("STATEN ISLAND"),
@@ -21,7 +21,7 @@ public enum BuroughType {
 
     private String name;
 
-    private BuroughType(String n) {
+    private BoroughType(String n) {
         name = n;
     }
 
@@ -30,13 +30,18 @@ public enum BuroughType {
         return name;
     }
 
-    public static BuroughType toBuroughType(String s) {
-        for (BuroughType bt : BuroughType.values()) {
+    /**
+     * Converts a string to a borough type
+     * @param s The string
+     * @return The string as an enum
+     */
+    public static BoroughType toBoroughType(String s) {
+        for (BoroughType bt : BoroughType.values()) {
             if (bt.toString().equalsIgnoreCase(s)) {
                 return bt;
             }
         }
-        return BuroughType.NONE;
+        return BoroughType.NONE;
     }
 
 }

@@ -13,11 +13,8 @@ import android.widget.TextView;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 
-import edu.gatech.cats.cats_2340.R;
-import edu.gatech.cats.cats_2340.model.BuroughType;
+import edu.gatech.cats.cats_2340.model.BoroughType;
 import edu.gatech.cats.cats_2340.model.LocationType;
 import edu.gatech.cats.cats_2340.model.RatSighting;
 
@@ -47,7 +44,7 @@ public class SearchActivity extends AppCompatActivity{
         _locationType.setAdapter(adapter1);
 
         // Set up adapter to display the allowable types inside the borough spinner
-        ArrayAdapter<String> adapter2 = new ArrayAdapter(this,android.R.layout.simple_spinner_item, BuroughType.type);
+        ArrayAdapter<String> adapter2 = new ArrayAdapter(this,android.R.layout.simple_spinner_item, BoroughType.type);
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         _boroughType.setAdapter(adapter2);
     }
@@ -83,7 +80,7 @@ public class SearchActivity extends AppCompatActivity{
 
         ArrayList<RatSighting> filteredRats = new ArrayList<>();
         for (RatSighting rs : SQLController.getSQLController().getAllSightings()) {
-            if (rs.getBorough() == BuroughType.toBuroughType(borType)
+            if (rs.getBorough() == BoroughType.toBoroughType(borType)
                     && rs.getLocationType() == LocationType.toLocationType(locType)) {
                 if (rs.getCreated().compareTo(sqlStartDate) >= 0  && rs.getCreated().compareTo(sqlEndDate) <= 0) {
                     filteredRats.add(rs);

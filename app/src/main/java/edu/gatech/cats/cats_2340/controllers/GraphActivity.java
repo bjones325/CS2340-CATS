@@ -15,26 +15,27 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Locale;
 
 import edu.gatech.cats.cats_2340.R;
-import edu.gatech.cats.cats_2340.model.BuroughType;
-import edu.gatech.cats.cats_2340.model.LocationType;
-import edu.gatech.cats.cats_2340.model.RatSighting;
 import edu.gatech.cats.cats_2340.model.SearchCriteria;
 
+/**
+ * Graph view of the application
+ */
 public class GraphActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_graph);
         LineChart chart = (LineChart) findViewById(R.id.chart);
 
+        //Lets get the dates and then use them to set limits in our SQL query
         String[] dates = (String[]) getIntent().getSerializableExtra("dates");
 
-        Log.d("", dates[0].toString());
-        Log.d("", dates[1].toString());
+        Log.d("", dates[0]);
+        Log.d("", dates[1]);
 
         SimpleDateFormat myDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -45,20 +46,20 @@ public class GraphActivity extends AppCompatActivity {
             start = new java.sql.Date( new SimpleDateFormat("yyyy-MM-dd").parse(dates[0]).getTime());
             end = new java.sql.Date( new SimpleDateFormat("yyyy-MM-dd").parse(dates[1]).getTime());
         } catch (Exception e) {
-            Log.d("dateerror", "coudlnt convert date");
+            Log.d("date error", "couldnt convert date");
         }
 
-        Log.d("", start.toString());
-        Log.d("", end.toString());
+        if (start != null && end != null) {
+            Log.d("", start.toString());
+            Log.d("", end.toString());
+        }
 
         SearchCriteria sc = new SearchCriteria(null, null, start, end);
-
         List<Entry> entries = new ArrayList<>();
-
         SQLController sql = SQLController.getSQLController();
-
         List<Integer[]> ans = sql.getFilteredCounts(sc);
 
+        //Add each row
         for(Integer[] r : ans) {
             entries.add(new Entry(r[0] * 12 + r[1], r[2]));
         }
@@ -76,6 +77,6 @@ public class GraphActivity extends AppCompatActivity {
     //LineChart chart = (LineChart) findViewById(R.id.chart);
 
     //RatSighting[] dummy = new RatSighting[2];
-    //dummy[0] = new RatSighting(1, null, LocationType.BUILDING, 23114, "my house", "atlanta", BuroughType.BRONX, 69, 420);
+    //dummy[0] = new RatSighting(1, null, LocationType.BUILDING, 23114, "my house", "atlanta", BoroughType.BRONX, 69, 420);
 
 }

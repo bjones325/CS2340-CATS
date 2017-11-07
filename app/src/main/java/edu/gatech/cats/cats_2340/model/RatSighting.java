@@ -1,7 +1,5 @@
 package edu.gatech.cats.cats_2340.model;
 
-import android.util.Log;
-
 import java.io.Serializable;
 import java.sql.Date;
 
@@ -16,7 +14,7 @@ public class RatSighting implements Serializable {
     private int _zip;
     private String _address;
     private String _city;
-    private BuroughType _borough;
+    private BoroughType _borough;
     private double _latitude;
     private double _longitude;
 
@@ -32,7 +30,7 @@ public class RatSighting implements Serializable {
      * @param latitude
      * @param longitude
      */
-    public RatSighting(int key, Date created, LocationType locationType, int zip, String address, String city, BuroughType borough, float latitude, float longitude) {
+    public RatSighting(int key, Date created, LocationType locationType, int zip, String address, String city, BoroughType borough, float latitude, float longitude) {
         _key = key;
         _created = created;
         _locationType = locationType;
@@ -48,7 +46,7 @@ public class RatSighting implements Serializable {
      * no-args constructor for a RatSighting
      */
     public RatSighting() {
-        this(0, new Date(0,0,0), LocationType.OTHER, 0, "null", "null", BuroughType.NONE, 0, 0);
+        this(0, new Date(0,0,0), LocationType.OTHER, 0, "null", "null", BoroughType.NONE, 0, 0);
     }
     /**
      * getter for key for a RatSighting
@@ -102,7 +100,7 @@ public class RatSighting implements Serializable {
      * getter for borough for a RatSighting
      * @return borough
      */
-    public BuroughType getBorough() {
+    public BoroughType getBorough() {
         return _borough;
     }
 
@@ -176,7 +174,7 @@ public class RatSighting implements Serializable {
     /**
      * setter for borough for a RatSighting
      */
-    public void setBorough(BuroughType borough) {
+    public void setBorough(BoroughType borough) {
         this._borough = borough;
     }
 

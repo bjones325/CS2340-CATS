@@ -9,7 +9,7 @@ import edu.gatech.cats.cats_2340.controllers.SQLController;
 import static android.R.id.list;
 
 /**
- * Created by acer_ on 9/21/2017.
+ * Created by Blake on 9/21/2017.
  * Modified 9/21/17
  *
  * Basic model class
@@ -35,7 +35,7 @@ public class Model {
     private Model() {
         //User u = new User("Elijah", "user", "pass", true);
         //userList.add(u);
-        //RatSighting currentRat = new RatSighting(1, 1, LocationType.valueOf("place"), 23114, "add", "city", BuroughType.valueOf("b"), 10, 10);
+        //RatSighting currentRat = new RatSighting(1, 1, LocationType.valueOf("place"), 23114, "add", "city", BoroughType.valueOf("b"), 10, 10);
     }
 
     /**

@@ -10,7 +10,7 @@ import java.util.List;
 
 public class SearchCriteria {
 
-    private List<BuroughType> burough;
+    private List<BoroughType> burough;
     private List<LocationType> location;
     private Date startDate;
     private Date endDate;
@@ -19,7 +19,7 @@ public class SearchCriteria {
 
     }
 
-    public SearchCriteria(BuroughType... bors) {
+    public SearchCriteria(BoroughType... bors) {
         burough = Arrays.asList(bors);
     }
 
@@ -27,14 +27,14 @@ public class SearchCriteria {
         location = Arrays.asList(locs);
     }
 
-    public SearchCriteria(List<BuroughType> buroughs, List<LocationType> locs, Date start, Date end) {
+    public SearchCriteria(List<BoroughType> buroughs, List<LocationType> locs, Date start, Date end) {
         burough = buroughs;
         location = locs;
         startDate = start;
         endDate = end;
     }
 
-    public List<BuroughType> getBuroughs() {
+    public List<BoroughType> getBuroughs() {
         return burough;
     }
 

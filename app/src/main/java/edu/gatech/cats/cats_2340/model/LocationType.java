@@ -38,6 +38,11 @@ public enum LocationType {
         return name;
     }
 
+    /**
+     * Converts a string to a location enum
+     * @param s The string
+     * @return A LocationType corresponding to that
+     */
     public static LocationType toLocationType(String s) {
         for (LocationType lt : LocationType.values()) {
             if (lt.toString().equalsIgnoreCase(s)) {

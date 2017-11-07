@@ -12,14 +12,14 @@ import java.util.Properties;
 
 import android.util.Log;
 
-import edu.gatech.cats.cats_2340.model.BuroughType;
+import edu.gatech.cats.cats_2340.model.BoroughType;
 import edu.gatech.cats.cats_2340.model.LocationType;
 import edu.gatech.cats.cats_2340.model.RatSighting;
 import edu.gatech.cats.cats_2340.model.SearchCriteria;
 import edu.gatech.cats.cats_2340.model.User;
 
 /**
- * Created by acer_ on 10/5/2017.
+ * Created by Blake on 10/5/2017.
  */
 
 public class SQLController {
@@ -100,7 +100,7 @@ public class SQLController {
 
     /**
      * Attempts to close the SQL
-     * @throws SQLException if error in closing statemetn
+     * @throws SQLException if error in closing statement
      */
     private static void closeStatement(Statement state) {
         if (state == null) return;
@@ -152,7 +152,7 @@ public class SQLController {
     /**
      * creates an arraylist full of all the rat sightings from the csv given specific criteria
      * @param sc search criteria
-     * @return ArrayList<RatSightings> full of all the rat sighting with specificed criteria
+     * @return ArrayList<RatSightings> full of all the rat sighting with the criteria
      */
     public RatSighting[] getFilteredSightings(SearchCriteria sc) {
         String statement = getStatementMessage(sc);
@@ -166,7 +166,7 @@ public class SQLController {
             while (result.next()) {
                 RatSighting newSight = new RatSighting(result.getInt(1), result.getDate(2),
                         LocationType.values()[result.getInt(3)], result.getInt(4), result.getString(5), result.getString(6),
-                        BuroughType.values()[result.getInt(7)], result.getFloat(8), result.getFloat(9));
+                        BoroughType.values()[result.getInt(7)], result.getFloat(8), result.getFloat(9));
                 list.add(newSight);
             }
             RatSighting[] rats = new RatSighting[list.size()];
@@ -181,9 +181,8 @@ public class SQLController {
     }
 
     public ArrayList<Integer[]> getFilteredCounts(SearchCriteria sc) {
-        Log.d("", "Running filtered count");
+
         String statement = getStatementMessageCount(sc);
-        Log.d("", "Statement is " + statement);
         ResultSet result = executeRetrieval(statement);
         ArrayList<Integer[]> list = new ArrayList<Integer[]>();
         if (result == null) {
@@ -236,11 +235,8 @@ public class SQLController {
         boolean insertedWhere = false;
 
         if (sc.getStartDate() != null && sc.getEndDate() != null) {
-            if (insertedWhere) {
-                string.append(" AND ");
-            } else {
-                string.append(" WHERE ");
-            }
+            string.append(" AND ");
+            string.append(" WHERE ");
             string.append(" `dateCreated` BETWEEN '" + sc.getStartDate().toString() + "' AND '" + sc.getEndDate().toString() + "'");
         }
         string.append("GROUP BY EXTRACT(month FROM dateCreated) ORDER BY EXTRACT(month FROM dateCreated);");
@@ -282,9 +278,9 @@ public class SQLController {
     }
 
     /**
-     * searches through arraylist of rat signtings for the specified key
+     * searches through arraylist of rat sightings for the specified key
      * @param key unique key of the rat sighting
-     * @return ratsighting information that matches passed in key
+     * @return rat sighting information that matches passed in key
      */
     public RatSighting getIndividualRatSighting(int key) {
         String statement = "SELECT * FROM `cs2340db`.`rat_sighting` WHERE `key` = " + key + ";";
@@ -297,7 +293,7 @@ public class SQLController {
             result.next();
             RatSighting newSight = new RatSighting(result.getInt(1), result.getDate(2),
                     LocationType.values()[result.getInt(3)], result.getInt(4), result.getString(5), result.getString(6),
-                    BuroughType.values()[result.getInt(7)], result.getFloat(8), result.getFloat(9));
+                    BoroughType.values()[result.getInt(7)], result.getFloat(8), result.getFloat(9));
             return newSight;
         } catch (Exception e) {
             Log.d("ERROR:", "Failed GetIndividualSighting for Key-" + key);
@@ -308,7 +304,7 @@ public class SQLController {
 
     /**
      * adds rat sighting to the database
-     * @return boolean if adding a ratsighting was successful or not
+     * @return boolean if adding a rat sighting was successful or not
      */
     public boolean addRatSighting(RatSighting rs, User user) {
         rs.setKey(getNextRatKey());
@@ -365,7 +361,7 @@ public class SQLController {
 
     /**
      * Removes RatSighting from the database
-     * @return boolean if removing a ratsighting was successful or not
+     * @return boolean if removing a rat sighting was successful or not
      */
     public boolean removeRatSighting(int key) {
         String statement = "DELETE FROM `cs2340db`.`rat_sighting`" +

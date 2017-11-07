@@ -12,8 +12,11 @@ import android.widget.TextView;
 import edu.gatech.cats.cats_2340.R;
 import edu.gatech.cats.cats_2340.model.SearchCriteria;
 
+/**
+ * Searching screen of the time range of the graph
+ */
 public class GraphTimeRange extends AppCompatActivity {
-
+    // Start and end dates from the field
     TextView _startDate;
     TextView _endDate;
 
@@ -22,13 +25,18 @@ public class GraphTimeRange extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graph_time_range);
 
+        //Get the text
         _startDate = (TextView) findViewById(R.id.startGraph);
         _endDate = (TextView) findViewById(R.id.endGraph);
     }
 
+    /**
+     * Fires the search and grabs the counts for the specified date range
+     * @param view The view
+     */
     public void onSearchPressed(View view) {
 
-
+        //Get the text, put in in an array, and give it to the next activity
         String startDateStr = _startDate.getText().toString();
         String endDateStr = _endDate.getText().toString();
 
@@ -42,6 +50,10 @@ public class GraphTimeRange extends AppCompatActivity {
         startActivity(i);
     }
 
+    /**
+     * What fires when cancel is pressed
+     * @param view The view
+     */
     public void onCancelPressed(View view) {
         startActivity(new Intent(getBaseContext(), ApplicationActivity.class));
     }
