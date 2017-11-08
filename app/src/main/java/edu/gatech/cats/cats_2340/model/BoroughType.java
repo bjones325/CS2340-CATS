@@ -16,7 +16,7 @@ public enum BoroughType {
     BRONX("BRONX"),
     NONE("None");
 
-    private static List<String> type = Arrays.asList("MANHATTAN", "STATEN ISLAND", "QUEENS",
+    public static List<String> type = Arrays.asList("MANHATTAN", "STATEN ISLAND", "QUEENS",
             "BROOKLYN", "BRONX", "None");
 
     private String name;

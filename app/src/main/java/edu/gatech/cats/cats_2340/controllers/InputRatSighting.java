@@ -70,7 +70,9 @@ public class InputRatSighting extends AppCompatActivity {
     }
 
     /**
-     * Fires when submit is pressed
+     * Upon clicking the submit button, it first checks if all fields are filled out.
+     * If true, then the data is added as a new rat sighting and added to the controller.
+     * Moves view to the main application window
      * @param view The view
      */
     public void onSubmitPressed(View view) {

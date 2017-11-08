@@ -2,14 +2,14 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://E:/eli/AndroidStudioProjects/CS2340-CATS/CATS-2340.iml" filepath="E:/eli/AndroidStudioProjects/CS2340-CATS/CATS-2340.iml" />
+      <module fileurl="file://E:\eli\AndroidStudioProjects\CS2340-CATS\CATS-2340.iml" filepath="E:\eli\AndroidStudioProjects\CS2340-CATS\CATS-2340.iml" />
       <module fileurl="file://$PROJECT_DIR$/CS2340-CATS.iml" filepath="$PROJECT_DIR$/CS2340-CATS.iml" />
-      <module fileurl="file://$PROJECT_DIR$/CS2340-CATS.iml" filepath="$PROJECT_DIR$/CS2340-CATS.iml" />
-      <module fileurl="file://E:/eli/AndroidStudioProjects/CS2340-CATS/CS2340-CATSLEGIT.iml" filepath="E:/eli/AndroidStudioProjects/CS2340-CATS/CS2340-CATSLEGIT.iml" />
+      <module fileurl="file://D:\CS2340\M10\CS2340-CATS\CS2340-CATS.iml" filepath="D:\CS2340\M10\CS2340-CATS\CS2340-CATS.iml" />
+      <module fileurl="file://E:\eli\AndroidStudioProjects\CS2340-CATS\CS2340-CATSLEGIT.iml" filepath="E:\eli\AndroidStudioProjects\CS2340-CATS\CS2340-CATSLEGIT.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://D:\CS2340\M10\CS2340-CATS\app\app.iml" filepath="D:\CS2340\M10\CS2340-CATS\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/mysql-connector-java-3.0.17-ga-bin/mysql-connector-java-3.0.17-ga-bin.iml" filepath="$PROJECT_DIR$/mysql-connector-java-3.0.17-ga-bin/mysql-connector-java-3.0.17-ga-bin.iml" />
-      <module fileurl="file://$PROJECT_DIR$/mysql-connector-java-3.0.17-ga-bin/mysql-connector-java-3.0.17-ga-bin.iml" filepath="$PROJECT_DIR$/mysql-connector-java-3.0.17-ga-bin/mysql-connector-java-3.0.17-ga-bin.iml" />
+      <module fileurl="file://D:\CS2340\M10\CS2340-CATS\mysql-connector-java-3.0.17-ga-bin\mysql-connector-java-3.0.17-ga-bin.iml" filepath="D:\CS2340\M10\CS2340-CATS\mysql-connector-java-3.0.17-ga-bin\mysql-connector-java-3.0.17-ga-bin.iml" />
     </modules>
   </component>
 </project>
