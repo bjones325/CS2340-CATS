@@ -464,8 +464,9 @@ public class SQLController {
      * ?? if we remove a user do we remove the RatSightings associated with them as well ??
      * @return boolean if removing user was successful or not
      */
-    public boolean removeUser() {
-        return false;
+    public boolean removeUser(String username) {
+        String statement = "DELETE FROM `cs2340db`.`user` WHERE name = '" + username + "'";
+        return executeInsert(statement);
     }
 
 }
