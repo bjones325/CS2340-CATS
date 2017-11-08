@@ -28,10 +28,10 @@
         android:id="@+id/startDateText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Start Date (YYY-MM-DD):"
-        android:layout_marginTop="34dp"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/startGraph" />
+        android:layout_alignStart="@+id/startGraph"
+        android:layout_marginTop="34dp"
+        android:text="Start Date (YYYY-MM-DD):" />
 
     <TextView
         android:id="@+id/endDateText"
