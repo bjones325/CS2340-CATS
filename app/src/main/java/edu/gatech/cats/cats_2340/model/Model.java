@@ -50,7 +50,7 @@ public class Model {
      */
     public boolean attemptLogin(String user, String pass) {
         if (currentUser != null) {
-            Log.d("ERROR:", "User trying to login, but is already logged in?");
+            //Log.d("ERROR:", "User trying to login, but is already logged in?");
             return false;
         }
         User u = SQLController.getSQLController().getUser(user, pass);
@@ -87,6 +87,8 @@ public class Model {
     public User getCurrentUser() {
         return currentUser;
     }
+
+    public void setCurrentUser(User u) {currentUser = u;}
 
     /**
      * Adds a rat report to the report list

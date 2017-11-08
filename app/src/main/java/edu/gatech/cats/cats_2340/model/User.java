@@ -11,7 +11,7 @@ public class User {
     private String _name;
     private String _pass;
     private boolean _isAdmin;
-    private static List<String> type = Arrays.asList("User", "Admin");
+    public static List<String> type = Arrays.asList("User", "Admin");
 
     /**
      * Constructor for user. The application only proceeds when all fields filled so we can
