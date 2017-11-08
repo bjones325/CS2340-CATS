@@ -193,7 +193,13 @@ public class SQLController {
     public ArrayList<Integer[]> getFilteredCounts(SearchCriteria sc) {
 
         String statement = getStatementMessageCount(sc);
+
+        Log.d("SQL", statement);
+
         ResultSet result = executeRetrieval(statement);
+
+
+
         ArrayList<Integer[]> list = new ArrayList<>();
         if (result == null) {
             Integer[] elem = new Integer[] {0, 0, 0};
@@ -249,7 +255,7 @@ public class SQLController {
         boolean insertedWhere = false;
 
         if (sc.getStartDate() != null && sc.getEndDate() != null) {
-            string.append(" AND ");
+            //string.append(" AND ");
             string.append(" WHERE ");
             string.append(" `dateCreated` BETWEEN '" + sc.getStartDate().toString() + "' AND '" + sc.getEndDate().toString() + "'");
         }
