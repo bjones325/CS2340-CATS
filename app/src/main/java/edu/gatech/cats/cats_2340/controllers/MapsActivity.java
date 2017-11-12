@@ -20,7 +20,7 @@ import edu.gatech.cats.cats_2340.model.RatSighting;
  */
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    private GoogleMap mMap;
+    //private GoogleMap mMap;
     private ArrayList<RatSighting> sightings;
 
     @Override
@@ -52,6 +52,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        GoogleMap mMap;
         mMap = googleMap;
 
         //Collection<LatLng> latlngTups = new ArrayList<>();

@@ -88,9 +88,9 @@ public class SearchActivity extends AppCompatActivity{
 
         ArrayList<RatSighting> filteredRats = new ArrayList<>();
         for (RatSighting rs : SQLController.getSQLController().getAllSightings()) {
-            if (rs.getBorough() == BoroughType.toBoroughType(borType)
-                    && rs.getLocationType() == LocationType.toLocationType(locType)) {
-                if (rs.getCreated().compareTo(sqlStartDate) >= 0  && rs.getCreated().compareTo(sqlEndDate) <= 0) {
+            if ((rs.getBorough() == BoroughType.toBoroughType(borType))
+                    && (rs.getLocationType() == LocationType.toLocationType(locType))) {
+                if ((rs.getCreated().compareTo(sqlStartDate) >= 0)  && (rs.getCreated().compareTo(sqlEndDate) <= 0)) {
                     filteredRats.add(rs);
                 }
             }

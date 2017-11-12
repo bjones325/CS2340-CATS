@@ -24,15 +24,15 @@ import edu.gatech.cats.cats_2340.model.User;
 
 public class SQLController {
 
-    private final static String username = "cs2340user";
-    private final static String password = "cs2340pass";
-    private final static String dbName = "cs2340db"; //cs2340db
-    private final static String serverName = "cs2340cats.cypdijxckqjj.us-east-2.rds.amazonaws.com";
-    private final static int portNumber = 3306;
+    private static final  String username = "cs2340user";
+    private static  final  String password = "cs2340pass";
+    private static final String dbName = "cs2340db"; //cs2340db
+    private static final String serverName = "cs2340cats.cypdijxckqjj.us-east-2.rds.amazonaws.com";
+    private static final int portNumber = 3306;
 
     private Connection SQLconnection;
 
-    private final static SQLController singleton = new SQLController();
+    private static final SQLController singleton = new SQLController();
 
     SQLController() {
 
@@ -260,7 +260,7 @@ public class SQLController {
         StringBuilder string = new StringBuilder("SELECT EXTRACT(month FROM dateCreated) AS 'Month', EXTRACT(year FROM dateCreated) AS 'Year', count(*) AS 'Count' FROM `cs2340db`.`rat_sighting`");
         boolean insertedWhere = false;
 
-        if (sc.getStartDate() != null && sc.getEndDate() != null) {
+        if ((sc.getStartDate() != null) && (sc.getEndDate() != null)) {
             //string.append(" AND ");
             string.append(" WHERE ");
             string.append(" `dateCreated` BETWEEN '" + sc.getStartDate().toString() + "' AND '" + sc.getEndDate().toString() + "'");
@@ -291,7 +291,7 @@ public class SQLController {
                 string.append(" OR `locationType` = " + sc.getLocations().get(i).ordinal());
             }
         }
-        if (sc.getStartDate() != null && sc.getEndDate() != null) {
+        if ((sc.getStartDate() != null) && (sc.getEndDate() != null)) {
             if (insertedWhere) {
                 string.append(" AND ");
             } else {

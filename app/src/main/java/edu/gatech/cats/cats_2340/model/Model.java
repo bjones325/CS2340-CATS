@@ -14,11 +14,11 @@ import edu.gatech.cats.cats_2340.controllers.SQLController;
  * Basic model class
  */
 
-public class Model {
+public final class Model {
     //Singleton instance
     private static final Model _instance = new Model();
 
-    private RatSighting currentRat;
+    //private RatSighting currentRat;
 
     private User currentUser;
 
@@ -115,11 +115,5 @@ public class Model {
         return null;
     }
 
-    /**
-     * Sets the current rat
-     * @param rats The rat to set it to
-     */
-    public void setCurrentRat(RatSighting rats) {
-        currentRat = rats;
-    }
+
 }

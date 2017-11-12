@@ -16,7 +16,7 @@ import edu.gatech.cats.cats_2340.model.RatSighting;
  * Screen for a specific rat sighting
  */
 public class RatSightingScreen extends AppCompatActivity {
-    private RatSighting rs;
+    //private RatSighting rs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +26,7 @@ public class RatSightingScreen extends AppCompatActivity {
         Model model = Model.getInstance();
 
         // Get the rat sighting we were passed
-        rs = (RatSighting) getIntent().getSerializableExtra("RatSighting");
+        RatSighting rs = (RatSighting) getIntent().getSerializableExtra("RatSighting");
         printData(rs);
 
 

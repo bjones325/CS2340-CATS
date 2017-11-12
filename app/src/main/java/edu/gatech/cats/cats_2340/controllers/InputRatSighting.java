@@ -98,28 +98,28 @@ public class InputRatSighting extends AppCompatActivity {
 
         // **Must Add a key.. is it randomized or the next integer?** -Mark
         //
-        if (dateStr.length() != 0) {
+        if (!dateStr.isEmpty()) {
             newRatSighting.setCreated(dateStr);
         }
-        if (locationStr.length() != 0) {
+        if (!locationStr.isEmpty()) {
             newRatSighting.setLocationType(LocationType.toLocationType(locationStr));
         }
-        if (zipStr.length() != 0) {
+        if (!zipStr.isEmpty()) {
             newRatSighting.setZip(Integer.parseInt(zipStr));
         }
-        if (addressStr.length() != 0) {
+        if (!addressStr.isEmpty()) {
             newRatSighting.setAddress(addressStr);
         }
-        if (cityStr.length() != 0) {
+        if (!cityStr.isEmpty()) {
             newRatSighting.setCity(cityStr);
         }
-        if (boroughStr.length() != 0) {
+        if (!boroughStr.isEmpty()) {
             newRatSighting.setBorough(BoroughType.toBoroughType(boroughStr));
         }
-        if (latStr.length() != 0) {
+        if (!latStr.isEmpty()) {
             newRatSighting.setLatitude(Float.parseFloat(latStr));
         }
-        if (lonStr.length() != 0) {
+        if (!lonStr.isEmpty()) {
             newRatSighting.setLongitude(Float.parseFloat(lonStr));
         }
 
