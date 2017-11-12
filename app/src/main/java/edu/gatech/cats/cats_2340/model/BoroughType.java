@@ -21,7 +21,7 @@ public enum BoroughType {
 
     private String name;
 
-    private BoroughType(String n) {
+    BoroughType(String n) {
         name = n;
     }
 

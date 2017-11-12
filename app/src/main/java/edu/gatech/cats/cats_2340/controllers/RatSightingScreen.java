@@ -42,7 +42,7 @@ public class RatSightingScreen extends AppCompatActivity {
 
     /**
      * Manually displays individual rat information to the rat_sighting_screen for the RatSighting
-     * to be printed and viewd by the user/admin
+     * to be printed and viewed by the user/admin
      * @param rs instance of RatSighting
      */
     private void printData(RatSighting rs) {

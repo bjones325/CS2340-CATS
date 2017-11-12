@@ -1,7 +1,7 @@
 package android.util;
 
 /**
- * Created by eli on 11/8/2017.
+ * Created by eli on 11/8/2017. Testing Logger class
  */
 
 public class Log {

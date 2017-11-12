@@ -66,16 +66,16 @@ public class RatSightingList extends AppCompatActivity implements AdapterView.On
         //If an item is clicked we want to:
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> av, View v, int posn, long id) {
+            public void onItemClick(AdapterView<?> av, View v, int position, long id) {
                 Log.d("testing", "Item clicked listener");
 
                 // Don't think this works
-                model.setCurrentRat((RatSighting) av.getItemAtPosition(posn));
+                model.setCurrentRat((RatSighting) av.getItemAtPosition(position));
 
                 Intent i = new Intent(getBaseContext(),RatSightingScreen.class);
 
                 // Getting the rat sighting and passing it to the next activity
-                RatSighting tmp = (RatSighting) av.getItemAtPosition(posn);
+                RatSighting tmp = (RatSighting) av.getItemAtPosition(position);
                 i.putExtra("RatSighting", tmp);
 
                 startActivity(i);
@@ -139,8 +139,8 @@ public class RatSightingList extends AppCompatActivity implements AdapterView.On
                 if (s.length > 49 && s[50] != null && s[50].length() != 0 && s[50].equals("N/A")) {
                     sighting.setLongitude(Float.parseFloat(s[50]));
                 }
-                User csvuser = SQLController.getSQLController().getUser("CSV");
-                SQLController.getSQLController().addRatSighting(sighting, csvuser);
+                User CSV = SQLController.getSQLController().getUser("CSV");
+                SQLController.getSQLController().addRatSighting(sighting, CSV);
             }
             Log.d("INFO:", "Data has been reloaded");
         } catch (Exception e) {

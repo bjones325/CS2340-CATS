@@ -29,7 +29,7 @@ public enum LocationType {
 
     private String name;
 
-    private LocationType(String n) {
+    LocationType(String n) {
         name = n;
     }
 
