@@ -24,15 +24,15 @@ import edu.gatech.cats.cats_2340.model.User;
 
 public class SQLController {
 
-    private static String username = "cs2340user";
-    private static String password = "cs2340pass";
-    private static String dbName = "cs2340db"; //cs2340db
-    private static String serverName = "cs2340cats.cypdijxckqjj.us-east-2.rds.amazonaws.com";
-    private static int portNumber = 3306;
+    private final static String username = "cs2340user";
+    private final static String password = "cs2340pass";
+    private final static String dbName = "cs2340db"; //cs2340db
+    private final static String serverName = "cs2340cats.cypdijxckqjj.us-east-2.rds.amazonaws.com";
+    private final static int portNumber = 3306;
 
     private Connection SQLconnection;
 
-    private static SQLController singleton = new SQLController();
+    private final static SQLController singleton = new SQLController();
 
     SQLController() {
 
@@ -108,7 +108,9 @@ public class SQLController {
      * @param state The statement
      */
     private static void closeStatement(Statement state) {
-        if (state == null) return;
+        if (state == null) {
+            return;
+        }
         try {
             state.close();
         } catch (SQLException e) {
@@ -120,7 +122,9 @@ public class SQLController {
      * @return If the database is executed, or if it has failed to execute
      */
     private boolean executeInsert(String statementString) {
-        if (!isSQLInitialized()) return false;
+        if (!isSQLInitialized()) {
+            return false;
+        }
         Statement statement = null;
         try {
             statement = SQLconnection.createStatement();
@@ -134,7 +138,9 @@ public class SQLController {
     }
 
     private ResultSet executeRetrieval(String statementString) {
-        if (!isSQLInitialized()) return null;
+        if (!isSQLInitialized()) {
+            return null;
+        }
         PreparedStatement statement = null;
         try {
             statement = SQLconnection.prepareStatement(statementString);
@@ -347,7 +353,9 @@ public class SQLController {
     private int getNextRatKey() {
         String statement = "SELECT COUNT(`key`) AS numOfRats FROM `cs2340db`.`rat_sighting`";
         ResultSet result = executeRetrieval(statement);
-        if (result == null) return 0;
+        if (result == null) {
+            return 0;
+        }
         try {
             result.beforeFirst();
             result.next();
@@ -405,7 +413,9 @@ public class SQLController {
         }
         try {
             result.beforeFirst();
-            if (!result.next()) return null;
+            if (!result.next()) {
+                return null;
+            }
             User currentUser = new User(result.getString(1),
                     result.getString(2), result.getBoolean(3));
             return currentUser;

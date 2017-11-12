@@ -8,9 +8,9 @@ import java.util.List;
  */
 
 public class User {
-    private String _name;
-    private String _pass;
-    private boolean _isAdmin;
+    private final String _name;
+    private final String _pass;
+    private final boolean _isAdmin;
     public static List<String> type = Arrays.asList("User", "Admin");
 
     /**

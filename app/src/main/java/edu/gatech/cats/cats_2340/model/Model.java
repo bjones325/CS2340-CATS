@@ -22,7 +22,7 @@ public class Model {
 
     private User currentUser;
 
-    private List<RatSighting> reportList = new ArrayList<>();
+    private final List<RatSighting> reportList = new ArrayList<>();
 
     /**
      * Gets the instance of the model

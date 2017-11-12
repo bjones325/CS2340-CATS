@@ -88,8 +88,8 @@ public class InputRatSighting extends AppCompatActivity {
         String cityStr = cityText.getText().toString();
         String boroughStr = borough.getSelectedItem().toString();
 
-        if (latStr.equals("") || lonStr.equals("") || dateStr.equals("") || timeStr.equals("") ||
-                zipStr.equals("") || addressStr.equals("") || cityStr.equals("")) {
+        if ("".equals(latStr) || "".equals(lonStr) || "".equals(dateStr) || "".equals(timeStr) ||
+                "".equals(zipStr) || "".equals(addressStr) || "".equals(cityStr)) {
             failReportText.setVisibility(View.VISIBLE);
             return;
         }
@@ -98,19 +98,24 @@ public class InputRatSighting extends AppCompatActivity {
 
         // **Must Add a key.. is it randomized or the next integer?** -Mark
         //
-        if (dateStr.length() != 0)
+        if (dateStr.length() != 0) {
             newRatSighting.setCreated(dateStr);
-        if (locationStr.length() != 0)
+        }
+        if (locationStr.length() != 0) {
             newRatSighting.setLocationType(LocationType.toLocationType(locationStr));
+        }
         if (zipStr.length() != 0) {
             newRatSighting.setZip(Integer.parseInt(zipStr));
         }
-        if (addressStr.length() != 0)
+        if (addressStr.length() != 0) {
             newRatSighting.setAddress(addressStr);
-        if (cityStr.length() != 0)
+        }
+        if (cityStr.length() != 0) {
             newRatSighting.setCity(cityStr);
-        if (boroughStr.length() != 0)
+        }
+        if (boroughStr.length() != 0) {
             newRatSighting.setBorough(BoroughType.toBoroughType(boroughStr));
+        }
         if (latStr.length() != 0) {
             newRatSighting.setLatitude(Float.parseFloat(latStr));
         }

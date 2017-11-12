@@ -19,7 +19,7 @@ public enum BoroughType {
     public static List<String> type = Arrays.asList("MANHATTAN", "STATEN ISLAND", "QUEENS",
             "BROOKLYN", "BRONX", "None");
 
-    private String name;
+    private final String name;
 
     private BoroughType(String n) {
         name = n;

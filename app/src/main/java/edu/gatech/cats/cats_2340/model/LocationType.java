@@ -27,7 +27,7 @@ public enum LocationType {
             "Commercial Building", "Vacant Lot", "Public Garden", "Construction Site",
             "Hospital", "Catch Basin/Sewer", "Other");
 
-    private String name;
+    private final String name;
 
     private LocationType(String n) {
         name = n;
