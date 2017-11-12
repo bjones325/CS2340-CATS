@@ -153,7 +153,7 @@ public class SQLController {
     }
 
     /**
-     * creates an arraylist full of all the rat sightings from the csv
+     * creates an ArrayList full of all the rat sightings from the csv
      * @return ArrayList<RatSightings> full of all the rat sighting in the csv
      */
     public RatSighting[] getAllSightings() {
@@ -161,7 +161,7 @@ public class SQLController {
     }
 
     /**
-     * creates an arraylist full of all the rat sightings from the csv given specific criteria
+     * creates an ArrayList full of all the rat sightings from the csv given specific criteria
      * @param sc search criteria
      * @return ArrayList<RatSightings> full of all the rat sighting with the criteria
      */
@@ -186,8 +186,7 @@ public class SQLController {
         } catch (Exception e) {
             Log.d("ERROR:", "Failed GetAllSightings");
             Log.d("ERROR:", "MSG: " + e.getMessage());
-            RatSighting[] rats = new RatSighting[0];
-            return rats;
+            return new RatSighting[0];
         }
     }
 
@@ -304,7 +303,7 @@ public class SQLController {
     }
 
     /**
-     * searches through arraylist of rat sightings for the specified key
+     * searches through ArrayList of rat sightings for the specified key
      * @param key unique key of the rat sighting
      * @return rat sighting information that matches passed in key
      */
@@ -317,10 +316,9 @@ public class SQLController {
         try {
             result.beforeFirst();
             result.next();
-            RatSighting newSight = new RatSighting(result.getInt(1), result.getDate(2),
+            return new RatSighting(result.getInt(1), result.getDate(2),
                     LocationType.values()[result.getInt(3)], result.getInt(4), result.getString(5), result.getString(6),
                     BoroughType.values()[result.getInt(7)], result.getFloat(8), result.getFloat(9));
-            return newSight;
         } catch (Exception e) {
             Log.d("ERROR:", "Failed GetIndividualSighting for Key-" + key);
             Log.d("ERROR:", "MSG: " + e.getMessage());
@@ -413,12 +411,9 @@ public class SQLController {
         }
         try {
             result.beforeFirst();
-            if (!result.next()) {
-                return null;
-            }
-            User currentUser = new User(result.getString(1),
+            if (!result.next()) return null;
+            return new User(result.getString(1),
                     result.getString(2), result.getBoolean(3));
-            return currentUser;
         } catch (Exception e) {
             Log.d("ERROR:", "Failed GetUser for Name-" + userName);
             Log.d("ERROR:", "MSG: " + e.getMessage());
@@ -441,9 +436,8 @@ public class SQLController {
         try {
             result.beforeFirst();
             result.next();
-            User currentUser = new User(result.getString(1),
+            return new User(result.getString(1),
                     result.getString(2), result.getBoolean(3));
-            return currentUser;
         } catch (Exception e) {
             Log.d("ERROR:", "Failed GetUser for Name-" + userName);
             Log.d("ERROR:", "MSG: " + e.getMessage());
@@ -468,7 +462,7 @@ public class SQLController {
      * Updates User profile- user can change username, password, or name
      * updates the username associated with the RatSightings created by the User
      * @param key unique key associated with the RatSighting instance created by the User
-     * @param newUser new information we want to replace with old user infomation
+     * @param newUser new information we want to replace with old user information
      * @return boolean updating the User profile was successful or not
      */
     public boolean updateUser(int key, User newUser) {

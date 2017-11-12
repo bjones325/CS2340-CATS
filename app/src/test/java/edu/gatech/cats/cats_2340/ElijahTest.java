@@ -28,7 +28,7 @@ public class ElijahTest {
 
     @Test
     public void testBadLogin() throws Exception {
-        assertEquals(false, m.attemptLogin("ksjdfh", "dfuhjw"));
+        assertEquals(false, m.attemptLogin("lemons", "apples"));
     }
 
     @Test

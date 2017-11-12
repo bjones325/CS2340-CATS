@@ -46,7 +46,7 @@ public class RatSighting implements Serializable {
      * no-args constructor for a RatSighting
      */
     public RatSighting() {
-        this(0, new Date(0,0,0), LocationType.OTHER, 0, "null", "null", BoroughType.NONE, 0, 0);
+        this(0, new Date(0), LocationType.OTHER, 0, "null", "null", BoroughType.NONE, 0, 0);
     }
     /**
      * getter for key for a RatSighting
@@ -209,7 +209,6 @@ public class RatSighting implements Serializable {
     public String formatDateString(String created) {
         String[] split = created.split("/");
         String year = split[2].substring(0, 4);
-        String result = year + "-" + split[0] + "-" + split[1];
-        return result;
+        return year + "-" + split[0] + "-" + split[1];
     }
 }

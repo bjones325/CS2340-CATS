@@ -41,7 +41,7 @@ public class SearchCriteria {
     /**
      * Search criteria when given a lot
      * @param buroughs The boroughs searched for
-     * @param locs The lcocations searched for
+     * @param locs The locations searched for
      * @param start The start date
      * @param end The end date
      */
