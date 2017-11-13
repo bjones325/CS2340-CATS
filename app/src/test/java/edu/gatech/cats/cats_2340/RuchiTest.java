@@ -25,7 +25,7 @@ public class RuchiTest {
     private SQLController sql = new SQLController().getSQLController();
 
     private SearchCriteria emptySC = new SearchCriteria();
-    ArrayList<RatSighting> list = new ArrayList<>();
+    final ArrayList<RatSighting> list = new ArrayList<>();
 
     private Date ratDate1 = new Date(0,0,0);
     private Date ratDate2 = new Date(1,11,1);
@@ -37,7 +37,7 @@ public class RuchiTest {
 
     @Before
     public void setUp() {
-        SQLController.initializeConnection();
+        SQLController.getSQLController().initializeConnection();
     }
 
     @Test

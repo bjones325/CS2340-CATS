@@ -32,7 +32,7 @@ public class SQLController {
 
     private Connection SQLconnection;
 
-    private static SQLController singleton = new SQLController();
+    private static final SQLController singleton = new SQLController();
 
     /**
      * Returns singleton of SQLController
@@ -64,7 +64,7 @@ public class SQLController {
             conn.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
 
             SQLconnection = conn;
-            Log.d("INFO", "Success! Initialized to Database our Connection has!");
+//            Log.d("INFO", "Success! Initialized to Database our Connection has!");
             return true;
         } catch (Exception e){
             //Log.d("ERROR", "Failed to Connect to Database!");
@@ -162,7 +162,7 @@ public class SQLController {
      * @param sc search criteria
      * @return ArrayList<RatSightings> full of all the rat sighting with the criteria
      */
-    private RatSighting[] getFilteredSightings(SearchCriteria sc) {
+    public RatSighting[] getFilteredSightings(SearchCriteria sc) {
         String statement = getStatementMessage(sc);
         ResultSet result = executeRetrieval(statement);
         ArrayList<RatSighting> list = new ArrayList<>();
@@ -331,8 +331,8 @@ public class SQLController {
                     LocationType.values()[result.getInt(3)], result.getInt(4), result.getString(5), result.getString(6),
                     BoroughType.values()[result.getInt(7)], result.getFloat(8), result.getFloat(9));
         } catch (Exception e) {
-            Log.d("ERROR:", "Failed GetIndividualSighting for Key-" + key);
-            Log.d("ERROR:", "MSG: " + e.getMessage());
+//            Log.d("ERROR:", "Failed GetIndividualSighting for Key-" + key);
+//            Log.d("ERROR:", "MSG: " + e.getMessage());
             return null;
         }
     }
