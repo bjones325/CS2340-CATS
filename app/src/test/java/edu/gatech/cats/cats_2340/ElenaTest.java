@@ -7,6 +7,7 @@ import edu.gatech.cats.cats_2340.controllers.SQLController;
 import edu.gatech.cats.cats_2340.model.User;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * Created by Elena on 11/9/17. Tests SQLController getIndividualRatSighting
@@ -27,9 +28,19 @@ public class ElenaTest {
         }
     }
     @Test
-    public void testGetInvalidRatSighting() {
+    public void testGetNullRatSighting() {
         assertEquals(null, sql.getIndividualRatSighting(-15000));
     }
 
+    @Test
+    public void testGetInvalidRatSighting() {
+        assertEquals(null, sql.getIndividualRatSighting(23000));
+    }
+    @Test
+    public void testGetValidRatSighting() {
+        for (int i = 0; i < 100; i++) {
+            assertNotNull(sql.getIndividualRatSighting(i));
+        }
+    }
 
 }
