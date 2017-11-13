@@ -24,19 +24,15 @@ import edu.gatech.cats.cats_2340.model.User;
 
 public class SQLController {
 
-    private static String username = "cs2340user";
-    private static String password = "cs2340pass";
-    private static String dbName = "cs2340db"; //cs2340db
-    private static String serverName = "cs2340cats.cypdijxckqjj.us-east-2.rds.amazonaws.com";
-    private static int portNumber = 3306;
+    private static final String username = "cs2340user";
+    private static final String password = "cs2340pass";
+    private static final String dbName = "cs2340db"; //cs2340db
+    private static final String serverName = "cs2340cats.cypdijxckqjj.us-east-2.rds.amazonaws.com";
+    private static final int portNumber = 3306;
 
     private Connection SQLconnection;
 
-    private static SQLController singleton = new SQLController();
-
-    SQLController() {
-
-    }
+    private final static SQLController singleton = new SQLController();
 
     /**
      * Returns singleton of SQLController
@@ -121,7 +117,7 @@ public class SQLController {
      */
     private boolean executeInsert(String statementString) {
         if (isSQLInitialized()) return false;
-        Statement statement = null;
+        Statement statement;
         try {
             statement = SQLconnection.createStatement();
             statement.execute(statementString);
@@ -135,7 +131,7 @@ public class SQLController {
 
     private ResultSet executeRetrieval(String statementString) {
         if (isSQLInitialized()) return null;
-        PreparedStatement statement = null;
+        PreparedStatement statement;
         try {
             statement = SQLconnection.prepareStatement(statementString);
             return statement.executeQuery();
@@ -159,7 +155,7 @@ public class SQLController {
      * @param sc search criteria
      * @return ArrayList<RatSightings> full of all the rat sighting with the criteria
      */
-    public RatSighting[] getFilteredSightings(SearchCriteria sc) {
+    private RatSighting[] getFilteredSightings(SearchCriteria sc) {
         String statement = getStatementMessage(sc);
         ResultSet result = executeRetrieval(statement);
         ArrayList<RatSighting> list = new ArrayList<>();
@@ -256,7 +252,7 @@ public class SQLController {
         if (sc.getStartDate() != null && sc.getEndDate() != null) {
             //string.append(" AND ");
             string.append(" WHERE ");
-            string.append(" `dateCreated` BETWEEN '" + sc.getStartDate().toString() + "' AND '" + sc.getEndDate().toString() + "'");
+            string.append(" `dateCreated` BETWEEN '").append(sc.getStartDate().toString()).append("' AND '").append(sc.getEndDate().toString()).append("'");
         }
         string.append("GROUP BY EXTRACT(month FROM dateCreated) ORDER BY EXTRACT(month FROM dateCreated);");
         return string.toString();
@@ -267,9 +263,9 @@ public class SQLController {
         boolean insertedWhere = false;
         if (sc.getBuroughs() != null) {
             insertedWhere = true;
-            string.append(" WHERE `borough` = " + sc.getBuroughs().get(0).ordinal());
+            string.append(" WHERE `borough` = ").append(sc.getBuroughs().get(0).ordinal());
             for (int i = 1; i < sc.getBuroughs().size(); i++) {
-                string.append(" OR `borough` = " + sc.getBuroughs().get(i).ordinal());
+                string.append(" OR `borough` = ").append(sc.getBuroughs().get(i).ordinal());
             }
         }
         if (sc.getLocations() != null) {
@@ -279,9 +275,9 @@ public class SQLController {
                 string.append(" WHERE ");
                 insertedWhere = true;
             }
-            string.append("`locationType` = " + sc.getLocations().get(0).ordinal());
+            string.append("`locationType` = ").append(sc.getLocations().get(0).ordinal());
             for (int i = 1; i < sc.getLocations().size(); i++) {
-                string.append(" OR `locationType` = " + sc.getLocations().get(i).ordinal());
+                string.append(" OR `locationType` = ").append(sc.getLocations().get(i).ordinal());
             }
         }
         if (sc.getStartDate() != null && sc.getEndDate() != null) {
@@ -290,7 +286,7 @@ public class SQLController {
             } else {
                 string.append(" WHERE ");
             }
-            string.append(" `dateCreated` BETWEEN '" + sc.getStartDate().toString() + "' AND '" + sc.getEndDate().toString() + "'");
+            string.append(" `dateCreated` BETWEEN '").append(sc.getStartDate().toString()).append("' AND '").append(sc.getEndDate().toString()).append("'");
         }
         string.append(";");
         return string.toString();
@@ -324,9 +320,8 @@ public class SQLController {
      * adds rat sighting to the database
      * @param rs The rat sighting to add
      * @param user The user adding
-     * @return boolean if adding a rat sighting was successful or not
      */
-    public boolean addRatSighting(RatSighting rs, User user) {
+    public void addRatSighting(RatSighting rs, User user) {
         rs.setKey(getNextRatKey());
         String statement = "INSERT INTO `cs2340db`.`rat_sighting` VALUES(" +
                 rs.getKey() + ",'" +
@@ -339,7 +334,7 @@ public class SQLController {
                 rs.getLat() + "," +
                 rs.getLong() + ",'" +
                 user.getName() + "');";
-        return executeInsert(statement);
+        executeInsert(statement);
     }
 
     private int getNextRatKey() {
@@ -359,24 +354,12 @@ public class SQLController {
 
     /**
      * Clears the rat data table
-     * @return boolean if worked correctly
      */
-    public boolean clearRatTable() {
+    public void clearRatTable() {
         String safeStatement = "SET sql_safe_updates=0";
         executeInsert(safeStatement);
         String statement = "DELETE FROM `cs2340db`.`rat_sighting`";
-        return executeInsert(statement);
-    }
-
-    /**
-     * Updates the specific RatSighting associated with the passed in key given the newSighting information
-     * @param key unique key associated with specific RatSighting
-     * @param newSighting new information we want to replace to the specific RatSighting
-     * associated with the key
-     * @return boolean if updating the RatSighting was successful or not
-     */
-    public boolean updateRatSighting(int key, RatSighting newSighting) {
-        return false;
+        executeInsert(statement);
     }
 
     /**
@@ -451,24 +434,12 @@ public class SQLController {
     }
 
     /**
-     * Updates User profile- user can change username, password, or name
-     * updates the username associated with the RatSightings created by the User
-     * @param key unique key associated with the RatSighting instance created by the User
-     * @param newUser new information we want to replace with old user information
-     * @return boolean updating the User profile was successful or not
-     */
-    public boolean updateUser(int key, User newUser) {
-        return false;
-    }
-
-    /**
      * removes User from database
      * ?? if we remove a user do we remove the RatSightings associated with them as well ??
-     * @return boolean if removing user was successful or not
      */
-    public boolean removeUser(String username) {
+    public void removeUser(String username) {
         String statement = "DELETE FROM `cs2340db`.`user` WHERE name = '" + username + "'";
-        return executeInsert(statement);
+        executeInsert(statement);
     }
 
 }

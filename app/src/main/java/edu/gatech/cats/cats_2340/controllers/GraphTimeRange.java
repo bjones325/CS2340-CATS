@@ -15,8 +15,8 @@ import edu.gatech.cats.cats_2340.R;
  */
 public class GraphTimeRange extends AppCompatActivity {
     // Start and end dates from the field
-    TextView _startDate;
-    TextView _endDate;
+    private TextView _startDate;
+    private TextView _endDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

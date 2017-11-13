@@ -14,13 +14,12 @@ import static org.junit.Assert.assertEquals;
 
 public class ElenaTest {
     private SQLController sql;
-    private User testUser;
 
     @Before
     public void setUp() {
         sql = SQLController.getSQLController();
         sql.initializeConnection();
-        testUser = new User("Test", "dog", false);
+        User testUser = new User("Test", "dog", false);
         sql.removeUser(testUser.getName());
         for (int i = 0; i < 20; i++) {
             User newUser = new User("Test" + i, "dog", false);

@@ -33,7 +33,7 @@ public class InputRatSighting extends AppCompatActivity {
     private Spinner borough;
     private TextView failReportText;
 
-    SQLController controller = new SQLController();
+    private final SQLController controller = SQLController.getSQLController();
 
 
     @Override

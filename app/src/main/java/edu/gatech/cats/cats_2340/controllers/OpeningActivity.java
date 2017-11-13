@@ -23,7 +23,7 @@ public class OpeningActivity extends AppCompatActivity{
     private EditText passText;
     private TextView passEdit;
     private TextView failedSuccessText;
-    boolean userEdit;
+    private boolean userEdit;
     private Animation shake;
 
     /**

@@ -1,8 +1,6 @@
 package edu.gatech.cats.cats_2340.model;
 
 import android.util.Log;
-import java.util.List;
-import java.util.ArrayList;
 
 import edu.gatech.cats.cats_2340.controllers.SQLController;
 
@@ -18,11 +16,7 @@ public class Model {
     //Singleton instance
     private static final Model _instance = new Model();
 
-    private RatSighting currentRat;
-
     private User currentUser;
-
-    private List<RatSighting> reportList = new ArrayList<>();
 
     /**
      * Gets the instance of the model
@@ -89,37 +83,4 @@ public class Model {
     }
 
     public void setCurrentUser(User u) {currentUser = u;}
-
-    /**
-     * Adds a rat report to the report list
-     * @param report The rat report to add
-     */
-    public void addReport(RatSighting report) {
-        reportList.add(report);
-    }
-
-    /**
-     * Returns the current rat
-     * @return Null right now
-     */
-    public RatSighting getCurrentRat() {
-        return null;
-    }
-
-    /**
-     * Returns the array of rats
-     * @return Null right now
-     */
-    public RatSighting[] getRatArray() {
-        //return ((RatSighting[]) sqlController.getAllSightings().toArray());
-        return null;
-    }
-
-    /**
-     * Sets the current rat
-     * @param rats The rat to set it to
-     */
-    public void setCurrentRat(RatSighting rats) {
-        currentRat = rats;
-    }
 }

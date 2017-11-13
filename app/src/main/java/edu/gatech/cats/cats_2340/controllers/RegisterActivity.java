@@ -28,8 +28,6 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
     private boolean nameEdit;
     private boolean userEdit;
     private boolean passEdit;
-    // Keeps track of spinner changes
-    private String _type = "Unselected";
     boolean isAdmin = false;
 
     @Override
@@ -143,7 +141,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
      */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        _type = parent.getItemAtPosition(position).toString();
+        String _type = parent.getItemAtPosition(position).toString();
     }
 
     @Override

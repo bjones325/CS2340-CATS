@@ -16,10 +16,10 @@ public enum BoroughType {
     BRONX("BRONX"),
     NONE("None");
 
-    public static List<String> type = Arrays.asList("MANHATTAN", "STATEN ISLAND", "QUEENS",
+    public final static List<String> type = Arrays.asList("MANHATTAN", "STATEN ISLAND", "QUEENS",
             "BROOKLYN", "BRONX", "None");
 
-    private String name;
+    private final String name;
 
     BoroughType(String n) {
         name = n;

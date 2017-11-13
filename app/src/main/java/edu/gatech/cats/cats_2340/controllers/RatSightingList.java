@@ -69,9 +69,6 @@ public class RatSightingList extends AppCompatActivity implements AdapterView.On
             public void onItemClick(AdapterView<?> av, View v, int position, long id) {
                 Log.d("testing", "Item clicked listener");
 
-                // Don't think this works
-                model.setCurrentRat((RatSighting) av.getItemAtPosition(position));
-
                 Intent i = new Intent(getBaseContext(),RatSightingScreen.class);
 
                 // Getting the rat sighting and passing it to the next activity
@@ -103,13 +100,11 @@ public class RatSightingList extends AppCompatActivity implements AdapterView.On
             SQLController.getSQLController().clearRatTable();
             InputStream stream = getResources().openRawResource(R.raw.data);
             BufferedReader reader = new BufferedReader(new InputStreamReader(stream, Charset.forName("UTF-8")));
-            String row = "";
-            row = reader.readLine();
-            while ((row = reader.readLine()) != null) {
+            String row = reader.readLine();
+            while (row != null) {
                 String[] s = row.split(",");
                 // Import data from each column into a new RatSighting()
                 //RatSighting sighting = new RatSighting(s[0], s[1], s[7], s[8], s[9], s[16], s[23], s[49], s[50]);
-                if (s.equals("")) continue;
                 if (s.length == 0) continue;
                 RatSighting sighting = new RatSighting();
                 sighting.setKey(Integer.parseInt(s[0]));
@@ -141,6 +136,7 @@ public class RatSightingList extends AppCompatActivity implements AdapterView.On
                 }
                 User CSV = SQLController.getSQLController().getUser("CSV");
                 SQLController.getSQLController().addRatSighting(sighting, CSV);
+                row = reader.readLine();
             }
             Log.d("INFO:", "Data has been reloaded");
         } catch (Exception e) {

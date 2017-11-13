@@ -11,6 +11,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import edu.gatech.cats.cats_2340.R;
 import edu.gatech.cats.cats_2340.model.RatSighting;
@@ -20,7 +21,6 @@ import edu.gatech.cats.cats_2340.model.RatSighting;
  */
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    private GoogleMap mMap;
     private ArrayList<RatSighting> sightings;
 
     @Override
@@ -29,9 +29,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         sightings = (ArrayList<RatSighting>) getIntent().getSerializableExtra("mapsList");
         if (sightings == null) {
             sightings = new ArrayList<>();
-            for (RatSighting r : SQLController.getSQLController().getAllSightings()) {
-                sightings.add(r);
-            }
+            Collections.addAll(sightings, SQLController.getSQLController().getAllSightings());
         }
         setContentView(R.layout.activity_maps);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
@@ -52,17 +50,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
 
         //Collection<LatLng> latlngTups = new ArrayList<>();
         for (RatSighting rs : sightings) {
             LatLng latlngTuple = new LatLng(rs.getLat(), rs.getLong());
-            mMap.addMarker(new MarkerOptions().position(latlngTuple).title(rs.toString()));
+            googleMap.addMarker(new MarkerOptions().position(latlngTuple).title(rs.toString()));
             //latlngTups.add(latlngTuple);
         }
 
         //Hard-coded NY lat/Long
-        mMap.moveCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(40.7128,-74.006), 10.0f));
+        googleMap.moveCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(40.7128,-74.006), 10.0f));
 
     }
 
