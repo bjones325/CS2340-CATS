@@ -43,12 +43,15 @@ public class Model {
      * @return Whether a user was found with the entered username/password
      */
     public boolean attemptLogin(String user, String pass) {
+        Log.d("Login", "Model attempting log in");
         if (currentUser != null) {
             //Log.d("ERROR:", "User trying to login, but is already logged in?");
+            Log.d("Login", "Duplicate logins");
             return false;
         }
         User u = SQLController.getSQLController().getUser(user, pass);
         if (u == null) {
+            Log.d("Login", "SQL controller null");
             return false;
         }
         currentUser = u;

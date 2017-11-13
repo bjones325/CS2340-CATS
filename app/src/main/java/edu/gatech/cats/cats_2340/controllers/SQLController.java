@@ -32,13 +32,14 @@ public class SQLController {
 
     private Connection SQLconnection;
 
-    private final static SQLController singleton = new SQLController();
+    private static SQLController singleton = new SQLController();
 
     /**
      * Returns singleton of SQLController
      * @return The sql controller
      */
     public static SQLController getSQLController() {
+        Log.d("SQL", "Got controller");
         return singleton;
     }
 
@@ -130,9 +131,15 @@ public class SQLController {
     }
 
     private ResultSet executeRetrieval(String statementString) {
-        if (isSQLInitialized()) return null;
+        Log.d("executing", "Retrieving user");
+        if (!isSQLInitialized()) {
+            Log.d("LoginSQL", "Controller null");
+            return null;
+        }
         PreparedStatement statement;
+        Log.d("LoginSQL", "Executing " + statementString);
         try {
+            Log.d("LoginSQL", "Executing " + statementString);
             statement = SQLconnection.prepareStatement(statementString);
             return statement.executeQuery();
         } catch(SQLException e) {
@@ -385,14 +392,22 @@ public class SQLController {
      * @return the User associated with creating the RatSighting instance given the key
      */
     public User getUser(String userName) {
+        Log.d("LoginSQL", "Attempting to get user");
         String statement = "SELECT * FROM `cs2340db`.`user` WHERE `name` = '" + userName + "';";
         ResultSet result = executeRetrieval(statement);
         if (result == null) {
+            Log.d("LoginSQL", "Null result set");
             return null;
         }
         try {
             result.beforeFirst();
-            if (!result.next()) return null;
+            if (!result.next())
+            {
+                Log.d("LoginSQL", "No results");
+                return null;
+            }
+            Log.d("LoginSQL", "Got result");
+
             return new User(result.getString(1),
                     result.getString(2), result.getBoolean(3));
         } catch (Exception e) {
@@ -409,9 +424,11 @@ public class SQLController {
      * @return the User associated with creating the RatSighting instance given the key
      */
     public User getUser(String userName, String password) {
+        Log.d("LoginSQL", "Attempting to get user");
         String statement = "SELECT * FROM `cs2340db`.`user` WHERE `name` = '" + userName + "' AND `password` = '" + password + "';";
         ResultSet result = executeRetrieval(statement);
         if (result == null) {
+            Log.d("LoginSQL", "No user found");
             return null;
         }
         try {

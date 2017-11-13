@@ -3,6 +3,7 @@ package edu.gatech.cats.cats_2340.controllers;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -105,11 +106,15 @@ public class OpeningActivity extends AppCompatActivity{
         String username = userText.getText().toString();
         String password = passText.getText().toString();
 
+        Log.d("Login", "Attempting login");
+
         //If they log in, put them in the application
         if(model.attemptLogin(username, password)) {
+            Log.d("Login", "Success");
             startActivity(new Intent(getBaseContext(),ApplicationActivity.class));
             finish();
         } else {
+            Log.d("Login", "Failure");
             failedSuccessText.setVisibility(View.VISIBLE);
             passEdit.setVisibility(View.INVISIBLE);
             userText.startAnimation(shake);
