@@ -212,6 +212,7 @@ public class SQLController {
                 }
                 return list;
             }
+            return list;
         } catch (Exception e) {
             Log.d("ERROR:", "Failed getRatCount");
             Log.d("ERROR:", "MSG: " + e.getMessage());
@@ -229,8 +230,8 @@ public class SQLController {
                 "SELECT EXTRACT(month FROM dateCreated) AS 'Month', EXTRACT(year FROM dateCreated) AS 'Year', count(*) AS 'Count' FROM `cs2340db`.`rat_sighting` GROUP BY EXTRACT(month FROM dateCreated) ORDER BY EXTRACT(month FROM dateCreated)");
 
         try {
+            List<int[]> resultList = new ArrayList<>();
             if (result != null) {
-                List<int[]> resultList = new ArrayList<>();
                 result.beforeFirst();
                 while (result.next()) {
                     int[] row = {result.getInt(1), result.getInt(2), result.getInt(3)};
@@ -241,12 +242,13 @@ public class SQLController {
                 }
                 return resultList;
             }
+            return resultList;
         } catch (Exception e) {
             Log.d("ERROR:", "Failed getRatCount");
             Log.d("ERROR:", "MSG: " + e.getMessage());
-
             return null;
         }
+
     }
 
     private String getStatementMessageCount(SearchCriteria sc) {
