@@ -28,6 +28,7 @@ public class SearchActivity extends AppCompatActivity{
     private Spinner _locationType;
     private Spinner _boroughType;
 
+    @SuppressWarnings("unchecked")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

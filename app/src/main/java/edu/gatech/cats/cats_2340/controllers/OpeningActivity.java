@@ -1,7 +1,6 @@
 package edu.gatech.cats.cats_2340.controllers;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -81,19 +80,19 @@ public class OpeningActivity extends AppCompatActivity{
             }
         });
 
-        if (android.os.Build.VERSION.SDK_INT > 9) {
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-            StrictMode.setThreadPolicy(policy);
-        }
-        new AsyncTask<Void, Void, Void>() {
-
-            @Override
-            protected Void doInBackground(Void ... params) {
-                SQLController.getSQLController().initializeConnection();
-                return null;
-            }
-        }.execute();
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        SQLController.getSQLController().initializeConnection();
     }
+
+    /*private static AsyncTask<Void, Void, Void> asyncTask = new AsyncTask<Void, Void, Void>() {
+
+        @Override
+        protected Void doInBackground(Void ... params) {
+            SQLController.getSQLController().initializeConnection();
+            return null;
+        }
+    };*/
 
     /**
      * This is a button called by the Log-In button- it calls the Model's log in function. If

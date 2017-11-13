@@ -201,15 +201,17 @@ public class SQLController {
             list.add(elem);
         }
         try {
-            result.beforeFirst();
-            while (result.next()) {
-                Integer[] row = {result.getInt(1), result.getInt(2), result.getInt(3)};
-                list.add(row);
-                Log.d("", String.valueOf(result.getInt(1)));
-                Log.d("", String.valueOf(result.getInt(2)));
+            if (result != null) {
+                result.beforeFirst();
+                while (result.next()) {
+                    Integer[] row = {result.getInt(1), result.getInt(2), result.getInt(3)};
+                    list.add(row);
+                    Log.d("", String.valueOf(result.getInt(1)));
+                    Log.d("", String.valueOf(result.getInt(2)));
 
+                }
+                return list;
             }
-            return list;
         } catch (Exception e) {
             Log.d("ERROR:", "Failed getRatCount");
             Log.d("ERROR:", "MSG: " + e.getMessage());
@@ -227,16 +229,18 @@ public class SQLController {
                 "SELECT EXTRACT(month FROM dateCreated) AS 'Month', EXTRACT(year FROM dateCreated) AS 'Year', count(*) AS 'Count' FROM `cs2340db`.`rat_sighting` GROUP BY EXTRACT(month FROM dateCreated) ORDER BY EXTRACT(month FROM dateCreated)");
 
         try {
-            List<int[]> resultList = new ArrayList<>();
-            result.beforeFirst();
-            while (result.next()) {
-                int[] row = {result.getInt(1), result.getInt(2), result.getInt(3)};
-                resultList.add(row);
-                Log.d("", String.valueOf(result.getInt(1)));
-                Log.d("", String.valueOf(result.getInt(2)));
+            if (result != null) {
+                List<int[]> resultList = new ArrayList<>();
+                result.beforeFirst();
+                while (result.next()) {
+                    int[] row = {result.getInt(1), result.getInt(2), result.getInt(3)};
+                    resultList.add(row);
+                    Log.d("", String.valueOf(result.getInt(1)));
+                    Log.d("", String.valueOf(result.getInt(2)));
 
+                }
+                return resultList;
             }
-            return resultList;
         } catch (Exception e) {
             Log.d("ERROR:", "Failed getRatCount");
             Log.d("ERROR:", "MSG: " + e.getMessage());

@@ -30,6 +30,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
     private boolean passEdit;
     boolean isAdmin = false;
 
+    @SuppressWarnings("unchecked")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

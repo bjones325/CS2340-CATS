@@ -36,6 +36,7 @@ public class InputRatSighting extends AppCompatActivity {
     private final SQLController controller = SQLController.getSQLController();
 
 
+    @SuppressWarnings("unchecked")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

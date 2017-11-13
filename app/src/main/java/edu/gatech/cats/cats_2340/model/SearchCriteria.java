@@ -77,7 +77,7 @@ public class SearchCriteria {
     }
 
     /**
-     * javadocs for getter
+     * Gets the search Criteria's end date
      * @return End date
      */
     public Date getEndDate() {
