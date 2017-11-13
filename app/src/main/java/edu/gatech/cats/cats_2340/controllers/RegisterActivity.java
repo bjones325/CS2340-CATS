@@ -59,7 +59,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                 if (!nameEdit) {
                     nameText.setText("");
                     nameEdit = true;
-                } else if (!nameText.getText().toString().equals("")) {
+                } else if (!"".equals(nameText.getText().toString())) {
                     userText.requestFocus();
                     userText.setText("");
                     userEdit = true;
@@ -73,7 +73,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                 if (!userEdit) {
                     userText.setText("");
                     userEdit = true;
-                } else if (!userText.getText().toString().equals("")) {
+                } else if (!"".equals(userText.getText().toString())) {
                     passText.requestFocus();
                     passText.setText("");
                     passEdit = true;
@@ -89,7 +89,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                     passText.setText("");
                     passEdit = true;
                 }
-                else if (!userText.getText().toString().equals("")) {
+                else if (!"".equals(userText.getText().toString())) {
                     userTypeLabel.requestFocus();
                 }
             }
@@ -108,13 +108,13 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         String pass = passText.getText().toString();
 
         boolean isAdmin = false;
-        if (userTypeLabel.getSelectedItem().equals("Admin")) {
+        if ("Admin".equals(userTypeLabel.getSelectedItem())) {
             isAdmin = true;
         }
 
         User newUser = new User(name, pass, isAdmin);
 
-        if (name.equals("") || pass.equals("") || !model.registerUser(newUser)) {
+        if ("".equals(name) || "".equals(pass) || !model.registerUser(newUser)) {
             TextView failedRegisterText = (TextView) findViewById(R.id.invalidSubmit);
             failedRegisterText.setVisibility(View.VISIBLE);
             return;

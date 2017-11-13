@@ -56,7 +56,7 @@ public class OpeningActivity extends AppCompatActivity{
                 if (!userEdit) {
                     userText.setText("");
                     userEdit = true;
-                } else if (!userText.getText().toString().equals("")){
+                } else if (!"".equals(userText.getText().toString())){
                     passText.requestFocus();
                     passEdit.setVisibility(View.INVISIBLE);
                     userEdit = false;

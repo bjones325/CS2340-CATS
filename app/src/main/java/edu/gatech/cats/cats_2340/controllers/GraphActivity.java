@@ -43,13 +43,13 @@ public class GraphActivity extends AppCompatActivity {
         Date end = null;
 
         try {
-            start = new java.sql.Date( new SimpleDateFormat("yyyy-MM-dd").parse(dates[0]).getTime());
+            start = new java.sql.Date(( new SimpleDateFormat("yyyy-MM-dd").parse(dates[0])).getTime());
             end = new java.sql.Date( new SimpleDateFormat("yyyy-MM-dd").parse(dates[1]).getTime());
         } catch (Exception e) {
             Log.d("date error", "couldn't convert date");
         }
 
-        if (start != null && end != null) {
+        if ((start != null) && (end != null)) {
             Log.d("", start.toString());
             Log.d("", end.toString());
         }
@@ -61,7 +61,7 @@ public class GraphActivity extends AppCompatActivity {
 
         //Add each row
         for(Integer[] r : ans) {
-            entries.add(new Entry(r[0] * 12 + r[1], r[2]));
+            entries.add(new Entry((r[0] * 12) + r[1], r[2]));
         }
 
         Collections.sort(entries, new EntryXComparator());
