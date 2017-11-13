@@ -11,6 +11,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 
 import edu.gatech.cats.cats_2340.R;
@@ -21,13 +22,13 @@ import edu.gatech.cats.cats_2340.model.RatSighting;
  */
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    private ArrayList<RatSighting> sightings;
+    private Collection<RatSighting> sightings;
 
     @SuppressWarnings("unchecked")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        sightings = (ArrayList<RatSighting>) getIntent().getSerializableExtra("mapsList");
+        sightings = (Collection<RatSighting>) getIntent().getSerializableExtra("mapsList");
         if (sightings == null) {
             sightings = new ArrayList<>();
             Collections.addAll(sightings, SQLController.getSQLController().getAllSightings());
@@ -60,7 +61,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
         //Hard-coded NY lat/Long
-        googleMap.moveCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(40.7128,-74.006), 10.0f));
+        googleMap.moveCamera(
+                CameraUpdateFactory.newLatLngZoom(new LatLng(40.7128,-74.006), 10.0f));
 
     }
 

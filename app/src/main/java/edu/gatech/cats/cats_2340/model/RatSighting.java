@@ -30,7 +30,9 @@ public class RatSighting implements Serializable {
      * @param latitude give lat
      * @param longitude give long
      */
-    public RatSighting(int key, Date created, LocationType locationType, int zip, String address, String city, BoroughType borough, float latitude, float longitude) {
+    public RatSighting(int key, Date created, LocationType locationType,
+                       int zip, String address, String city, BoroughType borough,
+                       float latitude, float longitude) {
         _key = key;
         _created = created;
         _locationType = locationType;

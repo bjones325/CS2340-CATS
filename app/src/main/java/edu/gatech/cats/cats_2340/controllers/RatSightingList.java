@@ -55,7 +55,8 @@ public class RatSightingList extends AppCompatActivity implements AdapterView.On
 
 
         // Pulls in the getAllSightings method to the ArrayAdapter
-        ArrayAdapter<RatSighting> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, control.getAllSightings());
+        ArrayAdapter<RatSighting> adapter =
+                new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, control.getAllSightings());
 
         //Connect our list to the adapter
         listView.setAdapter(adapter);
@@ -99,12 +100,14 @@ public class RatSightingList extends AppCompatActivity implements AdapterView.On
         try {
             SQLController.getSQLController().clearRatTable();
             InputStream stream = getResources().openRawResource(R.raw.data);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(stream, Charset.forName("UTF-8")));
+            BufferedReader reader =
+                    new BufferedReader(new InputStreamReader(stream, Charset.forName("UTF-8")));
             String row = reader.readLine();
             while (row != null) {
                 String[] s = row.split(",");
                 // Import data from each column into a new RatSighting()
-                //RatSighting sighting = new RatSighting(s[0], s[1], s[7], s[8], s[9], s[16], s[23], s[49], s[50]);
+                //RatSighting sighting =
+                // new RatSighting(s[0], s[1], s[7], s[8], s[9], s[16], s[23], s[49], s[50]);
                 if (s.length == 0) continue;
                 RatSighting sighting = new RatSighting();
                 sighting.setKey(Integer.parseInt(s[0]));

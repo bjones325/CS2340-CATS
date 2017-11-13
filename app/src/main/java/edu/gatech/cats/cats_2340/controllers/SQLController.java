@@ -39,7 +39,7 @@ public class SQLController {
      * @return The sql controller
      */
     public static SQLController getSQLController() {
-        Log.d("SQL", "Got controller");
+        //Log.d("SQL", "Got controller");
         return singleton;
     }
 
@@ -48,7 +48,7 @@ public class SQLController {
      * @return Success of connection
      */
     public boolean initializeConnection(){
-        Log.d("INFO", "Initializing Connection to Database");
+        //Log.d("INFO", "Initializing Connection to Database");
         Properties connectionProps = new Properties();
         connectionProps.put("user", username);
         connectionProps.put("password", password);
@@ -67,8 +67,8 @@ public class SQLController {
             Log.d("INFO", "Success! Initialized to Database our Connection has!");
             return true;
         } catch (Exception e){
-            Log.d("ERROR", "Failed to Connect to Database!");
-            Log.d("ERROR", "MSG: " + e.getMessage());
+            //Log.d("ERROR", "Failed to Connect to Database!");
+            //Log.d("ERROR", "MSG: " + e.getMessage());
             return false;
         }
 
@@ -94,7 +94,7 @@ public class SQLController {
      */
     private boolean isSQLInitialized() {
         if (SQLconnection == null) {
-            Log.d("ERROR", "Not connected to Database! Attempted to reinitialize");
+            //Log.d("ERROR", "Not connected to Database! Attempted to reinitialize");
             return initializeConnection();
         }
         return true;
@@ -131,15 +131,15 @@ public class SQLController {
     }
 
     private ResultSet executeRetrieval(String statementString) {
-        Log.d("executing", "Retrieving user");
+        //Log.d("executing", "Retrieving user");
         if (!isSQLInitialized()) {
-            Log.d("LoginSQL", "Controller null");
+            //Log.d("LoginSQL", "Controller null");
             return null;
         }
         PreparedStatement statement;
-        Log.d("LoginSQL", "Executing " + statementString);
+        //Log.d("LoginSQL", "Executing " + statementString);
         try {
-            Log.d("LoginSQL", "Executing " + statementString);
+            //Log.d("LoginSQL", "Executing " + statementString);
             statement = SQLconnection.prepareStatement(statementString);
             return statement.executeQuery();
         } catch(SQLException e) {
@@ -173,8 +173,10 @@ public class SQLController {
             result.beforeFirst();
             while (result.next()) {
                 RatSighting newSight = new RatSighting(result.getInt(1), result.getDate(2),
-                        LocationType.values()[result.getInt(3)], result.getInt(4), result.getString(5), result.getString(6),
-                        BoroughType.values()[result.getInt(7)], result.getFloat(8), result.getFloat(9));
+                        LocationType.values()[result.getInt(3)], result.getInt(4),
+                        result.getString(5), result.getString(6),
+                        BoroughType.values()[result.getInt(7)],
+                        result.getFloat(8), result.getFloat(9));
                 list.add(newSight);
             }
             RatSighting[] rats = new RatSighting[list.size()];
@@ -234,7 +236,11 @@ public class SQLController {
      */
     public List<int[]> getRatCount() {
         ResultSet result = executeRetrieval(
-                "SELECT EXTRACT(month FROM dateCreated) AS 'Month', EXTRACT(year FROM dateCreated) AS 'Year', count(*) AS 'Count' FROM `cs2340db`.`rat_sighting` GROUP BY EXTRACT(month FROM dateCreated) ORDER BY EXTRACT(month FROM dateCreated)");
+                "SELECT EXTRACT(month FROM dateCreated) " +
+                        "AS 'Month', EXTRACT(year FROM dateCreated) AS 'Year', " +
+                        "count(*) AS 'Count' FROM `cs2340db`.`rat_sighting` " +
+                        "GROUP BY EXTRACT(month FROM dateCreated) " +
+                        "ORDER BY EXTRACT(month FROM dateCreated)");
 
         try {
             List<int[]> resultList = new ArrayList<>();
@@ -259,7 +265,9 @@ public class SQLController {
     }
 
     private String getStatementMessageCount(SearchCriteria sc) {
-        StringBuilder string = new StringBuilder("SELECT EXTRACT(month FROM dateCreated) AS 'Month', EXTRACT(year FROM dateCreated) AS 'Year', count(*) AS 'Count' FROM `cs2340db`.`rat_sighting`");
+        StringBuilder string = new StringBuilder("SELECT EXTRACT(month FROM dateCreated) " +
+                "AS 'Month', EXTRACT(year FROM dateCreated) AS 'Year', count(*) " +
+                "AS 'Count' FROM `cs2340db`.`rat_sighting`");
         boolean insertedWhere = false;
 
         if (sc.getStartDate() != null && sc.getEndDate() != null) {
@@ -424,11 +432,11 @@ public class SQLController {
      * @return the User associated with creating the RatSighting instance given the key
      */
     public User getUser(String userName, String password) {
-        Log.d("LoginSQL", "Attempting to get user");
+        //Log.d("LoginSQL", "Attempting to get user");
         String statement = "SELECT * FROM `cs2340db`.`user` WHERE `name` = '" + userName + "' AND `password` = '" + password + "';";
         ResultSet result = executeRetrieval(statement);
         if (result == null) {
-            Log.d("LoginSQL", "No user found");
+            //Log.d("LoginSQL", "No user found");
             return null;
         }
         try {
@@ -437,8 +445,8 @@ public class SQLController {
             return new User(result.getString(1),
                     result.getString(2), result.getBoolean(3));
         } catch (Exception e) {
-            Log.d("ERROR:", "Failed GetUser for Name-" + userName);
-            Log.d("ERROR:", "MSG: " + e.getMessage());
+            //Log.d("ERROR:", "Failed GetUser for Name-" + userName);
+            //Log.d("ERROR:", "MSG: " + e.getMessage());
             return null;
         }
     }

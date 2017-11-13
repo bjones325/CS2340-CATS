@@ -43,7 +43,8 @@ public class GraphActivity extends AppCompatActivity {
         Date end = null;
 
         try {
-            start = new java.sql.Date(( new SimpleDateFormat("yyyy-MM-dd").parse(dates[0])).getTime());
+            start = new java.sql.Date(
+                    ( new SimpleDateFormat("yyyy-MM-dd").parse(dates[0])).getTime());
             end = new java.sql.Date( new SimpleDateFormat("yyyy-MM-dd").parse(dates[1]).getTime());
         } catch (Exception e) {
             Log.d("date error", "couldn't convert date");

@@ -40,12 +40,14 @@ public class SearchActivity extends AppCompatActivity{
         _boroughType = (Spinner) findViewById(R.id.boroughSpinner);
 
         // Set up adapter to display the allowable types inside the location type spinner
-        ArrayAdapter<String> adapter1 = new ArrayAdapter(this,android.R.layout.simple_spinner_item, LocationType.type);
+        ArrayAdapter<String> adapter1 =
+                new ArrayAdapter(this,android.R.layout.simple_spinner_item, LocationType.type);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         _locationType.setAdapter(adapter1);
 
         // Set up adapter to display the allowable types inside the borough spinner
-        ArrayAdapter<String> adapter2 = new ArrayAdapter(this,android.R.layout.simple_spinner_item, BoroughType.type);
+        ArrayAdapter<String> adapter2 =
+                new ArrayAdapter(this,android.R.layout.simple_spinner_item, BoroughType.type);
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         _boroughType.setAdapter(adapter2);
     }
@@ -91,7 +93,8 @@ public class SearchActivity extends AppCompatActivity{
         for (RatSighting rs : SQLController.getSQLController().getAllSightings()) {
             if ((rs.getBorough() == BoroughType.toBoroughType(borType))
                     && (rs.getLocationType() == LocationType.toLocationType(locType))) {
-                if ((rs.getCreated().compareTo(sqlStartDate) >= 0)  && (rs.getCreated().compareTo(sqlEndDate) <= 0)) {
+                if ((rs.getCreated().compareTo(sqlStartDate) >= 0)
+                        && (rs.getCreated().compareTo(sqlEndDate) <= 0)) {
                     filteredRats.add(rs);
                 }
             }

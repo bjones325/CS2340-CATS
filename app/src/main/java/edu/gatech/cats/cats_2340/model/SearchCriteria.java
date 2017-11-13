@@ -45,7 +45,8 @@ public class SearchCriteria {
      * @param start The start date
      * @param end The end date
      */
-    public SearchCriteria(List<BoroughType> buroughs, List<LocationType> locs, Date start, Date end) {
+    public SearchCriteria(List<BoroughType> buroughs,
+                          List<LocationType> locs, Date start, Date end) {
         burough = buroughs;
         location = locs;
         startDate = start;

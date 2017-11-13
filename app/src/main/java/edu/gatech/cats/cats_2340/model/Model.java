@@ -32,7 +32,8 @@ public class Model {
     private Model() {
         //User u = new User("Elijah", "user", "pass", true);
         //userList.add(u);
-        //RatSighting currentRat = new RatSighting(1, 1, LocationType.valueOf("place"), 23114, "add", "city", BoroughType.valueOf("b"), 10, 10);
+        //RatSighting currentRat =
+        //new RatSighting(1, 1, LocationType.valueOf("place"), 23114, "add", "city", BoroughType.valueOf("b"), 10, 10);
     }
 
     /**
@@ -43,15 +44,15 @@ public class Model {
      * @return Whether a user was found with the entered username/password
      */
     public boolean attemptLogin(String user, String pass) {
-        Log.d("Login", "Model attempting log in");
+        //Log.d("Login", "Model attempting log in");
         if (currentUser != null) {
             //Log.d("ERROR:", "User trying to login, but is already logged in?");
-            Log.d("Login", "Duplicate logins");
+            //Log.d("Login", "Duplicate logins");
             return false;
         }
         User u = SQLController.getSQLController().getUser(user, pass);
         if (u == null) {
-            Log.d("Login", "SQL controller null");
+            //Log.d("Login", "SQL controller null");
             return false;
         }
         currentUser = u;
@@ -85,5 +86,9 @@ public class Model {
         return currentUser;
     }
 
+    /**
+     * I don't know what this does
+     * @param u The current user
+     */
     public void setCurrentUser(User u) {currentUser = u;}
 }
