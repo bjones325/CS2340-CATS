@@ -25,7 +25,7 @@ import edu.gatech.cats.cats_2340.model.SearchCriteria;
  */
 public class GraphActivity extends AppCompatActivity {
 
-    private final int monthsInYear = 12;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +65,8 @@ public class GraphActivity extends AppCompatActivity {
         SQLController sql = SQLController.getSQLController();
         //This is the point of sql controller
         Collection<Integer[]> ans = sql.getFilteredCounts(sc);
+
+        final int monthsInYear = 12;
 
         //Add each row
         for(Integer[] r : ans) {

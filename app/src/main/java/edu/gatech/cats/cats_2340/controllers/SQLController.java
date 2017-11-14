@@ -211,7 +211,7 @@ public class SQLController {
 
 
 
-        ArrayList<Integer[]> list = new ArrayList<>();
+       List<Integer[]> list = new ArrayList<>();
         if (result == null) {
             Integer[] elem = new Integer[] {0, 0, 0};
             list.add(elem);

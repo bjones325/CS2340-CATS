@@ -21,9 +21,7 @@ import edu.gatech.cats.cats_2340.model.RatSighting;
  * The map screen
  */
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
-    private final double newYorkLat = 40.7128;
-    private final double newYorkLong = -74.006;
-    private final float defaultZoom = 10.0f;
+
 
     private Collection<RatSighting> sightings;
 
@@ -65,6 +63,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             //latlngTups.add(latlngTuple);
         }
 
+        final double newYorkLat = 40.7128;
+        final double newYorkLong = -74.006;
+        final float defaultZoom = 10.0f;
         //Hard-coded NY lat/Long
         googleMap.moveCamera(
                 CameraUpdateFactory.newLatLngZoom(new LatLng(newYorkLat,newYorkLong), defaultZoom));
