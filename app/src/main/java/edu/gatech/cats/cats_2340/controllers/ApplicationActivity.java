@@ -30,7 +30,8 @@ public class ApplicationActivity extends AppCompatActivity {
      */
     public void onLogoutPressed(View view) {
         startActivity(new Intent(getBaseContext(),OpeningActivity.class));
-        Model.getInstance().logout();
+        Model m = Model.getInstance();
+        m.logout();
         finish();
     }
 

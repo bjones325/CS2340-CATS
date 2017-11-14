@@ -49,7 +49,8 @@ public final class Model {
             //Log.d("Login", "Duplicate logins");
             return false;
         }
-        User u = SQLController.getSQLController().getUser(user, pass);
+        SQLController sql = SQLController.getSQLController();
+        User u = sql.getUser(user, pass);
         if (u == null) {
             //Log.d("Login", "SQL controller null");
             return false;
@@ -76,6 +77,7 @@ public final class Model {
      *          @return Whether or not the user could log in
      */
     public boolean registerUser(User u) {
+        //Clean one liner
         return SQLController.getSQLController().addUser(u);
     }
 

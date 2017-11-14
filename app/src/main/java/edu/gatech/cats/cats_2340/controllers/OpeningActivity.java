@@ -103,6 +103,7 @@ public class OpeningActivity extends AppCompatActivity{
      */
     public void onLoginPressed(View view) {
         Model model = Model.getInstance();
+        //Just makes sense
         String username = userText.getText().toString();
         String password = passText.getText().toString();
 

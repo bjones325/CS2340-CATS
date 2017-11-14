@@ -81,6 +81,7 @@ public class InputRatSighting extends AppCompatActivity {
     public void onSubmitPressed(View view) {
         //Model model = Model.getInstance();
 
+        //All readable/understandable
         String latStr = latText.getText().toString();
         String lonStr = longText.getText().toString();
         String dateStr = dateText.getText().toString();

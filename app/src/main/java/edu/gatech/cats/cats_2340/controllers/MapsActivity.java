@@ -31,10 +31,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Fairly obvious chaining
         sightings = (Collection<RatSighting>) getIntent().getSerializableExtra("mapsList");
         if (sightings == null) {
             sightings = new ArrayList<>();
-            Collections.addAll(sightings, SQLController.getSQLController().getAllSightings());
+            SQLController sql = SQLController.getSQLController();
+            Collections.addAll(sightings, sql.getAllSightings());
         }
         setContentView(R.layout.activity_maps);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.

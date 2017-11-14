@@ -46,7 +46,8 @@ public enum LocationType {
      */
     public static LocationType toLocationType(String s) {
         for (LocationType lt : LocationType.values()) {
-            if (lt.toString().equalsIgnoreCase(s)) {
+            String ltString = lt.toString();
+            if (ltString.equalsIgnoreCase(s)) {
                 return lt;
             }
         }

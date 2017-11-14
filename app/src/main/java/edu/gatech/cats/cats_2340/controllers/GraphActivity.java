@@ -35,6 +35,8 @@ public class GraphActivity extends AppCompatActivity {
         LineChart chart = (LineChart) findViewById(R.id.chart);
 
         //Lets get the dates and then use them to set limits in our SQL query
+
+        //Chaining fine because you get the intent once
         String[] dates = (String[]) getIntent().getSerializableExtra("dates");
 
         Log.d("", dates[0]);
@@ -61,6 +63,7 @@ public class GraphActivity extends AppCompatActivity {
         SearchCriteria sc = new SearchCriteria(null, null, start, end);
         List<Entry> entries = new ArrayList<>();
         SQLController sql = SQLController.getSQLController();
+        //This is the point of sql controller
         Collection<Integer[]> ans = sql.getFilteredCounts(sc);
 
         //Add each row

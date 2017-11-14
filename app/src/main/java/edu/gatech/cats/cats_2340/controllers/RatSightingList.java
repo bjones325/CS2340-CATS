@@ -20,7 +20,6 @@ import edu.gatech.cats.cats_2340.R;
 import edu.gatech.cats.cats_2340.model.BoroughType;
 import edu.gatech.cats.cats_2340.model.LocationType;
 import edu.gatech.cats.cats_2340.model.RatSighting;
-import edu.gatech.cats.cats_2340.model.Model;
 import edu.gatech.cats.cats_2340.model.User;
 
 /**

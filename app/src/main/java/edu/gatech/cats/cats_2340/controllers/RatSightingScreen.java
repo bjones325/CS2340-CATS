@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import edu.gatech.cats.cats_2340.R;
-import edu.gatech.cats.cats_2340.model.Model;
 import edu.gatech.cats.cats_2340.model.RatSighting;
 
 

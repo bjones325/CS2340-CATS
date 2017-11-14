@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Properties;
 
@@ -278,7 +277,7 @@ public class SQLController {
                 "AS 'Count' FROM `cs2340db`.`rat_sighting`");
         boolean insertedWhere = false;
 
-        if ((sc.getStartDate()) != null && (sc.getEndDate() != null)) {
+        if ((sc.getStartDate() != null) && (sc.getEndDate() != null)) {
             //string.append(" AND ");
             string.append(" WHERE ");
             string.append(" `dateCreated` BETWEEN '").
