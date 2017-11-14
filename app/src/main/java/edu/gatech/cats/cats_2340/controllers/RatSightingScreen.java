@@ -22,7 +22,7 @@ public class RatSightingScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rat_sighting_screen);
 
-        Model model = Model.getInstance();
+        //Model model = Model.getInstance();
 
         // Get the rat sighting we were passed
         RatSighting rs = (RatSighting) getIntent().getSerializableExtra("RatSighting");

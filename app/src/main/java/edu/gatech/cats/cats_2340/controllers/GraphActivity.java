@@ -25,7 +25,7 @@ import edu.gatech.cats.cats_2340.model.SearchCriteria;
  */
 public class GraphActivity extends AppCompatActivity {
 
-    int monthsInYear = 12;
+    private final int monthsInYear = 12;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +40,7 @@ public class GraphActivity extends AppCompatActivity {
         Log.d("", dates[0]);
         Log.d("", dates[1]);
 
-        SimpleDateFormat myDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        //SimpleDateFormat myDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
         Date start = null;
         Date end = null;

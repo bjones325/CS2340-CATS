@@ -22,7 +22,7 @@ public enum LocationType {
     CATCH_BASIN_SEWER("Catch Basin/Sewer"),
     OTHER("Other (Explain Below)");
 
-    public final static List<String> type = Arrays.asList("1-2 Family Dwelling",
+    public static final List<String> type = Arrays.asList("1-2 Family Dwelling",
             "3+ Family Apt. Building",
             "Vacant Building", "Parking Lot/Garage", "3+ Family Mixed Use Building",
             "Commercial Building", "Vacant Lot", "Public Garden", "Construction Site",

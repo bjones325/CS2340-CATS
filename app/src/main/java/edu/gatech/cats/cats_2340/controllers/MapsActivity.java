@@ -21,9 +21,9 @@ import edu.gatech.cats.cats_2340.model.RatSighting;
  * The map screen
  */
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
-    double newYorkLat = 40.7128;
-    double newYorkLong = -74.006;
-    float defaultZoom = 10.0f;
+    private final double newYorkLat = 40.7128;
+    private final double newYorkLong = -74.006;
+    private final float defaultZoom = 10.0f;
 
     private Collection<RatSighting> sightings;
 

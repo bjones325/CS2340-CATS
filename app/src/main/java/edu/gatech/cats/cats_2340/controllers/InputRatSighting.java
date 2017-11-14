@@ -43,7 +43,7 @@ public class InputRatSighting extends AppCompatActivity {
         setContentView(R.layout.activity_input_rat_sighting);
 
         //why?
-        Model model = Model.getInstance();
+        //Model model = Model.getInstance();
 
         latText = (TextView) findViewById(R.id.latitude);
         longText = (TextView) findViewById(R.id.longitude);
@@ -79,7 +79,7 @@ public class InputRatSighting extends AppCompatActivity {
      * @param view The view
      */
     public void onSubmitPressed(View view) {
-        Model model = Model.getInstance();
+        //Model model = Model.getInstance();
 
         String latStr = latText.getText().toString();
         String lonStr = longText.getText().toString();

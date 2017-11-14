@@ -48,7 +48,7 @@ public class RatSightingList extends AppCompatActivity implements AdapterView.On
         // SQL Object to give access to methods
         SQLController control = SQLController.getSQLController();
 
-        final Model model = Model.getInstance();
+        //final Model model = Model.getInstance();
 
         //Get list view
         ListView listView = (ListView) findViewById(R.id.ratInfoList);
@@ -63,7 +63,7 @@ public class RatSightingList extends AppCompatActivity implements AdapterView.On
         listView.setAdapter(adapter);
 
         // If the reset Button is clicked, we should
-        Button reset = (Button) findViewById(R.id.resetButton);
+        //Button reset = (Button) findViewById(R.id.resetButton);
 
         //If an item is clicked we want to:
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -107,6 +107,8 @@ public class RatSightingList extends AppCompatActivity implements AdapterView.On
             while (row != null) {
                 String[] s = row.split(",");
                 // Import data from each column into a new RatSighting()
+
+                /* Since s could be empty we cannot reverse it*/
                 if (s.equals("")) {
                     continue;
                 }

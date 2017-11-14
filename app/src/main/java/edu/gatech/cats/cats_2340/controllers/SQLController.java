@@ -109,7 +109,9 @@ public class SQLController {
      * @param state The statement
      */
     private static void closeStatement(Statement state) {
-        if (state == null) return;
+        if (state == null) {
+            return;
+        }
         try {
             state.close();
         } catch (SQLException e) {
@@ -121,7 +123,9 @@ public class SQLController {
      * @return If the database is executed, or if it has failed to execute
      */
     private boolean executeInsert(String statementString) {
-        if (isSQLInitialized()) return false;
+        if (isSQLInitialized()) {
+            return false;
+        }
         Statement statement;
         try {
             statement = SQLconnection.createStatement();
@@ -274,7 +278,7 @@ public class SQLController {
                 "AS 'Count' FROM `cs2340db`.`rat_sighting`");
         boolean insertedWhere = false;
 
-        if (sc.getStartDate() != null && sc.getEndDate() != null) {
+        if ((sc.getStartDate()) != null && (sc.getEndDate() != null)) {
             //string.append(" AND ");
             string.append(" WHERE ");
             string.append(" `dateCreated` BETWEEN '").
@@ -309,7 +313,7 @@ public class SQLController {
                 string.append(" OR `locationType` = ").append(sc.getLocations().get(i).ordinal());
             }
         }
-        if (sc.getStartDate() != null && sc.getEndDate() != null) {
+        if ((sc.getStartDate() != null) && (sc.getEndDate() != null)) {
             if (insertedWhere) {
                 string.append(" AND ");
             } else {
@@ -373,7 +377,9 @@ public class SQLController {
     private int getNextRatKey() {
         String statement = "SELECT COUNT(`key`) AS numOfRats FROM `cs2340db`.`rat_sighting`";
         ResultSet result = executeRetrieval(statement);
-        if (result == null) return 0;
+        if (result == null) {
+            return 0;
+        }
         try {
             result.beforeFirst();
             result.next();
@@ -411,6 +417,7 @@ public class SQLController {
      * @param userName unique UserName associated with that user account
      * @return the User associated with creating the RatSighting instance given the key
      */
+    /* Could build in additional functionality, also use with password overload */
     public User getUser(String userName) {
         Log.d("LoginSQL", "Attempting to get user");
         String statement = "SELECT * FROM `cs2340db`.`user` WHERE `name` = '" + userName + "';";
