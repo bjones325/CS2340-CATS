@@ -12,7 +12,7 @@ import edu.gatech.cats.cats_2340.controllers.SQLController;
  * Basic model class
  */
 
-public class Model {
+public final class Model {
     //Singleton instance
     private static final Model _instance = new Model();
 
@@ -33,7 +33,6 @@ public class Model {
         //User u = new User("Elijah", "user", "pass", true);
         //userList.add(u);
         //RatSighting currentRat =
-        //new RatSighting(1, 1, LocationType.valueOf("place"), 23114, "add", "city", BoroughType.valueOf("b"), 10, 10);
     }
 
     /**

@@ -56,7 +56,8 @@ public class RatSightingList extends AppCompatActivity implements AdapterView.On
 
         // Pulls in the getAllSightings method to the ArrayAdapter
         ArrayAdapter<RatSighting> adapter =
-                new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, control.getAllSightings());
+                new ArrayAdapter<>(
+                        this, android.R.layout.simple_list_item_1, control.getAllSightings());
 
         //Connect our list to the adapter
         listView.setAdapter(adapter);

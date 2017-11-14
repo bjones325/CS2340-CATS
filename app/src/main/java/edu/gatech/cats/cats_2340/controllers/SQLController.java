@@ -93,11 +93,14 @@ public class SQLController {
      * @return If the database is connected, or has been reconnected.
      */
     private boolean isSQLInitialized() {
+        /*
         if (SQLconnection == null) {
             //Log.d("ERROR", "Not connected to Database! Attempted to reinitialize");
             return initializeConnection();
         }
         return true;
+        */
+        return SQLconnection!=null || initializeConnection();
     }
 
     /**
@@ -273,7 +276,9 @@ public class SQLController {
         if (sc.getStartDate() != null && sc.getEndDate() != null) {
             //string.append(" AND ");
             string.append(" WHERE ");
-            string.append(" `dateCreated` BETWEEN '").append(sc.getStartDate().toString()).append("' AND '").append(sc.getEndDate().toString()).append("'");
+            string.append(" `dateCreated` BETWEEN '").
+                    append(sc.getStartDate().toString()).append("' AND '").
+                    append(sc.getEndDate().toString()).append("'");
         }
         string.append("GROUP BY EXTRACT(month FROM dateCreated) ORDER BY EXTRACT(month FROM dateCreated);");
         return string.toString();
@@ -307,7 +312,9 @@ public class SQLController {
             } else {
                 string.append(" WHERE ");
             }
-            string.append(" `dateCreated` BETWEEN '").append(sc.getStartDate().toString()).append("' AND '").append(sc.getEndDate().toString()).append("'");
+            string.append(" `dateCreated` BETWEEN '").
+                    append(sc.getStartDate().toString()).
+                    append("' AND '").append(sc.getEndDate().toString()).append("'");
         }
         string.append(";");
         return string.toString();
@@ -328,8 +335,10 @@ public class SQLController {
             result.beforeFirst();
             result.next();
             return new RatSighting(result.getInt(1), result.getDate(2),
-                    LocationType.values()[result.getInt(3)], result.getInt(4), result.getString(5), result.getString(6),
-                    BoroughType.values()[result.getInt(7)], result.getFloat(8), result.getFloat(9));
+                    LocationType.values()[result.getInt(3)], result.getInt(4),
+                    result.getString(5), result.getString(6),
+                    BoroughType.values()[result.getInt(7)],
+                    result.getFloat(8), result.getFloat(9));
         } catch (Exception e) {
 //            Log.d("ERROR:", "Failed GetIndividualSighting for Key-" + key);
 //            Log.d("ERROR:", "MSG: " + e.getMessage());
@@ -433,7 +442,8 @@ public class SQLController {
      */
     public User getUser(String userName, String password) {
         //Log.d("LoginSQL", "Attempting to get user");
-        String statement = "SELECT * FROM `cs2340db`.`user` WHERE `name` = '" + userName + "' AND `password` = '" + password + "';";
+        String statement = "SELECT * FROM `cs2340db`.`user` WHERE `name` = '" +
+                userName + "' AND `password` = '" + password + "';";
         ResultSet result = executeRetrieval(statement);
         if (result == null) {
             //Log.d("LoginSQL", "No user found");
@@ -467,6 +477,7 @@ public class SQLController {
     /**
      * removes User from database
      * ?? if we remove a user do we remove the RatSightings associated with them as well ??
+     * @param username The Username to be removed
      */
     public void removeUser(String username) {
         String statement = "DELETE FROM `cs2340db`.`user` WHERE name = '" + username + "'";
