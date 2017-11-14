@@ -20,7 +20,8 @@ import android.view.*;
 /**
  * Activity when a user begins to register
  */
-public class RegisterActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class RegisterActivity extends AppCompatActivity
+        implements AdapterView.OnItemSelectedListener {
     private EditText nameText;
     private EditText userText;
     private EditText passText;
@@ -49,7 +50,8 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         failedRegisterText.setVisibility(View.INVISIBLE);
 
         // Set up adapter to display the allowable types inside the spinner
-        ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, User.type);
+        ArrayAdapter<String> adapter = new ArrayAdapter(
+                this,android.R.layout.simple_spinner_item, User.type);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         userTypeLabel.setAdapter(adapter);
 

@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Properties;
 
@@ -100,7 +101,7 @@ public class SQLController {
         }
         return true;
         */
-        return SQLconnection!=null || initializeConnection();
+        return (SQLconnection!=null) || (initializeConnection());
     }
 
     /**
@@ -197,7 +198,7 @@ public class SQLController {
      * @param sc Search criteria
      * @return A list of 3 element arrays containing year, month, count
      */
-    public ArrayList<Integer[]> getFilteredCounts(SearchCriteria sc) {
+    public List<Integer[]> getFilteredCounts(SearchCriteria sc) {
 
         String statement = getStatementMessageCount(sc);
 
@@ -280,7 +281,9 @@ public class SQLController {
                     append(sc.getStartDate().toString()).append("' AND '").
                     append(sc.getEndDate().toString()).append("'");
         }
-        string.append("GROUP BY EXTRACT(month FROM dateCreated) ORDER BY EXTRACT(month FROM dateCreated);");
+        string.append(
+                "GROUP BY EXTRACT(month FROM dateCreated) " +
+                        "ORDER BY EXTRACT(month FROM dateCreated);");
         return string.toString();
     }
 

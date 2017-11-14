@@ -13,6 +13,7 @@ import com.github.mikephil.charting.utils.EntryXComparator;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -23,6 +24,8 @@ import edu.gatech.cats.cats_2340.model.SearchCriteria;
  * Graph view of the application
  */
 public class GraphActivity extends AppCompatActivity {
+
+    int monthsInYear = 12;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,11 +61,11 @@ public class GraphActivity extends AppCompatActivity {
         SearchCriteria sc = new SearchCriteria(null, null, start, end);
         List<Entry> entries = new ArrayList<>();
         SQLController sql = SQLController.getSQLController();
-        List<Integer[]> ans = sql.getFilteredCounts(sc);
+        Collection<Integer[]> ans = sql.getFilteredCounts(sc);
 
         //Add each row
         for(Integer[] r : ans) {
-            entries.add(new Entry((r[0] * 12) + r[1], r[2]));
+            entries.add(new Entry((r[0] * monthsInYear) + r[1], r[2]));
         }
 
         Collections.sort(entries, new EntryXComparator());

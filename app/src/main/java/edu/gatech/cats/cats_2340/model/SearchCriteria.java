@@ -1,8 +1,10 @@
 package edu.gatech.cats.cats_2340.model;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 
 /**
  * Created by Blake on 10/10/2017. This is an object to be passed into SQL
@@ -47,8 +49,8 @@ public class SearchCriteria {
      */
     public SearchCriteria(List<BoroughType> buroughs,
                           List<LocationType> locs, Date start, Date end) {
-        burough = buroughs;
-        location = locs;
+        burough = new ArrayList<>(buroughs);
+        location = new ArrayList<>(locs);
         startDate = start;
         endDate = end;
     }

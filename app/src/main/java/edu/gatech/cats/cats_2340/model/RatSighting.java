@@ -86,7 +86,7 @@ public class RatSighting implements Serializable {
      * getter for address for a RatSighting
      * @return address
      */
-    public String getAddr() {
+    public CharSequence getAddr() {
         return _address;
     }
 
@@ -94,7 +94,7 @@ public class RatSighting implements Serializable {
      * getter for city for a RatSighting
      * @return city
      */
-    public String getCity() {
+    public CharSequence getCity() {
         return _city;
     }
 

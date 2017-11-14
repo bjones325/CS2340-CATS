@@ -65,6 +65,8 @@ public final class Model {
         if (currentUser == null) {
             Log.d("ERROR:", "User logged out but was not logged in!");
         }
+
+        /* Set to null for clarity's sake */
         currentUser = null;
     }
 
