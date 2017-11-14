@@ -293,11 +293,11 @@ public class SQLController {
     private String getStatementMessage(SearchCriteria sc) {
         StringBuilder string = new StringBuilder("SELECT * FROM `cs2340db`.`rat_sighting`");
         boolean insertedWhere = false;
-        if (sc.getBuroughs() != null) {
+        if (sc.getBoroughs() != null) {
             insertedWhere = true;
-            string.append(" WHERE `borough` = ").append(sc.getBuroughs().get(0).ordinal());
-            for (int i = 1; i < sc.getBuroughs().size(); i++) {
-                string.append(" OR `borough` = ").append(sc.getBuroughs().get(i).ordinal());
+            string.append(" WHERE `borough` = ").append(sc.getBoroughs().get(0).ordinal());
+            for (int i = 1; i < sc.getBoroughs().size(); i++) {
+                string.append(" OR `borough` = ").append(sc.getBoroughs().get(i).ordinal());
             }
         }
         if (sc.getLocations() != null) {

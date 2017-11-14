@@ -100,8 +100,6 @@ public class InputRatSighting extends AppCompatActivity {
 
         RatSighting newRatSighting = new RatSighting();
 
-        // **Must Add a key.. is it randomized or the next integer?** -Mark
-        //
         if (!dateStr.isEmpty()) {
             newRatSighting.setCreated(dateStr);
         }
