@@ -112,8 +112,8 @@ public class RatSightingList extends AppCompatActivity implements AdapterView.On
     public void resetRatData(View view) {
         try {
             control.clearRatTable();
-            Resources resour = getResources();
-            InputStream stream = resour.openRawResource(R.raw.data);
+            Resources resource = getResources();
+            InputStream stream = resource.openRawResource(R.raw.data);
             BufferedReader reader =
                     new BufferedReader(new InputStreamReader(stream, Charset.forName("UTF-8")));
             String row = reader.readLine();

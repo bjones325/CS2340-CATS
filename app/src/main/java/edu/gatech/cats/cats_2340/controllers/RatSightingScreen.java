@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import java.sql.Date;
 import java.util.Locale;
-import java.util.Locale;
 
 import edu.gatech.cats.cats_2340.R;
 import edu.gatech.cats.cats_2340.model.BoroughType;
@@ -30,8 +29,8 @@ public class RatSightingScreen extends AppCompatActivity {
         //Model model = Model.getInstance();
 
         // Get the rat sighting we were passed
-        Intent inte = getIntent();
-        RatSighting rs = (RatSighting) inte.getSerializableExtra("RatSighting");
+        Intent intent = getIntent();
+        RatSighting rs = (RatSighting) intent.getSerializableExtra("RatSighting");
         printData(rs);
 
 
