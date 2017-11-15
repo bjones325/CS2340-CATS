@@ -16,8 +16,6 @@ import android.widget.TextView;
 import edu.gatech.cats.cats_2340.model.Model;
 import edu.gatech.cats.cats_2340.model.User;
 
-
-
 /**
  * Activity when a user begins to register
  */

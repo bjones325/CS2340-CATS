@@ -17,7 +17,8 @@
         tools:layout_editor_absoluteX="295dp"
         tools:layout_editor_absoluteY="1dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/getRatList"
@@ -29,7 +30,8 @@
         android:background="@color/colorPrimary"
         android:onClick="onListPressed"
         android:text="Sighting List"
-        android:textColor="@color/common_google_signin_btn_text_dark_default" />
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/makeReport"
@@ -39,7 +41,8 @@
         android:text="Report a Sighting"
         android:onClick="onReportPressed"
         android:layout_below="@+id/getRatList"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/map_button"
@@ -49,7 +52,8 @@
         android:layout_below="@+id/makeReport"
         android:layout_marginTop="25dp"
         android:text="Map"
-        android:onClick="onMapPressed"/>
+        android:onClick="onMapPressed"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/graphButton"
@@ -59,7 +63,8 @@
         android:layout_below="@+id/map_button"
         android:layout_marginTop="39dp"
         android:onClick="onGraphPressed"
-        android:text="Button" />
+        android:text="Button"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/searchButton"
@@ -69,6 +74,7 @@
         android:layout_below="@+id/graphButton"
         android:layout_marginTop="23dp"
         android:onClick="onSearchPressed"
-        android:text="Search" />
+        android:text="Search"
+        tools:ignore="HardcodedText" />
 
 </RelativeLayout>
