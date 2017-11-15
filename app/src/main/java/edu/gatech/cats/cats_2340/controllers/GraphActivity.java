@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 import edu.gatech.cats.cats_2340.R;
 import edu.gatech.cats.cats_2340.model.SearchCriteria;
@@ -49,8 +50,8 @@ public class GraphActivity extends AppCompatActivity {
 
         try {
             start = new java.sql.Date(
-                    ( new SimpleDateFormat("yyyy-MM-dd").parse(dates[0])).getTime());
-            end = new java.sql.Date( new SimpleDateFormat("yyyy-MM-dd").parse(dates[1]).getTime());
+                    ( new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse(dates[0])).getTime());
+            end = new java.sql.Date( new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse(dates[1]).getTime());
         } catch (Exception e) {
             Log.d("date error", "couldn't convert date");
         }
