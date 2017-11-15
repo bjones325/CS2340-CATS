@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://C:\Users\Ruchi Banerjee\Downloads\CS2340-CATS\.idea\CS2340.iml" filepath="C:\Users\Ruchi Banerjee\Downloads\CS2340-CATS\.idea\CS2340.iml" />
-      <module fileurl="file://$PROJECT_DIR$/CS2340-CATS.iml" filepath="$PROJECT_DIR$/CS2340-CATS.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/CS2340.iml" filepath="$PROJECT_DIR$/.idea/CS2340.iml" />
       <module fileurl="file://C:\Users\Blake\StudioProjects\CS2340\CS2340-CATS.iml" filepath="C:\Users\Blake\StudioProjects\CS2340\CS2340-CATS.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/mysql-connector-java-3.0.17-ga-bin/mysql-connector-java-3.0.17-ga-bin.iml" filepath="$PROJECT_DIR$/mysql-connector-java-3.0.17-ga-bin/mysql-connector-java-3.0.17-ga-bin.iml" />

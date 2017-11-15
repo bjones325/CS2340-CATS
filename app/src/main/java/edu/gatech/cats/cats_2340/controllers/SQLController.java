@@ -364,7 +364,7 @@ public class SQLController {
                 rs.getCreated() + "','" +
                 rs.getLocationType().ordinal() + "'," +
                 rs.getZip() + ",'" +
-                rs.getAddr() + "','" +
+                rs.getAddress() + "','" +
                 rs.getCity() + "','" +
                 rs.getBorough().ordinal() + "'," +
                 rs.getLat() + "," +

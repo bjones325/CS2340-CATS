@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -31,7 +32,8 @@
         android:text="Start Date (YYY-MM-DD):"
         android:layout_marginTop="34dp"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/startDate" />
+        android:layout_alignStart="@+id/startDate"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/endDateText"
@@ -40,7 +42,8 @@
         android:layout_alignStart="@+id/startDate"
         android:layout_below="@+id/startDate"
         android:layout_marginTop="39dp"
-        android:text="End Date (YYYY-MM-DD):" />
+        android:text="End Date (YYYY-MM-DD):"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/locationTitle"
@@ -48,7 +51,8 @@
         android:layout_height="wrap_content"
         android:text="Location Type:"
         android:layout_centerVertical="true"
-        android:layout_alignStart="@+id/endDateText" />
+        android:layout_alignStart="@+id/endDateText"
+        tools:ignore="HardcodedText" />
 
     <Spinner
         android:id="@+id/locationSpinner"
@@ -65,7 +69,8 @@
         android:text="Borough Type:"
         android:layout_above="@+id/boroughSpinner"
         android:layout_alignStart="@+id/locationTitle"
-        android:layout_marginBottom="21dp" />
+        android:layout_marginBottom="21dp"
+        tools:ignore="HardcodedText" />
 
     <Spinner
         android:id="@+id/boroughSpinner"
@@ -84,7 +89,8 @@
         android:onClick="onSearchPressed"
         android:layout_alignParentBottom="true"
         android:layout_toEndOf="@+id/endDateText"
-        android:layout_marginStart="39dp" />
+        android:layout_marginStart="39dp"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/cancelButton"
@@ -94,6 +100,7 @@
         android:layout_alignStart="@+id/boroughText"
         android:layout_marginStart="27dp"
         android:text="Cancel"
-        android:onClick="onCancelPressed"/>
+        android:onClick="onCancelPressed"
+        tools:ignore="HardcodedText" />
 
 </RelativeLayout>

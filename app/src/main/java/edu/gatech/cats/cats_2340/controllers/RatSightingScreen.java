@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import java.sql.Date;
 import java.util.Locale;
+import java.util.Locale;
 
 import edu.gatech.cats.cats_2340.R;
 import edu.gatech.cats.cats_2340.model.BoroughType;
@@ -66,6 +67,8 @@ public class RatSightingScreen extends AppCompatActivity {
         LocationType loc = rs.getLocationType();
         locationType_text.setText(loc.toString());
         zip_text.setText(String.format(Locale.US, "%d", rs.getZip()));
+        address_text.setText(rs.getAddr());
+        zip_text.setText(Integer.toString(rs.getZip()));
         address_text.setText(rs.getAddr());
         city_text.setText(rs.getCity());
         BoroughType bt = rs.getBorough();

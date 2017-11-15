@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -31,7 +32,8 @@
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/startGraph"
         android:layout_marginTop="34dp"
-        android:text="Start Date (YYYY-MM-DD):" />
+        android:text="Start Date (YYYY-MM-DD):"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/endDateText"
@@ -40,7 +42,8 @@
         android:layout_alignStart="@+id/startGraph"
         android:layout_below="@+id/startGraph"
         android:layout_marginTop="39dp"
-        android:text="End Date (YYYY-MM-DD):" />
+        android:text="End Date (YYYY-MM-DD):"
+        tools:ignore="HardcodedText" />
 
 
 
@@ -54,7 +57,8 @@
         android:onClick="onSearchPressed"
         android:layout_alignParentBottom="true"
         android:layout_toEndOf="@+id/endDateText"
-        android:layout_marginStart="39dp" />
+        android:layout_marginStart="39dp"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/cancelButton"
@@ -64,6 +68,7 @@
         android:layout_alignStart="@+id/endDateText"
         android:layout_marginStart="27dp"
         android:text="Cancel"
-        android:onClick="onCancelPressed"/>
+        android:onClick="onCancelPressed"
+        tools:ignore="HardcodedText" />
 
 </RelativeLayout>

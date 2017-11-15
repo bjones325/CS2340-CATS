@@ -20,7 +20,7 @@ import edu.gatech.cats.cats_2340.model.LocationType;
 import edu.gatech.cats.cats_2340.model.RatSighting;
 
 /**
- * Created by Ruchi Banerjee on 10/26/2017. This is the search view
+ * Search view
  */
 
 public class SearchActivity extends AppCompatActivity{
@@ -89,9 +89,10 @@ public class SearchActivity extends AppCompatActivity{
         String locType = _locationType.getSelectedItem().toString();
         String borType = _boroughType.getSelectedItem().toString();
 
+        SQLController sql = SQLController.getSQLController();
 
         ArrayList<RatSighting> filteredRats = new ArrayList<>();
-        for (RatSighting rs : SQLController.getSQLController().getAllSightings()) {
+        for (RatSighting rs : sql.getAllSightings()) {
             if ((rs.getBorough() == BoroughType.toBoroughType(borType))
                     && (rs.getLocationType() == LocationType.toLocationType(locType))) {
                 if ((rs.getCreated().compareTo(sqlStartDate) >= 0)

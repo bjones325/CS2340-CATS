@@ -88,7 +88,7 @@ public class RatSighting implements Serializable {
      * getter for address for a RatSighting
      * @return address
      */
-    public CharSequence getAddr() {
+    public CharSequence getAddress() {
         return _address;
     }
 
