@@ -7,7 +7,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.sql.Date;
+
 import edu.gatech.cats.cats_2340.R;
+import edu.gatech.cats.cats_2340.model.BoroughType;
+import edu.gatech.cats.cats_2340.model.LocationType;
 import edu.gatech.cats.cats_2340.model.RatSighting;
 
 
@@ -24,7 +28,8 @@ public class RatSightingScreen extends AppCompatActivity {
         //Model model = Model.getInstance();
 
         // Get the rat sighting we were passed
-        RatSighting rs = (RatSighting) getIntent().getSerializableExtra("RatSighting");
+        Intent inte = getIntent();
+        RatSighting rs = (RatSighting) inte.getSerializableExtra("RatSighting");
         printData(rs);
 
 
@@ -55,12 +60,15 @@ public class RatSightingScreen extends AppCompatActivity {
         TextView longitude_text = (TextView) findViewById(R.id.longitude_field);
 
         key_text.setText(Integer.toString(rs.getKey()));
-        date_text.setText(rs.getCreated().toString());
-        locationType_text.setText(rs.getLocationType().toString());
+        Date created = rs.getCreated();
+        date_text.setText(created.toString());
+        LocationType loc = rs.getLocationType();
+        locationType_text.setText(loc.toString());
         zip_text.setText(Integer.toString(rs.getZip()));
         address_text.setText(rs.getAddress());
         city_text.setText(rs.getCity());
-        borough_text.setText(rs.getBorough().toString());
+        BoroughType bt = rs.getBorough();
+        borough_text.setText(bt.toString());
         latitude_text.setText(Double.toString(rs.getLat()));
         longitude_text.setText(Double.toString(rs.getLong()));
 

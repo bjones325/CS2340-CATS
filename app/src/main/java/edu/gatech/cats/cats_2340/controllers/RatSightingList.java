@@ -1,6 +1,7 @@
 package edu.gatech.cats.cats_2340.controllers;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,12 +9,14 @@ import android.util.Log;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.nio.charset.Charset;
 
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import edu.gatech.cats.cats_2340.R;
@@ -27,7 +30,17 @@ import edu.gatech.cats.cats_2340.model.User;
  */
 public class RatSightingList extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
+    private static final int KEY_POS = 0;
+    private static final int DATE_POS = 1;
+    private static final int LOCATION_POS = 7;
+    private static final int ZIP_POS = 8;
+    private static final int ADDRESS_POS = 9;
+    private static final int CITY_POS = 16;
+    private static final int BOROUGH_POS = 23;
+    private static final int LATITUDE_POS = 49;
+    private static final int LONGITUDE_POS = 50;
 
+    private SQLController control;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +58,7 @@ public class RatSightingList extends AppCompatActivity implements AdapterView.On
 
 
         // SQL Object to give access to methods
-        SQLController control = SQLController.getSQLController();
+        control = SQLController.getSQLController();
 
         //final Model model = Model.getInstance();
 
@@ -54,7 +67,7 @@ public class RatSightingList extends AppCompatActivity implements AdapterView.On
 
 
         // Pulls in the getAllSightings method to the ArrayAdapter
-        ArrayAdapter<RatSighting> adapter =
+        ListAdapter adapter =
                 new ArrayAdapter<>(
                         this, android.R.layout.simple_list_item_1, control.getAllSightings());
 
@@ -73,7 +86,7 @@ public class RatSightingList extends AppCompatActivity implements AdapterView.On
                 Intent i = new Intent(getBaseContext(),RatSightingScreen.class);
 
                 // Getting the rat sighting and passing it to the next activity
-                RatSighting tmp = (RatSighting) av.getItemAtPosition(position);
+                Serializable tmp = (RatSighting) av.getItemAtPosition(position);
                 i.putExtra("RatSighting", tmp);
 
                 startActivity(i);
@@ -94,12 +107,13 @@ public class RatSightingList extends AppCompatActivity implements AdapterView.On
 
     /**
      * Totally resets the database
-     * @param view The view
+     * @param view Android screen view
      */
     public void resetRatData(View view) {
         try {
-            SQLController.getSQLController().clearRatTable();
-            InputStream stream = getResources().openRawResource(R.raw.data);
+            control.clearRatTable();
+            Resources resour = getResources();
+            InputStream stream = resour.openRawResource(R.raw.data);
             BufferedReader reader =
                     new BufferedReader(new InputStreamReader(stream, Charset.forName("UTF-8")));
             String row = reader.readLine();
@@ -108,49 +122,53 @@ public class RatSightingList extends AppCompatActivity implements AdapterView.On
                 // Import data from each column into a new RatSighting()
 
                 /* Since s could be empty we cannot reverse it*/
-                if (s.length == 0) {
+                if (s.length == KEY_POS) {
                     continue;
                 }
                 RatSighting sighting = new RatSighting();
-                sighting.setKey(Integer.parseInt(s[0]));
+                sighting.setKey(Integer.parseInt(s[KEY_POS]));
                 if ((sighting.getKey() % 10) == 0) {
                     Log.d("INFO", "Key- " + sighting.getKey());
                 }
-                if ((s.length > 0) && (s[1] != null) && (!s[1].isEmpty()) && ("N/A".equals(s[1]))) {
-                    sighting.setCreated(sighting.formatDateString(s[1]));
+                if ((s.length >= DATE_POS) && (s[DATE_POS] != null) && (!s[DATE_POS].isEmpty())
+                        && ("N/A".equals(s[DATE_POS]))) {
+                    sighting.setCreated(sighting.formatDateString(s[DATE_POS]));
                 }
-                if ((s.length > 6) && (s[7] != null) && (!s[7].isEmpty()) && ("N/A".equals(s[7]))) {
-                    s[7] = s[7].replace("'", "");
+                if ((s.length >= LOCATION_POS) && (s[LOCATION_POS] != null)
+                        && (!s[LOCATION_POS].isEmpty()) && ("N/A".equals(s[LOCATION_POS]))) {
+                    s[LOCATION_POS] = s[LOCATION_POS].replace("'", "");
                     sighting.setLocationType(LocationType.toLocationType(s[7]));
                 }
-                if ((s.length > 7) && (s[8] != null) && (!s[8].isEmpty()) && ("N/A".equals(s[8]))) {
-                    s[8] = s[8].replace("'", "");
-                    sighting.setZip(Integer.parseInt(s[8]));
+                if ((s.length >= ZIP_POS) && (s[ZIP_POS] != null) && (!s[ZIP_POS].isEmpty())
+                        && ("N/A".equals(s[ZIP_POS]))) {
+                    s[ZIP_POS] = s[ZIP_POS].replace("'", "");
+                    sighting.setZip(Integer.parseInt(s[ZIP_POS]));
                 }
-                if ((s.length > 8) && (s[9] != null) && (!s[9].isEmpty()) && ("N/A".equals(s[9]))) {
-                    s[9] = s[9].replace("'", "");
-                    sighting.setAddress(s[9]);
+                if ((s.length >= ADDRESS_POS) && (s[ADDRESS_POS] != null)
+                        && (!s[ADDRESS_POS].isEmpty()) && ("N/A".equals(s[ADDRESS_POS]))) {
+                    s[ADDRESS_POS] = s[ADDRESS_POS].replace("'", "");
+                    sighting.setAddress(s[ADDRESS_POS]);
                 }
-                if ((s.length > 15) && (s[16] != null)
-                        && (!s[16].isEmpty()) && ("N/A".equals(s[16]))) {
-                    s[16] = s[16].replace("'", "");
-                    sighting.setCity(s[16]);
+                if ((s.length >= CITY_POS) && (s[CITY_POS] != null)&& (!s[CITY_POS].isEmpty())
+                        && ("N/A".equals(s[CITY_POS]))) {
+                    s[CITY_POS] = s[CITY_POS].replace("'", "");
+                    sighting.setCity(s[CITY_POS]);
                 }
-                if ((s.length > 22) && (s[23] != null)
-                        && (!s[23].isEmpty()) && ("N/A".equals(s[23]))) {
-                    s[23] = s[23].replace("'", "");
-                    sighting.setBorough(BoroughType.toBoroughType(s[23]));
+                if ((s.length >= BOROUGH_POS) && (s[BOROUGH_POS] != null)
+                        && (!s[BOROUGH_POS].isEmpty()) && ("N/A".equals(s[BOROUGH_POS]))) {
+                    s[BOROUGH_POS] = s[BOROUGH_POS].replace("'", "");
+                    sighting.setBorough(BoroughType.toBoroughType(s[BOROUGH_POS]));
                 }
-                if ((s.length > 48) && (s[49] != null)
-                        && (!s[49].isEmpty()) && ("N/A".equals(s[49]))) {
-                    sighting.setLatitude(Float.parseFloat(s[49]));
+                if ((s.length >= LATITUDE_POS) && (s[LATITUDE_POS] != null)
+                        && (!s[LATITUDE_POS].isEmpty()) && ("N/A".equals(s[LATITUDE_POS]))) {
+                    sighting.setLatitude(Float.parseFloat(s[LATITUDE_POS]));
                 }
-                if ((s.length > 49) && (s[50] != null)
-                        && (!s[50].isEmpty()) && ("N/A".equals(s[50]))) {
-                    sighting.setLongitude(Float.parseFloat(s[50]));
+                if ((s.length > LONGITUDE_POS) && (s[LONGITUDE_POS] != null)
+                        && (!s[LONGITUDE_POS].isEmpty()) && ("N/A".equals(s[LONGITUDE_POS]))) {
+                    sighting.setLongitude(Float.parseFloat(s[LONGITUDE_POS]));
                 }
-                User user = SQLController.getSQLController().getUser("CSV");
-                SQLController.getSQLController().addRatSighting(sighting, user);
+                User user = control.getUser("CSV");
+                control.addRatSighting(sighting, user);
                 row = reader.readLine();
             }
             Log.d("INFO:", "Data has been reloaded");

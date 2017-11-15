@@ -1,5 +1,6 @@
 package edu.gatech.cats.cats_2340.controllers;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,8 +27,6 @@ import edu.gatech.cats.cats_2340.model.SearchCriteria;
  */
 public class GraphActivity extends AppCompatActivity {
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +37,8 @@ public class GraphActivity extends AppCompatActivity {
         //Lets get the dates and then use them to set limits in our SQL query
 
         //Chaining fine because you get the intent once
-        String[] dates = (String[]) getIntent().getSerializableExtra("dates");
+        Intent intent = getIntent();
+        String[] dates = (String[]) intent.getSerializableExtra("dates");
 
         Log.d("", dates[0]);
         Log.d("", dates[1]);
@@ -47,11 +47,12 @@ public class GraphActivity extends AppCompatActivity {
 
         Date start = null;
         Date end = null;
-
+        SimpleDateFormat dateFmt = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         try {
-            start = new java.sql.Date(
-                    ( new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse(dates[0])).getTime());
-            end = new java.sql.Date( new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse(dates[1]).getTime());
+            java.util.Date parsed = dateFmt.parse(dates[0]);
+            start = new java.sql.Date(parsed.getTime());
+            java.util.Date endParsed = dateFmt.parse(dates[1]);
+            end = new java.sql.Date(endParsed.getTime());
         } catch (Exception e) {
             Log.d("date error", "couldn't convert date");
         }

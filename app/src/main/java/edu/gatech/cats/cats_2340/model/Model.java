@@ -1,5 +1,6 @@
 package edu.gatech.cats.cats_2340.model;
 
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import edu.gatech.cats.cats_2340.controllers.SQLController;
@@ -16,6 +17,7 @@ public final class Model {
     //Singleton instance
     private static final Model _instance = new Model();
 
+    @Nullable
     private User currentUser;
 
     /**
@@ -78,13 +80,15 @@ public final class Model {
      */
     public boolean registerUser(User u) {
         //Clean one liner
-        return SQLController.getSQLController().addUser(u);
+        SQLController controller = SQLController.getSQLController();
+        return controller.addUser(u);
     }
 
     /**
      * Returns the current user
      * @return The use logged
      */
+    @Nullable
     public User getCurrentUser() {
         return currentUser;
     }
@@ -93,5 +97,5 @@ public final class Model {
      * I don't know what this does
      * @param u The current user
      */
-    public void setCurrentUser(User u) {currentUser = u;}
+    public void setCurrentUser(@Nullable User u) {currentUser = u;}
 }

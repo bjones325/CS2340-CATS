@@ -66,9 +66,9 @@ public class SearchActivity extends AppCompatActivity{
      * @param view The view
      */
     public void onSearchPressed(View view) {
-
         String startDateStr = _startDate.getText().toString();
-        SimpleDateFormat endDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+        SimpleDateFormat endDateFormat = new SimpleDateFormat("yyyy-MM-dd",
+                Locale.getDefault());
         java.sql.Date sqlStartDate = null;
         try {
             sqlStartDate = new java.sql.Date(endDateFormat.parse(startDateStr).getTime());

@@ -1,5 +1,7 @@
 package edu.gatech.cats.cats_2340.model;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.io.Serializable;
 import java.sql.Date;
 
@@ -144,7 +146,9 @@ public class RatSighting implements Serializable {
      * @param created The created date
      */
     public void setCreated(String created) {
-        this._created = Date.valueOf(created);
+        if (!created.isEmpty()) {
+            this._created = Date.valueOf(created);
+        }
     }
 
     /**
@@ -168,7 +172,9 @@ public class RatSighting implements Serializable {
      * @param address the address
      */
     public void setAddress(String address) {
-        this._address = address;
+        if (!address.isEmpty()) {
+            this._address = address;
+        }
     }
 
     /**
@@ -176,7 +182,9 @@ public class RatSighting implements Serializable {
      * @param city The city
      */
     public void setCity(String city) {
-        this._city = city;
+        if (!city.isEmpty()) {
+            this._city = city;
+        }
     }
 
     /**
@@ -212,5 +220,13 @@ public class RatSighting implements Serializable {
         String[] split = created.split("/");
         String year = split[2].substring(0, 4);
         return year + "-" + split[0] + "-" + split[1];
+    }
+
+    /**
+     * Provides a GoogleMap LatLng
+     * @return LatLng given current Lat and Long
+     */
+    public LatLng getLatLong() {
+        return new LatLng(getLat(), getLong());
     }
 }

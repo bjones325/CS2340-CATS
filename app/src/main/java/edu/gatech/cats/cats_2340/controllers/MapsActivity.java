@@ -1,7 +1,9 @@
 package edu.gatech.cats.cats_2340.controllers;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -30,7 +32,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //Fairly obvious chaining
-        sightings = (Collection<RatSighting>) getIntent().getSerializableExtra("mapsList");
+        Intent currentIntent = getIntent();
+        sightings = (Collection<RatSighting>) currentIntent.getSerializableExtra("mapsList");
         if (sightings == null) {
             sightings = new ArrayList<>();
             SQLController sql = SQLController.getSQLController();
@@ -38,7 +41,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
         setContentView(R.layout.activity_maps);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+        FragmentManager sfm = getSupportFragmentManager();
+        SupportMapFragment mapFragment = (SupportMapFragment) sfm
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
@@ -58,8 +62,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         //Collection<LatLng> latlngTups = new ArrayList<>();
         for (RatSighting rs : sightings) {
-            LatLng latlngTuple = new LatLng(rs.getLat(), rs.getLong());
-            googleMap.addMarker(new MarkerOptions().position(latlngTuple).title(rs.toString()));
+            LatLng latlngTuple = rs.getLatLong();
+            MarkerOptions mOptions= new MarkerOptions();
+            mOptions.position(latlngTuple);
+            mOptions.title(rs.toString());
+            googleMap.addMarker(mOptions);
             //latlngTups.add(latlngTuple);
         }
 

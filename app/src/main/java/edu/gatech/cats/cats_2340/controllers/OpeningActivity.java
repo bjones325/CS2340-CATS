@@ -56,7 +56,7 @@ public class OpeningActivity extends AppCompatActivity{
                 if (!userEdit) {
                     userText.setText("");
                     userEdit = true;
-                } else if (!"".equals(userText.getText().toString())){
+                } else if (userText.length() != 0){
                     passText.requestFocus();
                     passEdit.setVisibility(View.INVISIBLE);
                     userEdit = false;
@@ -81,9 +81,11 @@ public class OpeningActivity extends AppCompatActivity{
             }
         });
 
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-        SQLController.getSQLController().initializeConnection();
+        StrictMode.ThreadPolicy.Builder policy = new StrictMode.ThreadPolicy.Builder();
+        policy.permitAll();
+        StrictMode.setThreadPolicy(policy.build());
+        SQLController controller = SQLController.getSQLController();
+        controller.initializeConnection();
     }
 
     /*private static AsyncTask<Void, Void, Void> asyncTask = new AsyncTask<Void, Void, Void>() {
@@ -104,13 +106,13 @@ public class OpeningActivity extends AppCompatActivity{
     public void onLoginPressed(View view) {
         Model model = Model.getInstance();
         //Just makes sense
-        String username = userText.getText().toString();
-        String password = passText.getText().toString();
+        CharSequence username = userText.getText();
+        CharSequence password = passText.getText();
 
         Log.d("Login", "Attempting login");
 
         //If they log in, put them in the application
-        if(model.attemptLogin(username, password)) {
+        if(model.attemptLogin(username.toString(), password.toString())) {
             Log.d("Login", "Success");
             startActivity(new Intent(getBaseContext(),ApplicationActivity.class));
             finish();
