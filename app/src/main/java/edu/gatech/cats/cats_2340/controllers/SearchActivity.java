@@ -13,13 +13,14 @@ import android.widget.TextView;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import edu.gatech.cats.cats_2340.model.BoroughType;
 import edu.gatech.cats.cats_2340.model.LocationType;
 import edu.gatech.cats.cats_2340.model.RatSighting;
 
 /**
- * Created by Ruchi Banerjee on 10/26/2017. This is the search view
+ * Search view
  */
 
 public class SearchActivity extends AppCompatActivity{
@@ -67,7 +68,7 @@ public class SearchActivity extends AppCompatActivity{
     public void onSearchPressed(View view) {
 
         String startDateStr = _startDate.getText().toString();
-        SimpleDateFormat endDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat endDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
         java.sql.Date sqlStartDate = null;
         try {
             sqlStartDate = new java.sql.Date(endDateFormat.parse(startDateStr).getTime());

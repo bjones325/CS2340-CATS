@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import edu.gatech.cats.cats_2340.R;
 
+import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -15,7 +16,7 @@ import android.widget.TextView;
 import edu.gatech.cats.cats_2340.model.Model;
 import edu.gatech.cats.cats_2340.model.User;
 
-import android.view.*;
+
 
 /**
  * Activity when a user begins to register

@@ -46,7 +46,7 @@ public final class Model {
         //Log.d("Login", "Model attempting log in");
         if (currentUser != null) {
             //Log.d("ERROR:", "User trying to login, but is already logged in?");
-            //Log.d("Login", "Duplicate logins");
+            //Log.d("Login", "Duplicate login");
             return false;
         }
         SQLController sql = SQLController.getSQLController();

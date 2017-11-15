@@ -58,7 +58,7 @@ public class RatSightingScreen extends AppCompatActivity {
         date_text.setText(rs.getCreated().toString());
         locationType_text.setText(rs.getLocationType().toString());
         zip_text.setText(Integer.toString(rs.getZip()));
-        address_text.setText(rs.getAddr());
+        address_text.setText(rs.getAddress());
         city_text.setText(rs.getCity());
         borough_text.setText(rs.getBorough().toString());
         latitude_text.setText(Double.toString(rs.getLat()));
