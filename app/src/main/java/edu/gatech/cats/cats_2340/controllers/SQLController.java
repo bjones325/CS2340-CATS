@@ -276,7 +276,6 @@ public class SQLController {
         StringBuilder string = new StringBuilder("SELECT EXTRACT(month FROM dateCreated) " +
                 "AS 'Month', EXTRACT(year FROM dateCreated) AS 'Year', count(*) " +
                 "AS 'Count' FROM `cs2340db`.`rat_sighting`");
-        boolean insertedWhere = false;
 
         if ((sc.getStartDate() != null) && (sc.getEndDate() != null)) {
             //string.append(" AND ");

@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.sql.Date;
+import java.util.Locale;
 
 import edu.gatech.cats.cats_2340.R;
 import edu.gatech.cats.cats_2340.model.BoroughType;
@@ -59,18 +60,18 @@ public class RatSightingScreen extends AppCompatActivity {
         TextView latitude_text = (TextView) findViewById(R.id.latitude_field);
         TextView longitude_text = (TextView) findViewById(R.id.longitude_field);
 
-        key_text.setText(Integer.toString(rs.getKey()));
+        key_text.setText(String.format(Locale.US, "%d", rs.getKey()));
         Date created = rs.getCreated();
         date_text.setText(created.toString());
         LocationType loc = rs.getLocationType();
         locationType_text.setText(loc.toString());
-        zip_text.setText(Integer.toString(rs.getZip()));
+        zip_text.setText(String.format(Locale.US, "%d", rs.getZip()));
         address_text.setText(rs.getAddr());
         city_text.setText(rs.getCity());
         BoroughType bt = rs.getBorough();
         borough_text.setText(bt.toString());
-        latitude_text.setText(Double.toString(rs.getLat()));
-        longitude_text.setText(Double.toString(rs.getLong()));
+        latitude_text.setText(String.format(Locale.US, "%f", rs.getLat()));
+        longitude_text.setText(String.format(Locale.US, "%f", rs.getLong()));
 
     }
 }

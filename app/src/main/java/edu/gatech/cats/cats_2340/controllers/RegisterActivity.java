@@ -28,7 +28,6 @@ public class RegisterActivity extends AppCompatActivity
     private boolean nameEdit;
     private boolean userEdit;
     private boolean passEdit;
-    boolean isAdmin = false;
 
     @SuppressWarnings("unchecked")
     @Override
