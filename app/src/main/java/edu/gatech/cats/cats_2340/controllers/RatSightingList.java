@@ -163,7 +163,7 @@ public class RatSightingList extends AppCompatActivity implements AdapterView.On
                         && (!s[LATITUDE_POS].isEmpty()) && ("N/A".equals(s[LATITUDE_POS]))) {
                     sighting.setLatitude(Float.parseFloat(s[LATITUDE_POS]));
                 }
-                if ((s.length > LONGITUDE_POS) && (s[LONGITUDE_POS] != null)
+                if ((s.length >= LONGITUDE_POS) && (s[LONGITUDE_POS] != null)
                         && (!s[LONGITUDE_POS].isEmpty()) && ("N/A".equals(s[LONGITUDE_POS]))) {
                     sighting.setLongitude(Float.parseFloat(s[LONGITUDE_POS]));
                 }

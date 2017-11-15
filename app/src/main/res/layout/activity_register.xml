@@ -44,7 +44,8 @@
         android:layout_marginTop="82dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:imeOptions="actionNext"/>
+        android:imeOptions="actionNext"
+        tools:ignore="HardcodedText" />
 
     <EditText
         android:id="@+id/userID"
@@ -57,7 +58,8 @@
         android:inputType="text"
         android:text="Username"
         android:focusable="true"
-        android:focusableInTouchMode="true"/>
+        android:focusableInTouchMode="true"
+        tools:ignore="HardcodedText" />
 
     <EditText
         android:id="@+id/password"
@@ -70,7 +72,8 @@
         android:inputType="text"
         android:text="Password"
         android:focusable="true"
-        android:focusableInTouchMode="true"/>
+        android:focusableInTouchMode="true"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/userTypeLabel"
@@ -79,7 +82,8 @@
         android:layout_marginTop="53dp"
         android:text="User Type"
         android:layout_below="@+id/password"
-        android:layout_alignStart="@+id/password" />
+        android:layout_alignStart="@+id/password"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/invalidSubmit"
@@ -89,7 +93,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="14dp"
         android:text="Please fill out all four fields"
-        android:textColor="@color/colorAccent" />
+        android:textColor="@color/colorAccent"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/cancelButton"
@@ -100,7 +105,8 @@
         android:layout_marginBottom="54dp"
         android:layout_marginStart="30dp"
         android:onClick="onCancelPressed"
-        android:text="Cancel" />
+        android:text="Cancel"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/submitButton"
@@ -109,5 +115,6 @@
         android:onClick="onRegisterPressed"
         android:layout_alignTop="@+id/cancelButton"
         android:layout_toEndOf="@+id/password"
-        android:text="Submit" />
+        android:text="Submit"
+        tools:ignore="HardcodedText" />
 </RelativeLayout>
