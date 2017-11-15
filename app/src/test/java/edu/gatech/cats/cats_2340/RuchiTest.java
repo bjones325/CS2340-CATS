@@ -13,7 +13,6 @@ import edu.gatech.cats.cats_2340.model.LocationType;
 import edu.gatech.cats.cats_2340.model.RatSighting;
 import edu.gatech.cats.cats_2340.model.SearchCriteria;
 
-import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 
@@ -23,7 +22,7 @@ import static org.junit.Assert.assertEquals;
 
 @SuppressWarnings("DefaultFileTemplate")
 public class RuchiTest {
-    private final SQLController sql = new SQLController().getSQLController();
+    private final SQLController sql = SQLController.getSQLController();
 
     private final SearchCriteria emptySC = new SearchCriteria();
 

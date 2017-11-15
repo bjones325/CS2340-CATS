@@ -6,10 +6,7 @@ android {
     buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "edu.gatech.cats.cats_2340"
-        minSdkVersion 25
-        targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion 14
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -28,10 +25,10 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile project(':mysql-connector-java-3.0.17-ga-bin')
-    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:appcompat-v7:25.4.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.android.support:design:25.3.1'
-    compile 'com.google.android.gms:play-services-maps:11.0.4'
+    compile 'com.android.support:design:25.4.0'
+    compile 'com.google.android.gms:play-services-maps:11.6.0'
     compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'
     testCompile 'junit:junit:4.12'
 }

@@ -108,9 +108,6 @@ public class RatSightingList extends AppCompatActivity implements AdapterView.On
                 // Import data from each column into a new RatSighting()
 
                 /* Since s could be empty we cannot reverse it*/
-                if (s.equals("")) {
-                    continue;
-                }
                 if (s.length == 0) {
                     continue;
                 }
@@ -152,8 +149,8 @@ public class RatSightingList extends AppCompatActivity implements AdapterView.On
                         && (!s[50].isEmpty()) && ("N/A".equals(s[50]))) {
                     sighting.setLongitude(Float.parseFloat(s[50]));
                 }
-                User csvuser = SQLController.getSQLController().getUser("CSV");
-                SQLController.getSQLController().addRatSighting(sighting, csvuser);
+                User user = SQLController.getSQLController().getUser("CSV");
+                SQLController.getSQLController().addRatSighting(sighting, user);
                 row = reader.readLine();
             }
             Log.d("INFO:", "Data has been reloaded");
