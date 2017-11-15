@@ -61,7 +61,7 @@ public class RegisterActivity extends AppCompatActivity
                 if (!nameEdit) {
                     nameText.setText("");
                     nameEdit = true;
-                } else if (!"".equals(nameText.getText().toString())) {
+                } else if (nameText.length() != 0) {
                     userText.requestFocus();
                     userText.setText("");
                     userEdit = true;
@@ -75,7 +75,7 @@ public class RegisterActivity extends AppCompatActivity
                 if (!userEdit) {
                     userText.setText("");
                     userEdit = true;
-                } else if (!"".equals(userText.getText().toString())) {
+                } else if (userText.length() != 0) {
                     passText.requestFocus();
                     passText.setText("");
                     passEdit = true;
@@ -91,7 +91,7 @@ public class RegisterActivity extends AppCompatActivity
                     passText.setText("");
                     passEdit = true;
                 }
-                else if (!"".equals(userText.getText().toString())) {
+                else if (userText.length() != 0) {
                     userTypeLabel.requestFocus();
                 }
             }
@@ -106,15 +106,15 @@ public class RegisterActivity extends AppCompatActivity
     public void onRegisterPressed(View view) {
         Model model = Model.getInstance();
 
-        String name = nameText.getText().toString();
-        String pass = passText.getText().toString();
+        CharSequence name = nameText.getText();
+        CharSequence pass = passText.getText();
 
         boolean isAdmin = false;
         if ("Admin".equals(userTypeLabel.getSelectedItem())) {
             isAdmin = true;
         }
 
-        User newUser = new User(name, pass, isAdmin);
+        User newUser = new User(name.toString(), pass.toString(), isAdmin);
 
         if ("".equals(name) || "".equals(pass) || !model.registerUser(newUser)) {
             TextView failedRegisterText = (TextView) findViewById(R.id.invalidSubmit);
@@ -143,7 +143,8 @@ public class RegisterActivity extends AppCompatActivity
      */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        String _type = parent.getItemAtPosition(position).toString();
+        Object _type = parent.getItemAtPosition(position);
+        _type.toString();
     }
 
     @Override

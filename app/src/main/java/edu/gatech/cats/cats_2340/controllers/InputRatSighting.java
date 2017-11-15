@@ -82,15 +82,15 @@ public class InputRatSighting extends AppCompatActivity {
         //Model model = Model.getInstance();
 
         //All readable/understandable
-        String latStr = latText.getText().toString();
-        String lonStr = longText.getText().toString();
-        String dateStr = dateText.getText().toString();
-        String locationStr = locationType.getSelectedItem().toString();
-        String timeStr = timeText.getText().toString();
-        String zipStr = zipText.getText().toString();
-        String addressStr = addressText.getText().toString();
-        String cityStr = cityText.getText().toString();
-        String boroughStr = borough.getSelectedItem().toString();
+        CharSequence latStr = latText.getText();
+        CharSequence lonStr = longText.getText();
+        CharSequence dateStr = dateText.getText();
+        Object locationStr = locationType.getSelectedItem();
+        CharSequence timeStr = timeText.getText();
+        CharSequence zipStr = zipText.getText();
+        CharSequence addressStr = addressText.getText();
+        CharSequence cityStr = cityText.getText();
+        Object boroughStr = borough.getSelectedItem();
 
         if ("".equals(latStr) || "".equals(lonStr) || "".equals(dateStr) || "".equals(timeStr) ||
                 "".equals(zipStr) || "".equals(addressStr) || "".equals(cityStr)) {
@@ -99,25 +99,17 @@ public class InputRatSighting extends AppCompatActivity {
         }
 
         // Creates a rat sighting object and assigns values
-        RatSighting newRatSighting = new RatSighting();
+        RatSighting newRatSighting = new RatSighting(0,
+                null, LocationType.toLocationType(locationStr.toString()),
+                Integer.parseInt(zipStr.toString()), addressStr.toString(),
+                cityStr.toString(), BoroughType.toBoroughType(boroughStr.toString()),
+                Float.parseFloat(latStr.toString()), Float.parseFloat(lonStr.toString()));
 
-        newRatSighting.setAddress(addressStr);
-        newRatSighting.setCity(cityStr);
-        newRatSighting.setCreated(dateStr);
-        newRatSighting.setLocationType(LocationType.toLocationType(locationStr));
-        newRatSighting.setBorough(BoroughType.toBoroughType(boroughStr));
-        if (!zipStr.isEmpty()) {
-            newRatSighting.setZip(Integer.parseInt(zipStr));
-        }
-        if (!latStr.isEmpty()) {
-            newRatSighting.setLatitude(Float.parseFloat(latStr));
-        }
-        if (!lonStr.isEmpty()) {
-            newRatSighting.setLongitude(Float.parseFloat(lonStr));
-        }
+        newRatSighting.setCreated(dateStr.toString());
 
         // adding the rat sighting to the controller
-        controller.addRatSighting(newRatSighting, Model.getInstance().getCurrentUser());
+        Model instance = Model.getInstance();
+        controller.addRatSighting(newRatSighting, instance.getCurrentUser());
 
         //model.addReport(newRatSighting);
         startActivity(new Intent(getBaseContext(),ApplicationActivity.class));

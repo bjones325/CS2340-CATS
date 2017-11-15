@@ -1,5 +1,7 @@
 package edu.gatech.cats.cats_2340.model;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.io.Serializable;
 import java.sql.Date;
 
@@ -218,5 +220,13 @@ public class RatSighting implements Serializable {
         String[] split = created.split("/");
         String year = split[2].substring(0, 4);
         return year + "-" + split[0] + "-" + split[1];
+    }
+
+    /**
+     * Provides a GoogleMap LatLng
+     * @return LatLng given current Lat and Long
+     */
+    public LatLng getLatLong() {
+        return new LatLng(getLat(), getLong());
     }
 }

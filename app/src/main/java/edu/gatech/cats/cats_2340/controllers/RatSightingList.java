@@ -1,6 +1,7 @@
 package edu.gatech.cats.cats_2340.controllers;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -111,7 +112,8 @@ public class RatSightingList extends AppCompatActivity implements AdapterView.On
     public void resetRatData(View view) {
         try {
             control.clearRatTable();
-            InputStream stream = getResources().openRawResource(R.raw.data);
+            Resources resour = getResources();
+            InputStream stream = resour.openRawResource(R.raw.data);
             BufferedReader reader =
                     new BufferedReader(new InputStreamReader(stream, Charset.forName("UTF-8")));
             String row = reader.readLine();
