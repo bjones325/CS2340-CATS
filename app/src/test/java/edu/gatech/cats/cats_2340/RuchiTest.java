@@ -39,7 +39,7 @@ public class RuchiTest {
 
     @Before
     public void setUp() {
-        SQLController.getSQLController().initializeConnection();
+        sql.initializeConnection();
     }
 
     @Test
