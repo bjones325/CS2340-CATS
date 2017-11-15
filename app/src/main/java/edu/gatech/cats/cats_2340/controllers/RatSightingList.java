@@ -106,8 +106,9 @@ public class RatSightingList extends AppCompatActivity implements AdapterView.On
 
     /**
      * Totally resets the database
+     * @param view Android screen view
      */
-    public void resetRatData() {
+    public void resetRatData(View view) {
         try {
             control.clearRatTable();
             InputStream stream = getResources().openRawResource(R.raw.data);

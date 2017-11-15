@@ -35,9 +35,9 @@ public class GraphTimeRange extends AppCompatActivity {
     public void onSearchPressed(View view) {
 
         //Get the text, put in in an array, and give it to the next activity
-        String startDateStr = _startDate.getText().toString();
-        String endDateStr = _endDate.getText().toString();
-        String[] dates = {startDateStr, endDateStr};
+        CharSequence startDateStr = _startDate.getText();
+        CharSequence endDateStr = _endDate.getText();
+        String[] dates = {startDateStr.toString(), endDateStr.toString()};
 
         Intent i = new Intent(getBaseContext(), GraphActivity.class);
         i.putExtra("dates", dates);

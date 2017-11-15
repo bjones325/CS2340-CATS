@@ -212,7 +212,7 @@ public class SQLController {
 
 
 
-       List<Integer[]> list = new ArrayList<>();
+       Collection<Integer[]> list = new ArrayList<>();
         if (result == null) {
             Integer[] elem = new Integer[] {0, 0, 0};
             list.add(elem);
