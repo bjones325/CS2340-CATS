@@ -48,8 +48,17 @@ public class SearchCriteria {
      */
     public SearchCriteria(List<BoroughType> boroughs,
                           List<LocationType> locations, Date start, Date end) {
-        borough = new ArrayList<>(boroughs);
-        location = new ArrayList<>(locations);
+        if(boroughs == null) {
+            borough = null;
+        } else {
+            borough = new ArrayList<>(boroughs);
+        }
+
+        if (locations == null) {
+            location = null;
+        } else {
+            location = new ArrayList<>(locations);
+        }
         startDate = start;
         endDate = end;
     }

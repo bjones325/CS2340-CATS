@@ -140,6 +140,7 @@ public class RegisterActivity extends AppCompatActivity
      * @param position The position selected
      * @param id The id of selected
      */
+    
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         Object _type = parent.getItemAtPosition(position);
