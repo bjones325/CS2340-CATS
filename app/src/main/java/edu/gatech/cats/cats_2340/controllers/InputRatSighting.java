@@ -98,25 +98,16 @@ public class InputRatSighting extends AppCompatActivity {
             return;
         }
 
+        // Creates a rat sighting object and assigns values
         RatSighting newRatSighting = new RatSighting();
 
-        if (!dateStr.isEmpty()) {
-            newRatSighting.setCreated(dateStr);
-        }
-        if (!locationStr.isEmpty()) {
-            newRatSighting.setLocationType(LocationType.toLocationType(locationStr));
-        }
+        newRatSighting.setAddress(addressStr);
+        newRatSighting.setCity(cityStr);
+        newRatSighting.setCreated(dateStr);
+        newRatSighting.setLocationType(LocationType.toLocationType(locationStr));
+        newRatSighting.setBorough(BoroughType.toBoroughType(boroughStr));
         if (!zipStr.isEmpty()) {
             newRatSighting.setZip(Integer.parseInt(zipStr));
-        }
-        if (!addressStr.isEmpty()) {
-            newRatSighting.setAddress(addressStr);
-        }
-        if (!cityStr.isEmpty()) {
-            newRatSighting.setCity(cityStr);
-        }
-        if (!boroughStr.isEmpty()) {
-            newRatSighting.setBorough(BoroughType.toBoroughType(boroughStr));
         }
         if (!latStr.isEmpty()) {
             newRatSighting.setLatitude(Float.parseFloat(latStr));

@@ -23,6 +23,10 @@ public class MarkTest {
     private final List<LocationType> loc = new ArrayList<>();
     private LocationType currLoc;
 
+
+    /**
+     * Sets up 3 ArrayLists of varying types for tests
+     */
     @Before
     public void setUp() {
         str = Arrays.asList("1-2 Family Dwelling",
@@ -45,6 +49,10 @@ public class MarkTest {
         loc.add(LocationType.OTHER);
     }
 
+    /**
+     * Converts Strings into their relevant location types
+     *  to test if they convert correctly
+     */
     @Test
     public void testToLocationType() {
         for (int i = 0; i < str.size(); i++) {
@@ -53,6 +61,10 @@ public class MarkTest {
         }
     }
 
+    /**
+     * Tests user generated entries that do not match any option,
+     *  and should become of type other
+     */
     @Test
     public void testOtherPossibilities() {
         for (int i = 0; i < other.size(); i++) {
@@ -61,6 +73,10 @@ public class MarkTest {
         }
     }
 
+    /**
+     * Tests null entry (which wouldn't normally be allowed to happen,
+     *  as fields can't be empty inside the app)
+     */
     @Test
     public void testNullEntry() {
         currLoc = LocationType.toLocationType(null);

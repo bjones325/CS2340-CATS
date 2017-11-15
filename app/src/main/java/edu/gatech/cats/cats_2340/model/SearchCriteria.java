@@ -25,31 +25,31 @@ public class SearchCriteria {
 
     /**
      * Constructor when Borough is given
-     * @param bors The boroughs given by a user
+     * @param boroughs The boroughs given by a user
      */
-    public SearchCriteria(BoroughType... bors) {
-        borough = Arrays.asList(bors);
+    public SearchCriteria(BoroughType... boroughs) {
+        borough = Arrays.asList(boroughs);
     }
 
     /**
      * When location type is given
-     * @param locs A SC for location types
+     * @param locations A SC for location types
      */
-    public SearchCriteria(LocationType... locs) {
-        location = Arrays.asList(locs);
+    public SearchCriteria(LocationType... locations) {
+        location = Arrays.asList(locations);
     }
 
     /**
      * Search criteria when given a lot
      * @param boroughs The boroughs searched for
-     * @param locs The locations searched for
+     * @param locations The locations searched for
      * @param start The start date
      * @param end The end date
      */
     public SearchCriteria(List<BoroughType> boroughs,
-                          List<LocationType> locs, Date start, Date end) {
+                          List<LocationType> locations, Date start, Date end) {
         borough = new ArrayList<>(boroughs);
-        location = new ArrayList<>(locs);
+        location = new ArrayList<>(locations);
         startDate = start;
         endDate = end;
     }

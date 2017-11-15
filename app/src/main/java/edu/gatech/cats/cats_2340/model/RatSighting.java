@@ -144,7 +144,9 @@ public class RatSighting implements Serializable {
      * @param created The created date
      */
     public void setCreated(String created) {
-        this._created = Date.valueOf(created);
+        if (!created.isEmpty()) {
+            this._created = Date.valueOf(created);
+        }
     }
 
     /**
@@ -168,7 +170,9 @@ public class RatSighting implements Serializable {
      * @param address the address
      */
     public void setAddress(String address) {
-        this._address = address;
+        if (!address.isEmpty()) {
+            this._address = address;
+        }
     }
 
     /**
@@ -176,7 +180,9 @@ public class RatSighting implements Serializable {
      * @param city The city
      */
     public void setCity(String city) {
-        this._city = city;
+        if (!city.isEmpty()) {
+            this._city = city;
+        }
     }
 
     /**

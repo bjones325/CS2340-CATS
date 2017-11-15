@@ -39,6 +39,8 @@ public class RatSightingList extends AppCompatActivity implements AdapterView.On
     private static final int LATITUDE_POS = 49;
     private static final int LONGITUDE_POS = 50;
 
+    private SQLController control;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +57,7 @@ public class RatSightingList extends AppCompatActivity implements AdapterView.On
 
 
         // SQL Object to give access to methods
-        SQLController control = SQLController.getSQLController();
+        control = SQLController.getSQLController();
 
         //final Model model = Model.getInstance();
 
@@ -107,7 +109,7 @@ public class RatSightingList extends AppCompatActivity implements AdapterView.On
      */
     public void resetRatData() {
         try {
-            SQLController.getSQLController().clearRatTable();
+            control.clearRatTable();
             InputStream stream = getResources().openRawResource(R.raw.data);
             BufferedReader reader =
                     new BufferedReader(new InputStreamReader(stream, Charset.forName("UTF-8")));
@@ -162,8 +164,8 @@ public class RatSightingList extends AppCompatActivity implements AdapterView.On
                         && (!s[LONGITUDE_POS].isEmpty()) && ("N/A".equals(s[LONGITUDE_POS]))) {
                     sighting.setLongitude(Float.parseFloat(s[LONGITUDE_POS]));
                 }
-                User user = SQLController.getSQLController().getUser("CSV");
-                SQLController.getSQLController().addRatSighting(sighting, user);
+                User user = control.getUser("CSV");
+                control.addRatSighting(sighting, user);
                 row = reader.readLine();
             }
             Log.d("INFO:", "Data has been reloaded");
