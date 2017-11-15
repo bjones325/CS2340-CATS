@@ -8,12 +8,14 @@ import android.util.Log;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.nio.charset.Charset;
 
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import edu.gatech.cats.cats_2340.R;
@@ -27,15 +29,15 @@ import edu.gatech.cats.cats_2340.model.User;
  */
 public class RatSightingList extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
-    public static final int KEY_POS = 0;
-    public static final int DATE_POS = 1;
-    public static final int LOCATION_POS = 7;
-    public static final int ZIP_POS = 8;
-    public static final int ADDRESS_POS = 9;
-    public static final int CITY_POS = 16;
-    public static final int BOROUGH_POS = 23;
-    public static final int LATITUDE_POS = 49;
-    public static final int LONGITUDE_POS = 50;
+    private static final int KEY_POS = 0;
+    private static final int DATE_POS = 1;
+    private static final int LOCATION_POS = 7;
+    private static final int ZIP_POS = 8;
+    private static final int ADDRESS_POS = 9;
+    private static final int CITY_POS = 16;
+    private static final int BOROUGH_POS = 23;
+    private static final int LATITUDE_POS = 49;
+    private static final int LONGITUDE_POS = 50;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +64,7 @@ public class RatSightingList extends AppCompatActivity implements AdapterView.On
 
 
         // Pulls in the getAllSightings method to the ArrayAdapter
-        ArrayAdapter<RatSighting> adapter =
+        ListAdapter adapter =
                 new ArrayAdapter<>(
                         this, android.R.layout.simple_list_item_1, control.getAllSightings());
 
@@ -81,7 +83,7 @@ public class RatSightingList extends AppCompatActivity implements AdapterView.On
                 Intent i = new Intent(getBaseContext(),RatSightingScreen.class);
 
                 // Getting the rat sighting and passing it to the next activity
-                RatSighting tmp = (RatSighting) av.getItemAtPosition(position);
+                Serializable tmp = (RatSighting) av.getItemAtPosition(position);
                 i.putExtra("RatSighting", tmp);
 
                 startActivity(i);

@@ -1,5 +1,6 @@
 package edu.gatech.cats.cats_2340.model;
 
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import edu.gatech.cats.cats_2340.controllers.SQLController;
@@ -16,6 +17,7 @@ public final class Model {
     //Singleton instance
     private static final Model _instance = new Model();
 
+    @Nullable
     private User currentUser;
 
     /**

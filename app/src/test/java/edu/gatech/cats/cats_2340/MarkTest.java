@@ -20,7 +20,7 @@ import static org.junit.Assert.assertEquals;
 public class MarkTest {
     private List<String> str = new ArrayList<>();
     private List<String> other = new ArrayList<>();
-    private List<LocationType> loc = new ArrayList<>();
+    private final List<LocationType> loc = new ArrayList<>();
     private LocationType currLoc;
 
     @Before

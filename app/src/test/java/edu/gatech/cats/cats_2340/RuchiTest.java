@@ -28,9 +28,12 @@ public class RuchiTest {
 
     private final Date ratDate1 = new Date(0,0,0);
     private final Date ratDate2 = new Date(1,11,1);
-    private final SearchCriteria locSC = new SearchCriteria(LocationType.toLocationType("Building"));
-    private final SearchCriteria borSC = new SearchCriteria(BoroughType.toBoroughType("Manhattan"));
-    private final RatSighting rs1 = new RatSighting(123, ratDate1, LocationType.toLocationType("Building"),
+    private final SearchCriteria locSC
+            = new SearchCriteria(LocationType.toLocationType("Building"));
+    private final SearchCriteria borSC
+            = new SearchCriteria(BoroughType.toBoroughType("Manhattan"));
+    private final RatSighting rs1
+            = new RatSighting(123, ratDate1, LocationType.toLocationType("Building"),
             876, "246 Lucky Rd", "New York City", BoroughType.toBoroughType("Manhattan"),
             42.0f, -72.3f);
 

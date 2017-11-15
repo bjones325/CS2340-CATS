@@ -38,7 +38,7 @@ public enum BoroughType {
     public static BoroughType toBoroughType(String s) {
         for (BoroughType bt : BoroughType.values()) {
             //Readable
-            if (bt.toString().equalsIgnoreCase(s)) {
+            if (bt.toString().equals(s)) {
                 return bt;
             }
         }
